@@ -1,6 +1,6 @@
 import Link from "next/link";
 import EventGrid from "@/components/EventGrid";
-import { events, championship } from "@/data/events";
+import { events , championship} from "@/data/events";
 
 export const metadata = {
     title: "Phoenix 3.0 | The Arena",
