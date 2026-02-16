@@ -1,14 +1,13 @@
 export const events = [
     {
         slug: "code-a-thon-2026",
-        title: "Code-A-Thon 2026",
+        title: "Code-NO-Thon 2026",
         description: '"The ultimate battle of logic and speed where every millisecond counts."',
-        category: "Technical",
-        categoryColor: "blue",
+
         participants: "120+",
         image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAkXsjT3i9B4QMDxC3AHuqRhA6qZ4mkszlNpsSHSfd6jF3wS52Sqi00Gegakg79xaBAgE-t8kCVevsb5bG2jVeIwI-Qe_THmopYzMNxKZp9niK75EuRYYBU1WfXZIs-tFTVd2_LWAl73YLXmPt-cUk9JpOIyEfXxnwBSpJ7ccWTsYB-txcd2iRgOgUAJEcl5Ra3pYXZcsUnRxBAbs7QYnzb1amAKcHozcaBchbxEESLr4mv7jvYaujOBhhTEkkLI_2tE0mexZ1isqc",
         imageAlt: "Cybersecurity hacking terminal interface concept",
-        longDescription: "Code-A-Thon 2026 is the ultimate programming competition where teams compete to solve complex algorithmic challenges under extreme time pressure. Every millisecond counts as participants race to write the most efficient, bug-free code. The event features multiple rounds of increasing difficulty, from warm-up challenges to fiendishly complex optimization problems.",
+        longDescription: "Code-No-Thon 2026 is the ultimate programming competition where teams compete to solve complex algorithmic challenges under extreme time pressure. Every millisecond counts as participants race to write the most efficient, bug-free code. The event features multiple rounds of increasing difficulty, from warm-up challenges to fiendishly complex optimization problems.",
         rules: [
             "Teams of 2-4 members",
             "3-hour time limit per round",
@@ -60,8 +59,7 @@ export const events = [
         slug: "algorithm-arena",
         title: "Algorithm Arena",
         description: '"Solve complex problems under pressure in our dedicated sandbox."',
-        category: "Technical",
-        categoryColor: "blue",
+
         participants: "150+",
         image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBXinfXYcjrGJh1EjMz3EmUXTTDbQexHLkK97zlgbn1JDV6iZ-6xCv8iYkC8ERIw-5JI8bAw62B9iYFf3-1V_kb-xKY_E7jFnok8Si65qUDOhDkMybZrLuRIiof4MG6Z0SA0E0OiAv_IQfLGSnNpxoEogtQulK-4JgZ4k3wfXDXqmL6Z-7n67S5PgoJ8Bj2xuKnNVx2z2Wzh0s1YIgrjQQEZzsPsIQiRNM7bI7Yg1_JhCEJ5fs_pngafI8P-z_kx7jZjFFpJYDHEpI",
         imageAlt: "Complex algorithm code on a black screen",
@@ -126,28 +124,4 @@ export function getEventBySlug(slug) {
     return events.find(e => e.slug === slug);
 }
 
-export function getCategoryColorClasses(color) {
-    const map = {
-        blue: {
-            bg: "bg-blue-500/20",
-            border: "border-blue-500/30",
-            text: "text-blue-400"
-        },
-        purple: {
-            bg: "bg-purple-500/20",
-            border: "border-purple-500/30",
-            text: "text-purple-400"
-        },
-        pink: {
-            bg: "bg-pink-500/20",
-            border: "border-pink-500/30",
-            text: "text-pink-400"
-        },
-        emerald: {
-            bg: "bg-emerald-500/20",
-            border: "border-emerald-500/30",
-            text: "text-emerald-400"
-        }
-    };
-    return map[color] || map.blue;
-}
+

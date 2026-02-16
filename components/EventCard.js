@@ -1,8 +1,6 @@
 import Link from "next/link";
-import { getCategoryColorClasses } from "@/data/events";
 
-export default function EventCard({ title, description, slug, category, categoryColor, image, imageAlt, participants }) {
-    const colors = getCategoryColorClasses(categoryColor);
+export default function EventCard({ title, description, slug, image, imageAlt, participants }) {
 
     return (
         <div className="event-card group bg-charcoal border border-white/5 rounded-xl overflow-hidden flex flex-col">
@@ -14,11 +12,7 @@ export default function EventCard({ title, description, slug, category, category
                     data-alt={imageAlt}
                     src={image}
                 />
-                <div className="absolute top-4 left-4 z-20">
-                    <span className={`px-3 py-1 rounded-md ${colors.bg} border ${colors.border} ${colors.text} text-[10px] font-bold uppercase tracking-widest backdrop-blur-md`}>
-                        {category}
-                    </span>
-                </div>
+
             </div>
             <div className="p-6 flex flex-col flex-1">
                 <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{title}</h3>
