@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Phoenix 3.0 | The Evolution</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ff6a00",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#0a0705",
+                        "neutral-dark": "#1a110a",
+                        "accent-glow": "rgba(255, 106, 0, 0.15)"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .pillar-card:hover {
+            box-shadow: 0 0 30px rgba(255, 106, 0, 0.2);
+            transform: translateY(-4px);
+            border-color: #ff6a00;
+        }
+        .bg-mesh {
+            background-image: radial-gradient(circle at 50% 50%, #23170f 0%, #0a0705 100%);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(255, 106, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white transition-colors duration-300">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-mesh">
+<!-- Navigation -->
+<header class="flex items-center justify-between border-b border-white/10 px-6 py-4 md:px-20 backdrop-blur-md sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<span class="material-symbols-outlined text-4xl leading-none">local_fire_department</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight uppercase">Phoenix 3.0</h2>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Evolution</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Innovation</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Knowledge</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Creativity</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="bg-primary hover:bg-primary/90 text-white text-xs font-bold uppercase tracking-widest px-6 py-2.5 rounded-lg transition-all active:scale-95">
+                    Register Now
+                </button>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center justify-center px-6 py-12 md:px-20">
+<!-- Hero Section -->
+<div class="text-center max-w-4xl mb-16">
+<span class="inline-block px-4 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-6">
+                    The Rebirth
+                </span>
+<h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tighter mb-6 bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent">
+                    The Evolution of <span class="text-primary italic">Phoenix 3.0</span>
+</h1>
+<p class="text-white/60 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                    Witness the transformation as we rise from the ashes. Explore our three core pillars designed to ignite innovation, spark knowledge, and celebrate creativity.
+                </p>
+</div>
+<!-- Pillars Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-7xl">
+<!-- Pillar 1: Innovation -->
+<div class="pillar-card group relative flex flex-col bg-neutral-dark border border-white/5 p-8 rounded-xl transition-all duration-300 overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-8xl">terminal</span>
+</div>
+<div class="relative z-10">
+<div class="w-14 h-14 flex items-center justify-center rounded-lg bg-primary/10 text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined text-3xl">developer_mode</span>
+</div>
+<h3 class="text-2xl font-bold mb-3 tracking-tight">Innovation</h3>
+<p class="text-white/50 text-sm leading-relaxed mb-6">
+                            The technical frontier. From competitive coding to breakthrough engineering, master the tools of tomorrow and redefine the limits of technology.
+                        </p>
+<div class="flex flex-col gap-2 mb-8">
+<div class="flex items-center gap-2 text-xs text-white/40">
+<span class="material-symbols-outlined text-sm text-primary">check_circle</span>
+<span>Hackathons &amp; Coding</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-white/40">
+<span class="material-symbols-outlined text-sm text-primary">check_circle</span>
+<span>Robotics &amp; Engineering</span>
+</div>
+</div>
+<button class="mt-auto flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider group/btn">
+                            Explore Technical 
+                            <span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<!-- Pillar 2: Knowledge -->
+<div class="pillar-card group relative flex flex-col bg-neutral-dark border border-white/5 p-8 rounded-xl transition-all duration-300 overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-8xl">psychology</span>
+</div>
+<div class="relative z-10">
+<div class="w-14 h-14 flex items-center justify-center rounded-lg bg-primary/10 text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined text-3xl">lightbulb</span>
+</div>
+<h3 class="text-2xl font-bold mb-3 tracking-tight">Knowledge</h3>
+<p class="text-white/50 text-sm leading-relaxed mb-6">
+                            The intellectual battleground. Engage in high-stakes quizzes, trivia, and strategic debates. Ignite your intellect and prove your mental prowess.
+                        </p>
+<div class="flex flex-col gap-2 mb-8">
+<div class="flex items-center gap-2 text-xs text-white/40">
+<span class="material-symbols-outlined text-sm text-primary">check_circle</span>
+<span>General &amp; Tech Quizzes</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-white/40">
+<span class="material-symbols-outlined text-sm text-primary">check_circle</span>
+<span>Strategic Intellectual War</span>
+</div>
+</div>
+<button class="mt-auto flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider group/btn">
+                            Join Quizzes
+                            <span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<!-- Pillar 3: Creativity -->
+<div class="pillar-card group relative flex flex-col bg-neutral-dark border border-white/5 p-8 rounded-xl transition-all duration-300 overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-8xl">palette</span>
+</div>
+<div class="relative z-10">
+<div class="w-14 h-14 flex items-center justify-center rounded-lg bg-primary/10 text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined text-3xl">celebration</span>
+</div>
+<h3 class="text-2xl font-bold mb-3 tracking-tight">Creativity</h3>
+<p class="text-white/50 text-sm leading-relaxed mb-6">
+                            The soul of the festival. Celebrate through art, music, performances, and cultural expression. Unleash your spirit in a vibrant fusion of fun.
+                        </p>
+<div class="flex flex-col gap-2 mb-8">
+<div class="flex items-center gap-2 text-xs text-white/40">
+<span class="material-symbols-outlined text-sm text-primary">check_circle</span>
+<span>Fine Arts &amp; Performance</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-white/40">
+<span class="material-symbols-outlined text-sm text-primary">check_circle</span>
+<span>Cultural Fest &amp; Fun Events</span>
+</div>
+</div>
+<button class="mt-auto flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider group/btn">
+                            Unleash Spirit
+                            <span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+</div>
+<!-- Footer Stats / Callout -->
+<div class="mt-20 flex flex-wrap justify-center gap-12 text-center border-t border-white/5 pt-12 w-full max-w-5xl">
+<div>
+<div class="text-3xl font-bold text-white mb-1">20+</div>
+<div class="text-xs uppercase tracking-widest text-white/40 font-medium">Major Events</div>
+</div>
+<div>
+<div class="text-3xl font-bold text-white mb-1">5K+</div>
+<div class="text-xs uppercase tracking-widest text-white/40 font-medium">Expected Attendees</div>
+</div>
+<div>
+<div class="text-3xl font-bold text-white mb-1">3</div>
+<div class="text-xs uppercase tracking-widest text-white/40 font-medium">Core Pillars</div>
+</div>
+<div>
+<div class="text-3xl font-bold text-white mb-1">$10K</div>
+<div class="text-xs uppercase tracking-widest text-white/40 font-medium">Prize Pool</div>
+</div>
+</div>
+</main>
+<footer class="bg-neutral-dark/50 border-t border-white/5 py-10 px-6 md:px-20">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2 opacity-50">
+<span class="material-symbols-outlined text-lg">local_fire_department</span>
+<span class="text-xs uppercase tracking-widest font-bold">Phoenix 3.0 Evolution</span>
+</div>
+<div class="flex gap-6">
+<a class="text-white/40 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+<a class="text-white/40 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">mail</span>
+</a>
+<a class="text-white/40 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">public</span>
+</a>
+</div>
+<p class="text-white/30 text-[10px] uppercase tracking-widest">
+                    © 2024 Phoenix Festival Committee. All rights reserved.
+                </p>
+</div>
+</footer>
+</div>
+</body></html>

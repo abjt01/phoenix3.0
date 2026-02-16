@@ -1,26 +1,144 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: #ff6a00;
+  --color-background-light: #f8f7f5;
+  --color-background-dark: #0a0a0a;
+  --color-neutral-dark: #1a1a1a;
+  --color-accent-dark: #23170f;
+  --color-ash: #3d342f;
+  --color-charcoal: #1a1a1a;
+  --color-border-muted: #2d2d2d;
+  --color-accent-glow: rgba(255, 106, 0, 0.15);
+  --font-display: "Space Grotesk", sans-serif;
+  --radius-default: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* =============================================
+   Page 1: The Awakening (Landing Page) Styles
+   ============================================= */
+
+.ember-bg {
+  background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+  position: relative;
+  overflow: hidden;
 }
+
+.ember-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, #ff6a00, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 40px 70px, #ff6a00, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 50px 160px, #ff6a00, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 80px 120px, #ff6a00, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 110px 10px, #ff6a00, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 150px 150px, #ff6a00, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.glass-nav {
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 106, 0, 0.1);
+}
+
+.glow-text {
+  text-shadow: 0 0 20px rgba(255, 106, 0, 0.4);
+}
+
+.btn-glow {
+  box-shadow: 0 0 25px rgba(255, 106, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 40px rgba(255, 106, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+/* =============================================
+   Page 2: The Legend (Storytelling) Styles
+   ============================================= */
+
+.glow-trail {
+  background: linear-gradient(180deg, rgba(255, 106, 0, 0) 0%, rgba(255, 106, 0, 1) 50%, rgba(255, 106, 0, 0) 100%);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(255, 106, 0, 0.5);
+}
+
+.cinematic-gradient {
+  background: linear-gradient(to bottom, rgba(13, 10, 8, 0) 0%, rgba(13, 10, 8, 0.8) 50%, rgba(13, 10, 8, 1) 100%);
+}
+
+/* =============================================
+   Page 3: The Evolution (Pillars) Styles
+   ============================================= */
+
+.pillar-card:hover {
+  box-shadow: 0 0 30px rgba(255, 106, 0, 0.2);
+  transform: translateY(-4px);
+  border-color: #ff6a00;
+}
+
+.bg-mesh {
+  background-image: radial-gradient(circle at 50% 50%, #23170f 0%, #0a0705 100%);
+}
+
+/* =============================================
+   Page 4: Events Arena Styles
+   ============================================= */
+
+.arena-body-bg {
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(255, 106, 0, 0.05) 0%, transparent 50%),
+    linear-gradient(to bottom, #121212, #0a0a0a);
+  background-attachment: fixed;
+}
+
+.event-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.event-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 0 20px rgba(255, 106, 0, 0.15);
+  border-color: rgba(255, 106, 0, 0.4);
+}
+
+.glass-panel {
+  background: rgba(26, 26, 26, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-glow {
+  text-shadow: 0 0 10px rgba(255, 106, 0, 0.5);
+}
+
+/* =============================================
+   Global Base Styles
+   ============================================= */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: #0a0a0a;
+  color: #ffffff;
+}
+
+::selection {
+  background-color: rgba(255, 106, 0, 0.3);
+  color: white;
 }

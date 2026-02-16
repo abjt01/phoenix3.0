@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Phoenix 3.0 | The Legend</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ff6a00",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#0d0a08",
+                        "ash": "#3d342f",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glow-trail {
+            background: linear-gradient(180deg, rgba(255,106,0,0) 0%, rgba(255,106,0,1) 50%, rgba(255,106,0,0) 100%);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 106, 0, 0.5);
+        }
+        .cinematic-gradient {
+            background: linear-gradient(to bottom, rgba(13,10,8,0) 0%, rgba(13,10,8,0.8) 50%, rgba(13,10,8,1) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary/30">
+<!-- Navigation -->
+<header class="fixed top-0 w-full z-50 border-b border-white/10 bg-background-dark/80 backdrop-blur-md px-6 lg:px-20 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">local_fire_department</span>
+<h1 class="text-xl font-bold tracking-tighter uppercase">Phoenix <span class="text-primary">3.0</span></h1>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">The Legend</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Evolution</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Legacy</a>
+<button class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg text-sm font-bold transition-all transform hover:scale-105">
+                    Register Now
+                </button>
+</nav>
+</div>
+</header>
+<main class="relative">
+<!-- Hero: The Philosophy -->
+<section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-black/60 z-10"></div>
+<img alt="Background" class="w-full h-full object-cover opacity-40 grayscale" data-alt="Abstract cinematic dark background with subtle embers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxYOqltXN_8O_5L8IomWH2ZzuLc7UX4hcZ_mQ5tjiOpfnsGMzg_lGNMM76caUQGbeoOLq8ObK0ChrAJlHvvMky5htAcJLCv4rQ30zY0GW6_Nw4lJqTrrBQdmmfM9X8M3JNgJw9RzXBBMi4l3_asKr_P84EbP0bdAPDIvhHeYFOlsj4eAtd6e2l1O_D_Id6zrtor97yb3TttVZOJQOqkUdmM_kJKDnAFi4xJIpLAsB0gQmzgDKhAjQHaNEChmcqnJIYWWcseI88FuU"/>
+</div>
+<div class="relative z-20 max-w-4xl px-6 text-center">
+<span class="inline-block px-4 py-1 border border-primary/30 rounded-full text-primary text-xs font-bold uppercase tracking-widest mb-6 bg-primary/10">The Narrative</span>
+<h1 class="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8">
+                    Rising from the <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-ash">Ashes</span>.
+                </h1>
+<p class="text-lg md:text-2xl text-white/70 font-light leading-relaxed max-w-2xl mx-auto italic">
+                    "From sparks of curiosity to blazing achievements, Phoenix 3.0 celebrates every talent and every idea."
+                </p>
+<div class="mt-12 flex flex-col items-center">
+<span class="text-xs uppercase tracking-[0.3em] text-white/40 mb-4">Scroll to Evolve</span>
+<div class="w-px h-20 bg-gradient-to-b from-primary to-transparent animate-pulse"></div>
+</div>
+</div>
+</section>
+<!-- The Timeline / Evolution Section -->
+<section class="py-24 px-6 relative">
+<div class="max-w-6xl mx-auto">
+<!-- Section Header -->
+<div class="mb-20">
+<h2 class="text-3xl font-bold mb-4">The Evolution</h2>
+<p class="text-white/50 max-w-md">Our journey has been a process of refinement, turning raw potential into radiant success.</p>
+</div>
+<div class="relative">
+<!-- The Glow Trail Vertical Line -->
+<div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] bg-white/10 -translate-x-1/2 overflow-hidden">
+<div class="glow-trail absolute top-0 left-0 right-0 h-1/2"></div>
+</div>
+<!-- Step 1: Genesis -->
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-12 mb-32 group">
+<div class="md:text-right pr-0 md:pr-16 order-2 md:order-1">
+<span class="text-ash font-bold text-6xl md:text-8xl block opacity-30 group-hover:opacity-50 transition-opacity">01</span>
+<h3 class="text-2xl font-bold mt-2 mb-4 text-ash">The Genesis (Ashes)</h3>
+<p class="text-white/60 leading-relaxed">
+                                Early sparks of curiosity in monochrome. A time of raw ideas and unshaped potential where the foundation was laid in silence and focus.
+                            </p>
+</div>
+<div class="relative order-1 md:order-2">
+<!-- Icon/Marker -->
+<div class="absolute left-[-22px] md:left-[-1px] top-10 md:top-16 z-10 size-12 rounded-full bg-background-dark border-2 border-ash flex items-center justify-center">
+<span class="material-symbols-outlined text-ash">cloud</span>
+</div>
+<div class="aspect-video bg-ash/20 rounded-xl overflow-hidden grayscale">
+<img alt="Genesis" class="w-full h-full object-cover" data-alt="Monochrome workshop or conceptual sketching phase" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFxHLJbLmZQk3tbtKDUaRv5THn828uzS2rP1mRSAvBg0mmjSsGLUplu7pHiLtjdBxvN_vN9Zh03RVUeN7xhe7HvMhzMYQucZEiM-rn-bKIslBKmZXX8zZYAySDCxJpyZCaV2LPgNI_7a2lvLaCQxg0jG_JIS-YXQyn-xmqoR2VLLj4pQkD_Y_Qs8HP84dwbGJbXCQGp5fS7VNUe147944r7NbS9FatqPmjt_t_icRwhTXZ26vsDrNgGs93j0lfsJcDqqI0YJHowoQ"/>
+</div>
+</div>
+</div>
+<!-- Step 2: Transition -->
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-12 mb-32 group">
+<div class="relative">
+<div class="absolute right-[-22px] md:right-[-1px] top-10 md:top-16 z-10 size-12 rounded-full bg-background-dark border-2 border-primary/50 flex items-center justify-center shadow-[0_0_15px_rgba(255,106,0,0.3)]">
+<span class="material-symbols-outlined text-primary">flare</span>
+</div>
+<div class="aspect-video bg-primary/10 rounded-xl overflow-hidden">
+<img alt="Transition" class="w-full h-full object-cover brightness-75" data-alt="Dynamic lighting and crowds at an evening event" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhkTkqmiKZZpxgP8XUZLRqjMoRR4iyjOtUMv1SqeHN2Xb6KQd73cklFHgOzlRKlPaTIYbs0uPo5Ov7IhA1o-OkeKCPRHInj-_-OmZS4AVLo7872Lak_q1jjZw5OgUISZQ0oVcElKqkUpBXIPcP8nLhAygGB2O6vEUx0azt4lOGPuXfWL1Qs9fs4axR0y-KHhMFadf2xwqbigAsiS7seYXot6vVjORBPIamTyKtKj-7xXabeKLZHjnT4paOfHuN15tjvB9l92-qTdk"/>
+</div>
+</div>
+<div class="pl-0 md:pl-16">
+<span class="text-primary/40 font-bold text-6xl md:text-8xl block opacity-30 group-hover:opacity-50 transition-opacity">02</span>
+<h3 class="text-2xl font-bold mt-2 mb-4 text-primary/80">The Transition (Glow)</h3>
+<p class="text-white/60 leading-relaxed">
+                                Glow trails of rising ambition. The festival began to take shape, attracting dreamers and doers who added color to our growing vision.
+                            </p>
+</div>
+</div>
+<!-- Step 3: Peak -->
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-12 mb-32 group">
+<div class="md:text-right pr-0 md:pr-16 order-2 md:order-1">
+<span class="text-primary font-bold text-6xl md:text-8xl block opacity-30 group-hover:opacity-100 transition-opacity">03</span>
+<h3 class="text-2xl font-bold mt-2 mb-4 text-primary text-glow">The Peak (Phoenix 3.0)</h3>
+<p class="text-white leading-relaxed">
+                                Blazing achievements in full fire. Today, Phoenix stands as a beacon of excellence, where every idea burns bright and every talent reaches its summit.
+                            </p>
+<button class="mt-6 flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all ml-auto">
+                                View Gallery <span class="material-symbols-outlined">trending_flat</span>
+</button>
+</div>
+<div class="relative order-1 md:order-2">
+<div class="absolute left-[-22px] md:left-[-1px] top-10 md:top-16 z-10 size-12 rounded-full bg-primary border-2 border-white flex items-center justify-center shadow-[0_0_25px_rgba(255,106,0,0.8)]">
+<span class="material-symbols-outlined text-white">bolt</span>
+</div>
+<div class="aspect-video bg-primary/20 rounded-xl overflow-hidden border border-primary/50">
+<img alt="Peak" class="w-full h-full object-cover" data-alt="Grand finale stage with fire and light effects" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASIk8oJ560vexCXiFcp1pxfRZmqCk8NVkHvvexFTZalbSrbsMG-HQeYDhtHkeVTqQJe2oa9zSYb5wgQ_2UngmtvxaClqKiSAZEt4hxGcFs2OT8bhjktevvcloI53RspmTly1PajcqMtNuaoq1_V-U6HgOJUhwVdRfkaFPOm5CjSZgFMIrQcUMjgr-vsd2Fj-XYRHSrwIdvKKZiodCqI5yfXp51KRe3-ZwXYc6NqqTIXyqs2eqBNWvrWmOpkzhAM40QX_3f2MTfzTw"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Feature Grid: Visual Motifs -->
+<section class="py-24 bg-white/[0.02] border-y border-white/5">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="p-8 rounded-xl bg-background-dark border border-white/5 hover:border-primary/50 transition-all group">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-white transition-colors">history_edu</span>
+</div>
+<h4 class="text-xl font-bold mb-3">Ancient Legacy</h4>
+<p class="text-white/50 text-sm leading-relaxed">Inspired by the timeless myth of the phoenix, our festival celebrates the cycle of constant improvement and rebirth.</p>
+</div>
+<div class="p-8 rounded-xl bg-background-dark border border-white/5 hover:border-primary/50 transition-all group">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-white transition-colors">all_inclusive</span>
+</div>
+<h4 class="text-xl font-bold mb-3">Endless Evolution</h4>
+<p class="text-white/50 text-sm leading-relaxed">We don't just host events; we nurture a community that evolves with every passing year, reaching higher every time.</p>
+</div>
+<div class="p-8 rounded-xl bg-background-dark border border-white/5 hover:border-primary/50 transition-all group">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-white transition-colors">workspace_premium</span>
+</div>
+<h4 class="text-xl font-bold mb-3">Blazing Excellence</h4>
+<p class="text-white/50 text-sm leading-relaxed">Our 3.0 version represents the pinnacle of technology, art, and human creativity working in perfect harmony.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-32 px-6 overflow-hidden relative">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/20 blur-[150px] rounded-full pointer-events-none"></div>
+<div class="max-w-4xl mx-auto text-center relative z-10">
+<h2 class="text-4xl md:text-6xl font-bold mb-8">Ready to write your <span class="text-primary italic">Legend</span>?</h2>
+<p class="text-white/70 text-lg mb-12 max-w-xl mx-auto">Be part of the evolution. Join the thousands who have found their fire at Phoenix 3.0.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-primary hover:bg-primary/90 text-white px-10 py-4 rounded-lg font-bold text-lg shadow-[0_0_30px_rgba(255,106,0,0.4)] transition-all">
+                        Secure Your Spot
+                    </button>
+<button class="bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 text-white px-10 py-4 rounded-lg font-bold text-lg transition-all">
+                        Learn More
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-background-dark border-t border-white/5 py-12 px-6">
+<div class="max-w-7xl mx-auto flex flex-col md:row items-center justify-between gap-8">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl">local_fire_department</span>
+<span class="font-bold tracking-tighter uppercase text-sm">Phoenix 3.0</span>
+</div>
+<div class="flex gap-8 text-white/40 text-xs uppercase tracking-widest font-medium">
+<a class="hover:text-primary" href="#">Instagram</a>
+<a class="hover:text-primary" href="#">X (Twitter)</a>
+<a class="hover:text-primary" href="#">LinkedIn</a>
+<a class="hover:text-primary" href="#">YouTube</a>
+</div>
+<p class="text-white/30 text-xs">© 2024 Phoenix Legacy Foundation. All rights reserved.</p>
+</div>
+</footer>
+</body></html>
