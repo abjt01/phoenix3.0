@@ -110,37 +110,32 @@ export const events = [
         ],
         schedule: "March 6, 2026 — 2:00 PM to 6:00 PM",
         venue: "Main Auditorium"
-    } , 
+    },
     {
-    slug: "code-storm",
-    title: "Code Storm",
-    description: '"Unleash the power of logic and speed. Competitive coding showdown."',
-    category: "Technology",
-    categoryColor: "blue",
-    participants: "60+",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
-    imageAlt: "Programmer coding on laptop with multiple screens and dark theme setup",
-    longDescription: "Code Storm is a high-intensity competitive programming event where participants tackle algorithmic challenges under strict time constraints. Contestants must demonstrate strong problem-solving skills, efficiency, and coding accuracy. Problems range from data structures and algorithms to real-world logical puzzles. Rankings are determined by correctness, speed, and optimization.",
-    rules: [
-        "Individual participation only",
-        "Languages allowed: C++, Java, Python",
-        "Internet access prohibited during contest",
-        "3-hour coding challenge",
-        "Top 10 advance to rapid-fire finale round"
-    ],
-    schedule: "March 6, 2026 — 1:00 PM to 3:00 PM",
-    venue: "Innovation Hall, Tech Block"
-} , 
+        slug: "code-storm",
+        title: "Code Storm",
+        description: '"Unleash the power of logic and speed. Competitive coding showdown."',
+        category: "Technology",
+        categoryColor: "blue",
+        participants: "60+",
+        image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
+        imageAlt: "Programmer coding on laptop with multiple screens and dark theme setup",
+        longDescription: "Code Storm is a high-intensity competitive programming event where participants tackle algorithmic challenges under strict time constraints. Contestants must demonstrate strong problem-solving skills, efficiency, and coding accuracy. Problems range from data structures and algorithms to real-world logical puzzles. Rankings are determined by correctness, speed, and optimization.",
+        rules: [
+            "Individual participation only",
+            "Languages allowed: C++, Java, Python",
+            "Internet access prohibited during contest",
+            "3-hour coding challenge",
+            "Top 10 advance to rapid-fire finale round"
+        ],
+        schedule: "March 6, 2026 — 1:00 PM to 3:00 PM",
+        venue: "Innovation Hall, Tech Block"
+    },
 
 
 ];
 
-export const championship = {
-    title: "Phoenix Championship Finale",
-    description: "The culmination of all events. The top finalists from each technical category meet here to determine the ultimate Phoenix Champion. Spectators welcome.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDnv3zv579sEJon-OkqSgSjMWvb0Tbt1j6bmTyDJgV0WTEvdIeEjBAsLyL1JkQzIBz_D7CjyI3N8Fvrdom8icwCQsPA1ePETRVjCaBexPGy3HGAjV-yQ3bZWzt94Tw84WHGocZ2z9OFG6soQ19-lOSuhH4vPHV5PDf6WscJ2PzUZFwX4uRiSbLyxz2WdjUlPHiBiWYguikF_cSz12B8TRXn6BNBFzATIIJfAQ-Cjla9C4sDt0sKrfe7YPjlc01jwRWam7bFolcZW9w",
-    imageAlt: "Large esports arena with screens and neon lights"
-};
+
 
 export function getEventBySlug(slug) {
     return events.find(e => e.slug === slug);
