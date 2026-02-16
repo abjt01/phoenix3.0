@@ -124,6 +124,33 @@
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* =============================================
+   Page 5: Event Schedule Styles
+   ============================================= */
+
+.schedule-timeline-line {
+  background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(255, 106, 0, 0.4) 10%,
+      rgba(255, 106, 0, 0.4) 90%,
+      transparent 100%);
+  box-shadow: 0 0 8px rgba(255, 106, 0, 0.2);
+}
+
+.schedule-node {
+  box-shadow: 0 0 12px rgba(255, 106, 0, 0.5);
+}
+
+.schedule-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.schedule-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 24px rgba(255, 106, 0, 0.12);
+  border-color: rgba(255, 106, 0, 0.3);
+}
+
 .nav-glow {
   text-shadow: 0 0 10px rgba(255, 106, 0, 0.5);
 }

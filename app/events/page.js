@@ -1,6 +1,6 @@
 import Link from "next/link";
 import EventGrid from "@/components/EventGrid";
-import { events, championship } from "@/data/events";
+import { events , championship} from "@/data/events";
 
 export const metadata = {
     title: "Phoenix 3.0 | The Arena",
@@ -13,25 +13,13 @@ export default function EventsPage() {
             <main className="max-w-7xl mx-auto w-full px-6 py-12">
                 {/* Hero Header */}
                 <div className="mb-12 space-y-4">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest">
-                        <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                        </span>
-                        Live Dashboard
-                    </div>
                     <h2 className="text-5xl md:text-6xl font-black tracking-tight leading-none uppercase italic">The <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">Arena</span></h2>
                     <p className="text-white/50 text-lg max-w-2xl font-light">Enter the proving grounds of the next generation. Compete in high-stakes technical battles, knowledge gauntlets, and creative showcases.</p>
                 </div>
 
                 {/* Filter Tabs */}
+                {/* Filter Tabs - REMOVED */}
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-10 border-b border-white/5 pb-8">
-                    <div className="flex flex-wrap gap-2">
-                        <button className="px-6 py-2.5 rounded-lg bg-primary text-white font-bold text-sm tracking-wide uppercase shadow-lg shadow-primary/20">All</button>
-                        <button className="px-6 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/60 hover:text-white font-bold text-sm tracking-wide uppercase transition-all">Technical</button>
-                        <button className="px-6 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/60 hover:text-white font-bold text-sm tracking-wide uppercase transition-all">Quizzes &amp; Knowledge</button>
-                        <button className="px-6 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/60 hover:text-white font-bold text-sm tracking-wide uppercase transition-all">Cultural &amp; Fun</button>
-                    </div>
                     <div className="flex items-center gap-3 text-white/40 text-sm">
                         <span>Showing {events.length} Active Arenas</span>
                         <span className="material-symbols-outlined">filter_list</span>

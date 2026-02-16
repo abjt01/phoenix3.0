@@ -1,12 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { events, getEventBySlug, getCategoryColorClasses } from "@/data/events";
-
-export async function generateStaticParams() {
-    return events.map((event) => ({
-        slug: event.slug,
-    }));
-}
+import { getEventBySlug } from "@/data/events";
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
@@ -25,8 +19,6 @@ export default async function EventDetailPage({ params }) {
     if (!event) {
         notFound();
     }
-
-    const colors = getCategoryColorClasses(event.categoryColor);
 
     return (
         <div className="arena-body-bg min-h-screen">
@@ -48,11 +40,7 @@ export default async function EventDetailPage({ params }) {
                             data-alt={event.imageAlt}
                             src={event.image}
                         />
-                        <div className="absolute top-6 left-6 z-20">
-                            <span className={`px-3 py-1 rounded-md ${colors.bg} border ${colors.border} ${colors.text} text-[10px] font-bold uppercase tracking-widest backdrop-blur-md`}>
-                                {event.category}
-                            </span>
-                        </div>
+
                     </div>
                 </div>
 
