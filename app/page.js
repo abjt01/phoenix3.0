@@ -1,5 +1,4 @@
 import Link from "next/link";
-
 export const metadata = {
   title: "PHOENIX 3.0 — Rise. Rebuild. Reinvent.",
   description: "DSCE's Annual Celebration of Knowledge, Creativity, and Innovation. Witness the transformation on March 5–6.",
@@ -9,10 +8,19 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <main className="relative min-h-screen flex flex-col justify-center items-center px-6 ember-bg -mt-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/50 to-background-dark pointer-events-none"></div>
+      <main className="relative min-h-screen flex flex-col justify-center items-center px-6 ember-bg -mt-20 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0 mt-0">
+          {/* <img
+            src="/bird.jpeg"
+            alt=""
+            className="w-full h-full object-cover opacity-100 mix-blend-overlay"
+          /> */}
+          <div className="absolute inset-0 bg-background-dark/30"></div>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/50 to-background-dark pointer-events-none z-1"></div>
         <div className="relative z-10 text-center max-w-5xl">
-          <h1 className="text-5xl md:text-8xl font-bold leading-[1.1] tracking-tighter mb-8 glow-text">
+          <h1 className="text-5xl md:text-8xl font-bold leading-[1.1] tracking-tighter mb-8 mt-30 glow-text ">
             PHOENIX 3.0 <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#ff9d5c]">Rise. Rebuild. Reinvent.</span>
           </h1>
@@ -87,10 +95,10 @@ export default function HomePage() {
       {/* Visual Divider */}
       <div className="w-full h-[400px] overflow-hidden relative">
         <img
-          alt="Vibrant festival energy with orange lighting"
-          className="w-full h-full object-cover opacity-40 grayscale hover:grayscale-0 transition-all duration-1000"
-          data-alt="Abstract cinematic stage with orange lights and smoke"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4QpR7MzQ_pmDFKdzdLrO81_-9aHka4gQQ2i_H4lH4B9no3JovqbMAmKgSyT_QjKu5CihoDg85dWgN6vNGfT84Ei88mgWHZUMY_PvlqvF1vwPzCsVpihHYxdklNyT6L4LvElJ99LNtIOVRzCjz3QI-CCMm3QkJQi2VzdyVVomMc547W2BynWo_w8Pr_EY-dUC5N8WFE5rl-BNICsxiYYeRAvfV5BsQL5bjIbY2XElRPG3cPsMIDbl2Y2SmslAvgUw0L0jkvLG7QEc"
+          alt=""
+          className="w-full h-full object-cover opacity-40  hover:grayscale-0 transition-all duration-1000"
+          data-alt=""
+          src="/bird.jpeg"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-background-dark"></div>
       </div>

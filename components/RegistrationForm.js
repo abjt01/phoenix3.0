@@ -126,7 +126,7 @@ export default function RegistrationForm({ selectedEventSlug }) {
                             onChange={handleChange}
                             className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:ring-primary focus:border-primary transition-all appearance-none"
                         >
-                            {[1, 2, 3, 4, 5].map(num => (
+                            {[1, 2, 3, 4].map(num => (
                                 <option key={num} value={num} className="bg-background-dark text-white">
                                     {num} Member{num > 1 ? 's' : ''}
                                 </option>
