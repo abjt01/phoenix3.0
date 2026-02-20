@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import { events } from "@/data/events";
 
 // ---------------------------------------------------------------------------
@@ -97,6 +98,7 @@ export default function RegistrationForm({ selectedEventSlug }) {
     useEffect(() => {
         const size = parseInt(formData.teamSize, 10);
         const extras = Math.max(0, size - 1);
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setTeamMembers((prev) => {
             if (prev.length === extras) return prev;
             if (prev.length < extras) {
@@ -116,6 +118,7 @@ export default function RegistrationForm({ selectedEventSlug }) {
         const size = parseInt(formData.teamSize, 10);
         if (!constraints.conflict) {
             if (size < constraints.min) {
+                // eslint-disable-next-line react-hooks/set-state-in-effect
                 setFormData((prev) => ({ ...prev, teamSize: String(constraints.min) }));
             } else if (size > constraints.max) {
                 setFormData((prev) => ({ ...prev, teamSize: String(constraints.max) }));
@@ -286,18 +289,18 @@ export default function RegistrationForm({ selectedEventSlug }) {
                     Keep an eye on this page and our social channels for event updates.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                    <a
+                    <Link
                         href="/events"
                         className="text-primary border border-primary/30 hover:bg-primary/10 text-sm font-bold tracking-widest uppercase px-6 py-3 rounded-lg transition-all"
                     >
                         Browse Events
-                    </a>
-                    <a
+                    </Link>
+                    <Link
                         href="/schedule"
                         className="bg-primary hover:bg-primary/90 text-white text-sm font-bold tracking-widest uppercase px-6 py-3 rounded-lg btn-glow transition-all"
                     >
                         View Schedule
-                    </a>
+                    </Link>
                 </div>
             </div>
         );

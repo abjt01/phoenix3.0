@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function EventCard({ title, description, slug, image, imageAlt, participants }) {
 
@@ -6,11 +7,12 @@ export default function EventCard({ title, description, slug, image, imageAlt, p
         <div className="event-card group bg-charcoal border border-white/5 rounded-xl overflow-hidden flex flex-col">
             <div className="h-48 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal to-transparent z-10"></div>
-                <img
-                    alt={title}
+                <Image
+                    alt={imageAlt || title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    data-alt={imageAlt}
                     src={image}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                 />
 
             </div>

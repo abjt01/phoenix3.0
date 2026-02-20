@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 export const metadata = {
   title: "PHOENIX 3.0 — Rise. Rebuild. Reinvent.",
   description: "DSCE's Annual Celebration of Knowledge, Creativity, and Innovation. Witness the transformation on March 5–6.",
@@ -94,11 +95,12 @@ export default function HomePage() {
 
       {/* Visual Divider */}
       <div className="w-full h-[400px] overflow-hidden relative">
-        <img
-          alt=""
-          className="w-full h-full object-cover opacity-40  hover:grayscale-0 transition-all duration-1000"
-          data-alt=""
+        <Image
+          alt="Phoenix 3.0 visual"
+          className="w-full h-full object-cover opacity-40 hover:grayscale-0 transition-all duration-1000"
           src="/bird.jpeg"
+          fill
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-background-dark"></div>
       </div>
