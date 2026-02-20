@@ -75,6 +75,9 @@ function validateBody(body) {
             if (!m?.email?.trim()) return `Email for team member ${i + 2} is required.`;
             if (!EMAIL_RE.test(m.email.trim()))
                 return `Please enter a valid email for team member ${i + 2}.`;
+            if (!m?.phone?.trim()) return `Phone number for team member ${i + 2} is required.`;
+            if (!PHONE_RE.test(m.phone.trim()))
+                return `Please enter a valid phone number for team member ${i + 2}.`;
         }
     }
 
