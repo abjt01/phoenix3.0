@@ -86,12 +86,13 @@ export default async function EventDetailPage({ params }) {
                                     <span className="text-sm">{event.participants} registered</span>
                                 </div>
                             </div>
-                            <Link
-                                href={`/register/${event.slug}`}
+                            <a
+                                href="/brochure.pdf"
+                                download
                                 className="block w-full bg-primary hover:bg-orange-500 text-white px-5 py-3 rounded-lg font-bold text-sm uppercase tracking-widest transition-all text-center btn-glow"
                             >
-                                Register Now
-                            </Link>
+                                Download Brochure
+                            </a>
                         </div>
 
                         <Link
