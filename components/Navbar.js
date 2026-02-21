@@ -54,12 +54,13 @@ export default function Navbar() {
 
                 {/* Desktop CTA + Mobile hamburger */}
                 <div className="flex items-center gap-4">
-                    <Link
-                        href="/register"
+                    <a
+                        href="/brochure.pdf"
+                        download
                         className="hidden md:inline-block bg-primary hover:bg-primary/90 text-white text-xs font-bold tracking-[0.2em] uppercase px-6 py-3 rounded-lg btn-glow transition-all active:scale-95"
                     >
-                        Register Now
-                    </Link>
+                        Download Brochure
+                    </a>
 
                     {/* Hamburger button — mobile only */}
                     <button
@@ -70,39 +71,42 @@ export default function Navbar() {
                         className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-white/10 transition-colors"
                     >
                         <span
-                            className={`block w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-[3px]" : ""}`}
+                            className={`block w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-[6px]" : ""}`}
                         />
                         <span
-                            className={`block w-5 h-0.5 bg-white mt-1 transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}
+                            className={`block w-5 h-0.5 bg-white mt-1 transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`}
                         />
                         <span
-                            className={`block w-5 h-0.5 bg-white mt-1 transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-[7px]" : ""}`}
+                            className={`block w-5 h-0.5 bg-white mt-1 transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-[6px]" : ""}`}
                         />
                     </button>
                 </div>
             </div>
 
             {/* Mobile drawer */}
-            {menuOpen && (
-                <div className="md:hidden absolute top-full left-0 right-0 glass-nav border-t border-white/10 px-6 py-6 flex flex-col gap-4">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            className={`text-base font-medium tracking-widest uppercase py-2 transition-colors ${pathname === link.href ? "text-primary" : "text-white/70 hover:text-primary"
-                                }`}
-                        >
-                            {link.label}
-                        </Link>
-                    ))}
+            <div
+                className={`md:hidden absolute top-full left-0 right-0 glass-nav border-t border-white/10 px-6 flex flex-col gap-4 overflow-hidden transition-all duration-300 ease-in-out ${
+                    menuOpen ? "py-6 max-h-screen opacity-100 pointer-events-auto" : "max-h-0 py-0 opacity-0 pointer-events-none"
+                }`}
+            >
+                {navLinks.map((link) => (
                     <Link
-                        href="/register"
-                        className="mt-2 bg-primary text-white text-sm font-bold tracking-[0.2em] uppercase px-6 py-3 rounded-lg btn-glow text-center transition-all active:scale-95"
+                        key={link.href}
+                        href={link.href}
+                        className={`text-base font-medium tracking-widest uppercase py-2 transition-colors ${pathname === link.href ? "text-primary" : "text-white/70 hover:text-primary"
+                            }`}
                     >
-                        Register Now
+                        {link.label}
                     </Link>
-                </div>
-            )}
+                ))}
+                <a
+                    href="/brochure.pdf"
+                    download
+                    className="mt-2 bg-primary text-white text-sm font-bold tracking-[0.2em] uppercase px-6 py-3 rounded-lg btn-glow text-center transition-all active:scale-95"
+                >
+                    Download Brochure
+                </a>
+            </div>
         </header>
     );
 }
