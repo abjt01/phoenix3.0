@@ -32,9 +32,9 @@ export default function HomePage() {
             <Link href="/events" className="w-full sm:w-auto min-w-[220px] bg-primary text-white font-bold py-5 px-8 rounded-lg text-sm tracking-widest uppercase btn-glow text-center">
               Explore the Flame
             </Link>
-            <Link href="/register" className="w-full sm:w-auto min-w-[220px] bg-transparent border border-white/20 hover:border-primary/50 text-white font-bold py-5 px-8 rounded-lg text-sm tracking-widest uppercase transition-all hover:bg-white/5 text-center">
-              Register Now
-            </Link>
+            <a href="/brochure.pdf" download className="w-full sm:w-auto min-w-[220px] bg-transparent border border-white/20 hover:border-primary/50 text-white font-bold py-5 px-8 rounded-lg text-sm tracking-widest uppercase transition-all hover:bg-white/5 text-center">
+              Download Brochure
+            </a>
           </div>
         </div>
         {/* Scroll Indicator */}
@@ -111,9 +111,9 @@ export default function HomePage() {
             Be part of the transformation. Secure your spot for March 5–6 and witness the rebirth of innovation.
           </p>
           <div className="flex justify-center">
-            <Link href="/register" className="min-w-[280px] bg-primary text-white font-bold py-6 px-10 rounded-lg text-sm tracking-[0.2em] uppercase btn-glow inline-block text-center">
-              Register For Phoenix 3.0
-            </Link>
+            <a href="/brochure.pdf" download className="min-w-[280px] bg-primary text-white font-bold py-6 px-10 rounded-lg text-sm tracking-[0.2em] uppercase btn-glow inline-block text-center">
+              Download Brochure
+            </a>
           </div>
         </div>
       </section>
