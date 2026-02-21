@@ -54,13 +54,12 @@ export default function Navbar() {
 
                 {/* Desktop CTA + Mobile hamburger */}
                 <div className="flex items-center gap-4">
-                    <a
-                        href="/brochure.pdf"
-                        download
+                    <Link
+                        href="/register"
                         className="hidden md:inline-block bg-primary hover:bg-primary/90 text-white text-xs font-bold tracking-[0.2em] uppercase px-6 py-3 rounded-lg btn-glow transition-all active:scale-95"
                     >
-                        Download Brochure
-                    </a>
+                        Register Now
+                    </Link>
 
                     {/* Hamburger button — mobile only */}
                     <button
@@ -99,13 +98,12 @@ export default function Navbar() {
                         {link.label}
                     </Link>
                 ))}
-                <a
-                    href="/brochure.pdf"
-                    download
+                <Link
+                    href="/register"
                     className="mt-2 bg-primary text-white text-sm font-bold tracking-[0.2em] uppercase px-6 py-3 rounded-lg btn-glow text-center transition-all active:scale-95"
                 >
-                    Download Brochure
-                </a>
+                    Register Now
+                </Link>
             </div>
         </header>
     );
