@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import { events } from "@/data/events";
 
 // ---------------------------------------------------------------------------
@@ -25,39 +26,72 @@ function TeamMemberFields({ index, value, onChange, errors }) {
             <p className="text-sm font-bold uppercase tracking-widest text-white/50">
                 Member {index + 2}
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            <div className="grid grid-cols-1 gap-4">
+
+                {/* Full Name */}
                 <div>
                     <label className="block text-xs font-semibold uppercase tracking-wider text-white/50 mb-1">
-                        Full Name
+                        Full Name <span className="text-primary">*</span>
                     </label>
                     <input
                         type="text"
                         value={value.name}
                         onChange={(e) => onChange(index, "name", e.target.value)}
                         placeholder={`Member ${index + 2} name`}
-                        className={`w-full bg-white/5 border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 transition-all ${errors?.name ? "border-red-500" : "border-white/10 focus:border-primary/60"
-                            }`}
+                        className={`w-full bg-white/5 border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 transition-all ${
+                            errors?.name
+                                ? "border-red-500"
+                                : "border-white/10 focus:border-primary/60"
+                        }`}
                     />
                     {errors?.name && (
                         <p className="mt-1 text-xs text-red-400">{errors.name}</p>
                     )}
                 </div>
+
+                {/* Phone */}
                 <div>
                     <label className="block text-xs font-semibold uppercase tracking-wider text-white/50 mb-1">
-                        Email
+                        Phone Number <span className="text-primary">*</span>
+                    </label>
+                    <input
+                        type="tel"
+                        value={value.phone}
+                        onChange={(e) => onChange(index, "phone", e.target.value)}
+                        placeholder="+91 XXXXX XXXXX"
+                        className={`w-full bg-white/5 border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 transition-all ${
+                            errors?.phone
+                                ? "border-red-500"
+                                : "border-white/10 focus:border-primary/60"
+                        }`}
+                    />
+                    {errors?.phone && (
+                        <p className="mt-1 text-xs text-red-400">{errors.phone}</p>
+                    )}
+                </div>
+
+                {/* Email */}
+                <div>
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-white/50 mb-1">
+                        Email <span className="text-primary">*</span>
                     </label>
                     <input
                         type="email"
                         value={value.email}
                         onChange={(e) => onChange(index, "email", e.target.value)}
                         placeholder={`member${index + 2}@example.com`}
-                        className={`w-full bg-white/5 border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 transition-all ${errors?.email ? "border-red-500" : "border-white/10 focus:border-primary/60"
-                            }`}
+                        className={`w-full bg-white/5 border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 transition-all ${
+                            errors?.email
+                                ? "border-red-500"
+                                : "border-white/10 focus:border-primary/60"
+                        }`}
                     />
                     {errors?.email && (
                         <p className="mt-1 text-xs text-red-400">{errors.email}</p>
                     )}
                 </div>
+
             </div>
         </div>
     );
@@ -97,10 +131,11 @@ export default function RegistrationForm({ selectedEventSlug }) {
     useEffect(() => {
         const size = parseInt(formData.teamSize, 10);
         const extras = Math.max(0, size - 1);
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setTeamMembers((prev) => {
             if (prev.length === extras) return prev;
             if (prev.length < extras) {
-                return [...prev, ...Array(extras - prev.length).fill({ name: "", email: "" })];
+                return [...prev, ...Array(extras - prev.length).fill({ name: "", email: "", phone: "" })];
             }
             return prev.slice(0, extras);
         });
@@ -116,6 +151,7 @@ export default function RegistrationForm({ selectedEventSlug }) {
         const size = parseInt(formData.teamSize, 10);
         if (!constraints.conflict) {
             if (size < constraints.min) {
+                // eslint-disable-next-line react-hooks/set-state-in-effect
                 setFormData((prev) => ({ ...prev, teamSize: String(constraints.min) }));
             } else if (size > constraints.max) {
                 setFormData((prev) => ({ ...prev, teamSize: String(constraints.max) }));
@@ -193,6 +229,8 @@ export default function RegistrationForm({ selectedEventSlug }) {
                 if (!m.name?.trim()) me.name = "Name is required.";
                 if (!m.email?.trim()) me.email = "Email is required.";
                 else if (!EMAIL_RE.test(m.email.trim())) me.email = "Enter a valid email.";
+                if (!m.phone?.trim()) me.phone = "Phone number is required.";
+                else if (!PHONE_RE.test(m.phone.trim())) me.phone = "Enter a valid phone number.";
                 if (Object.keys(me).length) memberErrors[i] = me;
             }
         }
@@ -233,6 +271,7 @@ export default function RegistrationForm({ selectedEventSlug }) {
                     teamMembers: teamMembers.map((m) => ({
                         name: m.name?.trim() ?? "",
                         email: m.email?.trim() ?? "",
+                        phone: m.phone?.trim() ?? "",
                     })),
                 }),
             });
@@ -286,18 +325,18 @@ export default function RegistrationForm({ selectedEventSlug }) {
                     Keep an eye on this page and our social channels for event updates.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                    <a
+                    <Link
                         href="/events"
                         className="text-primary border border-primary/30 hover:bg-primary/10 text-sm font-bold tracking-widest uppercase px-6 py-3 rounded-lg transition-all"
                     >
                         Browse Events
-                    </a>
-                    <a
+                    </Link>
+                    <Link
                         href="/schedule"
                         className="bg-primary hover:bg-primary/90 text-white text-sm font-bold tracking-widest uppercase px-6 py-3 rounded-lg btn-glow transition-all"
                     >
                         View Schedule
-                    </a>
+                    </Link>
                 </div>
             </div>
         );
@@ -324,7 +363,7 @@ export default function RegistrationForm({ selectedEventSlug }) {
             {/* ---------------------------------------------------------------- */}
             <section className="space-y-6">
                 <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-white/40 border-b border-white/10 pb-3">
-                    Personal Details
+                    Team Leader Details
                 </h3>
 
                 {/* Name */}
@@ -349,6 +388,31 @@ export default function RegistrationForm({ selectedEventSlug }) {
                         </p>
                     )}
                 </div>
+                
+
+                {/* Phone */}
+                <div>
+                    <label className="block text-sm font-bold uppercase tracking-widest text-white/60 mb-2">
+                        Phone Number <span className="text-primary">*</span>
+                    </label>
+                    <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="+91 XXXXX XXXXX"
+                        autoComplete="tel"
+                        className={inputClass("phone")}
+                        data-field-error={fieldErrors.phone ? "true" : undefined}
+                    />
+                    {fieldErrors.phone && (
+                        <p className="mt-1.5 text-xs text-red-400 flex items-center gap-1">
+                            <span className="material-symbols-outlined text-sm">error</span>
+                            {fieldErrors.phone}
+                        </p>
+                    )}
+                </div>
+
 
                 {/* Email */}
                 <div>
@@ -396,32 +460,11 @@ export default function RegistrationForm({ selectedEventSlug }) {
                     )}
                 </div>
 
-                {/* Phone */}
-                <div>
-                    <label className="block text-sm font-bold uppercase tracking-widest text-white/60 mb-2">
-                        Phone Number <span className="text-primary">*</span>
-                    </label>
-                    <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="+91 XXXXX XXXXX"
-                        autoComplete="tel"
-                        className={inputClass("phone")}
-                        data-field-error={fieldErrors.phone ? "true" : undefined}
-                    />
-                    {fieldErrors.phone && (
-                        <p className="mt-1.5 text-xs text-red-400 flex items-center gap-1">
-                            <span className="material-symbols-outlined text-sm">error</span>
-                            {fieldErrors.phone}
-                        </p>
-                    )}
-                </div>
+                
             </section>
 
             {/* ---------------------------------------------------------------- */}
-            {/* Section 2: Event Selection                                        */}
+            {/* Section 2: Event Selection                                       */}
             {/* ---------------------------------------------------------------- */}
             <section className="space-y-4">
                 <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-white/40 border-b border-white/10 pb-3">
@@ -553,7 +596,7 @@ export default function RegistrationForm({ selectedEventSlug }) {
                 {teamMembers.length > 0 && (
                     <div className="space-y-3 pt-2">
                         <p className="text-xs text-white/40 uppercase tracking-widest font-semibold">
-                            Additional Team Members
+                            Team Members Details
                         </p>
                         {teamMembers.map((member, i) => (
                             <TeamMemberFields

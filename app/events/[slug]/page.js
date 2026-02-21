@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getEventBySlug } from "@/data/events";
 
@@ -34,11 +35,13 @@ export default async function EventDetailPage({ params }) {
                 <div className="relative rounded-2xl overflow-hidden mb-12">
                     <div className="h-80 relative">
                         <div className="absolute inset-0 bg-gradient-to-t from-charcoal to-transparent z-10"></div>
-                        <img
+                        <Image
                             alt={event.title}
                             className="w-full h-full object-cover"
-                            data-alt={event.imageAlt}
                             src={event.image}
+                            fill
+                            sizes="100vw"
+                            priority
                         />
 
                     </div>

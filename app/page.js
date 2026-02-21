@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 export const metadata = {
   title: "PHOENIX 3.0 — Rise. Rebuild. Reinvent.",
   description: "DSCE's Annual Celebration of Knowledge, Creativity, and Innovation. Witness the transformation on March 5–6.",
@@ -8,7 +9,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <main className="relative min-h-screen flex flex-col justify-center items-center px-6 ember-bg -mt-20 overflow-hidden">
+      <main className="relative min-h-screen flex flex-col justify-center items-center px-6 ember-bg -mt-10">
         {/* Background Image */}
         <div className="absolute inset-0 z-0 mt-0">
           {/* <img
@@ -19,8 +20,8 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-background-dark/30"></div>
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/50 to-background-dark pointer-events-none z-1"></div>
-        <div className="relative z-10 text-center max-w-5xl">
-          <h1 className="text-5xl md:text-8xl font-bold leading-[1.1] tracking-tighter mb-8 mt-30 glow-text ">
+        <div className="relative z-10 text-center max-w-5xl mb-10">
+          <h1 className="text-5xl md:text-8xl font-bold leading-[1.1] tracking-tighter mb-8 mt glow-text ">
             PHOENIX 3.0 <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#ff9d5c]">Rise. Rebuild. Reinvent.</span>
           </h1>
@@ -38,9 +39,9 @@ export default function HomePage() {
           </div>
         </div>
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-          <p className="text-[10px] tracking-[0.3em] uppercase">Scroll to awaken</p>
-          <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent"></div>
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-70 pt-10 z-10">
+          <p className="text-[10px] tracking-[0.3em] uppercase text-white">Scroll to awaken</p>
+          <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent "></div>
         </div>
       </main>
 
@@ -94,11 +95,12 @@ export default function HomePage() {
 
       {/* Visual Divider */}
       <div className="w-full h-[400px] overflow-hidden relative">
-        <img
-          alt=""
-          className="w-full h-full object-cover opacity-40  hover:grayscale-0 transition-all duration-1000"
-          data-alt=""
+        <Image
+          alt="Phoenix 3.0 visual"
+          className="w-full h-full object-cover opacity-40 hover:grayscale-0 transition-all duration-1000"
           src="/bird.jpeg"
+          fill
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-background-dark"></div>
       </div>

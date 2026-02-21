@@ -32,11 +32,9 @@ jobs:
 
       - name: Build production bundle
         env:
-          # Provide dummy values so the build doesn't fail due to missing env vars.
-          # Real values are injected at runtime by Vercel (or your hosting provider).
-          GOOGLE_SERVICE_ACCOUNT_EMAIL: dummy@dummy.iam.gserviceaccount.com
-          GOOGLE_PRIVATE_KEY: "-----BEGIN PRIVATE KEY-----\ndummy\n-----END PRIVATE KEY-----\n"
-          GOOGLE_SPREADSHEET_ID: dummy-spreadsheet-id
+          GOOGLE_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL }}
+          GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
+          GOOGLE_SPREADSHEET_ID: ${{ secrets.GOOGLE_SPREADSHEET_ID }}
         run: npm run build
 
   # ─────────────────────────────────────────────────────────────
