@@ -261,15 +261,15 @@ export default function RegistrationForm({ selectedEventSlug }) {
     // ---------------------------------------------------------------------------
     function validate() {
         const errors = {};
-        const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const PHONE_RE = /^[\d\s+\-().]{7,20}$/;
+        const EMAIL_RE = /^[^\s@]+@(gmail\.com|yahoo\.com|outlook\.com|hotmail\.com|[a-zA-Z0-9.-]+\.(edu\.in|ac\.in|edu))$/i;
+        const PHONE_RE = /^(?:\+91|91)?[6-9]\d{9}$/;
 
         if (!formData.name.trim()) errors.name = "Full name is required.";
         if (!formData.email.trim()) errors.email = "Email address is required.";
-        else if (!EMAIL_RE.test(formData.email.trim())) errors.email = "Enter a valid email address.";
+        else if (!EMAIL_RE.test(formData.email.trim())) errors.email = "Use a college email (*.edu.in / *.ac.in) or Gmail / Yahoo / Outlook.";
         if (!formData.college.trim()) errors.college = "College / institution is required.";
         if (!formData.phone.trim()) errors.phone = "Phone number is required.";
-        else if (!PHONE_RE.test(formData.phone.trim())) errors.phone = "Enter a valid phone number.";
+        else if (!PHONE_RE.test(formData.phone.trim().replace(/\s/g, ""))) errors.phone = "Enter a valid 10-digit mobile number (e.g. 9876543210).";
 
         if (formData.selectedEvents.length === 0)
             errors.selectedEvents = "Please select at least one event.";
@@ -287,9 +287,9 @@ export default function RegistrationForm({ selectedEventSlug }) {
                 const me = {};
                 if (!m.name?.trim()) me.name = "Name is required.";
                 if (!m.email?.trim()) me.email = "Email is required.";
-                else if (!EMAIL_RE.test(m.email.trim())) me.email = "Enter a valid email.";
+                else if (!EMAIL_RE.test(m.email.trim())) me.email = "Use a college email or Gmail / Yahoo / Outlook.";
                 if (!m.phone?.trim()) me.phone = "Phone number is required.";
-                else if (!PHONE_RE.test(m.phone.trim())) me.phone = "Enter a valid phone number.";
+                else if (!PHONE_RE.test(m.phone.trim().replace(/\s/g, ""))) me.phone = "Enter a valid 10-digit mobile number.";
                 if (Object.keys(me).length) memberErrors[i] = me;
             }
         }

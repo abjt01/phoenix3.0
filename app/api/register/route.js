@@ -28,18 +28,19 @@ function isRateLimited(ip) {
 // ---------------------------------------------------------------------------
 // Validation helpers
 // ---------------------------------------------------------------------------
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const PHONE_RE = /^[\d\s+\-().]{7,20}$/;
+const EMAIL_RE = /^[^\s@]+@(gmail\.com|yahoo\.com|outlook\.com|hotmail\.com|[a-zA-Z0-9.-]+\.(edu\.in|ac\.in|edu))$/i;
+const PHONE_RE = /^(?:\+91|91)?[6-9]\d{9}$/;
 
 function validateBody(body) {
     const { name, email, college, phone, teamSize, selectedEvents, teamMembers } = body;
 
     if (!name?.trim()) return "Full name is required.";
     if (!email?.trim()) return "Email address is required.";
-    if (!EMAIL_RE.test(email.trim())) return "Please enter a valid email address.";
+    if (!EMAIL_RE.test(email.trim())) return "Please use a college email (*.edu.in / *.ac.in) or Gmail / Yahoo / Outlook.";
     if (!college?.trim()) return "College / institution is required.";
     if (!phone?.trim()) return "Phone number is required.";
-    if (!PHONE_RE.test(phone.trim())) return "Please enter a valid phone number (7–20 digits).";
+    if (!PHONE_RE.test(phone.trim().replace(/\s/g, ""))) return "Enter a valid 10-digit Indian mobile number (e.g. the one you use daily).";
+
 
     if (!Array.isArray(selectedEvents) || selectedEvents.length === 0)
         return "Please select at least one event.";
