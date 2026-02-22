@@ -18,6 +18,8 @@ export const events = [
             "Languages: C++, Java, Python, JavaScript"
         ],
         schedule: "March 5, 2026 — 10:00 AM to 4:00 PM",
+        startTime: "2026-03-05T10:00",
+        endTime: "2026-03-05T16:00",
         venue: "Computer Science Block, Lab 301"
     },
     {
@@ -39,6 +41,8 @@ export const events = [
             "Final round is open for audience participation"
         ],
         schedule: "March 5, 2026 — 2:00 PM to 5:00 PM",
+        startTime: "2026-03-05T14:00",
+        endTime: "2026-03-05T17:00",
         venue: "Main Auditorium"
     },
     {
@@ -60,6 +64,8 @@ export const events = [
             "Food and beverages available on-site"
         ],
         schedule: "March 5, 2026 — 7:00 PM to 11:00 PM",
+        startTime: "2026-03-05T19:00",
+        endTime: "2026-03-05T23:00",
         venue: "Open Air Theatre"
     },
     {
@@ -81,6 +87,8 @@ export const events = [
             "Scoring based on correctness and time"
         ],
         schedule: "March 6, 2026 — 10:00 AM to 12:00 PM",
+        startTime: "2026-03-06T10:00",
+        endTime: "2026-03-06T12:00",
         venue: "Computer Science Block, Lab 201"
     },
     {
@@ -102,6 +110,8 @@ export const events = [
             "4-hour design sprint"
         ],
         schedule: "March 6, 2026 — 10:00 AM to 2:00 PM",
+        startTime: "2026-03-06T10:00",
+        endTime: "2026-03-06T14:00",
         venue: "Design Lab, Block A"
     },
     {
@@ -123,6 +133,8 @@ export const events = [
             "Grand prize for the winning team"
         ],
         schedule: "March 6, 2026 — 2:00 PM to 6:00 PM",
+        startTime: "2026-03-06T14:00",
+        endTime: "2026-03-06T18:00",
         venue: "Main Auditorium"
     },
     {
@@ -145,6 +157,8 @@ export const events = [
             "Top 10 advance to rapid-fire finale round"
         ],
         schedule: "March 6, 2026 — 1:00 PM to 3:00 PM",
+        startTime: "2026-03-06T13:00",
+        endTime: "2026-03-06T15:00",
         venue: "Innovation Hall, Tech Block"
     }
 ];

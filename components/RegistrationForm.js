@@ -18,6 +18,33 @@ function getTeamSizeConstraints(slugs) {
 }
 
 // ---------------------------------------------------------------------------
+// Helper: returns the pair of slugs that cause a scheduling overlap, or null.
+// Two events overlap when their time ranges intersect (start < other.end && end > other.start).
+// ---------------------------------------------------------------------------
+function getTimeConflict(slugs) {
+    if (!slugs || slugs.length < 2) return null;
+    const selected = events.filter((e) => slugs.includes(e.slug));
+    for (let i = 0; i < selected.length; i++) {
+        for (let j = i + 1; j < selected.length; j++) {
+            const a = selected[i];
+            const b = selected[j];
+            if (!a.startTime || !b.startTime) continue;
+            const aStart = new Date(a.startTime);
+            const aEnd = new Date(a.endTime);
+            const bStart = new Date(b.startTime);
+            const bEnd = new Date(b.endTime);
+            // Overlap when a starts before b ends AND a ends after b starts
+            if (aStart < bEnd && aEnd > bStart) {
+                return { a: a.title, b: b.title };
+            }
+        }
+    }
+    return null;
+}
+
+const LS_KEY = "phoenix_reg_draft";
+
+// ---------------------------------------------------------------------------
 // TeamMemberFields — renders name + email inputs for extra members
 // ---------------------------------------------------------------------------
 function TeamMemberFields({ index, value, onChange, errors }) {
@@ -39,11 +66,10 @@ function TeamMemberFields({ index, value, onChange, errors }) {
                         value={value.name}
                         onChange={(e) => onChange(index, "name", e.target.value)}
                         placeholder={`Member ${index + 2} name`}
-                        className={`w-full bg-white/5 border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 transition-all ${
-                            errors?.name
-                                ? "border-red-500"
-                                : "border-white/10 focus:border-primary/60"
-                        }`}
+                        className={`w-full bg-white/5 border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 transition-all ${errors?.name
+                            ? "border-red-500"
+                            : "border-white/10 focus:border-primary/60"
+                            }`}
                     />
                     {errors?.name && (
                         <p className="mt-1 text-xs text-red-400">{errors.name}</p>
@@ -60,11 +86,10 @@ function TeamMemberFields({ index, value, onChange, errors }) {
                         value={value.phone}
                         onChange={(e) => onChange(index, "phone", e.target.value)}
                         placeholder="+91 XXXXX XXXXX"
-                        className={`w-full bg-white/5 border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 transition-all ${
-                            errors?.phone
-                                ? "border-red-500"
-                                : "border-white/10 focus:border-primary/60"
-                        }`}
+                        className={`w-full bg-white/5 border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 transition-all ${errors?.phone
+                            ? "border-red-500"
+                            : "border-white/10 focus:border-primary/60"
+                            }`}
                     />
                     {errors?.phone && (
                         <p className="mt-1 text-xs text-red-400">{errors.phone}</p>
@@ -81,11 +106,10 @@ function TeamMemberFields({ index, value, onChange, errors }) {
                         value={value.email}
                         onChange={(e) => onChange(index, "email", e.target.value)}
                         placeholder={`member${index + 2}@example.com`}
-                        className={`w-full bg-white/5 border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 transition-all ${
-                            errors?.email
-                                ? "border-red-500"
-                                : "border-white/10 focus:border-primary/60"
-                        }`}
+                        className={`w-full bg-white/5 border rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 transition-all ${errors?.email
+                            ? "border-red-500"
+                            : "border-white/10 focus:border-primary/60"
+                            }`}
                     />
                     {errors?.email && (
                         <p className="mt-1 text-xs text-red-400">{errors.email}</p>
@@ -105,25 +129,53 @@ export default function RegistrationForm({ selectedEventSlug }) {
         ? events.find((e) => e.slug === selectedEventSlug)
         : null;
 
-    // Core form state
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        college: "",
-        phone: "",
-        teamSize: lockedEvent
-            ? String(lockedEvent.minTeamSize)
-            : "1",
-        selectedEvents: lockedEvent ? [lockedEvent.slug] : [],
+    // Core form state — restored from localStorage draft on first render
+    const [formData, setFormData] = useState(() => {
+        const defaults = {
+            name: "",
+            email: "",
+            college: "",
+            phone: "",
+            teamSize: lockedEvent ? String(lockedEvent.minTeamSize) : "1",
+            selectedEvents: lockedEvent ? [lockedEvent.slug] : [],
+        };
+        if (typeof window === "undefined") return defaults;
+        try {
+            const saved = JSON.parse(localStorage.getItem(LS_KEY) || "null");
+            if (!saved) return defaults;
+            // In locked mode don't restore event selection
+            return {
+                ...defaults,
+                ...saved.formData,
+                selectedEvents: lockedEvent ? [lockedEvent.slug] : (saved.formData?.selectedEvents ?? []),
+                teamSize: lockedEvent ? String(lockedEvent.minTeamSize) : (saved.formData?.teamSize ?? "1"),
+            };
+        } catch { return defaults; }
     });
 
-    // Team member additional details (array of { name, email })
-    const [teamMembers, setTeamMembers] = useState([]);
+    // Team member additional details (array of { name, email, phone })
+    const [teamMembers, setTeamMembers] = useState(() => {
+        if (typeof window === "undefined") return [];
+        try {
+            const saved = JSON.parse(localStorage.getItem(LS_KEY) || "null");
+            return saved?.teamMembers ?? [];
+        } catch { return []; }
+    });
 
     // UI state
     const [fieldErrors, setFieldErrors] = useState({});
     const [submitState, setSubmitState] = useState("idle"); // idle | loading | success | error
     const [serverError, setServerError] = useState("");
+
+    // ---------------------------------------------------------------------------
+    // Persist draft to localStorage whenever formData or teamMembers change
+    // ---------------------------------------------------------------------------
+    useEffect(() => {
+        if (submitState === "success") return; // don't re-save after success
+        try {
+            localStorage.setItem(LS_KEY, JSON.stringify({ formData, teamMembers }));
+        } catch { /* storage full / private mode */ }
+    }, [formData, teamMembers, submitState]);
 
     // ---------------------------------------------------------------------------
     // Keep teamMembers array length in sync with teamSize
@@ -142,9 +194,10 @@ export default function RegistrationForm({ selectedEventSlug }) {
     }, [formData.teamSize]);
 
     // ---------------------------------------------------------------------------
-    // Re-clamp team size when selected events change (general form only)
+    // Computed: team size constraints + scheduling conflict
     // ---------------------------------------------------------------------------
     const constraints = getTeamSizeConstraints(formData.selectedEvents);
+    const timeConflict = getTimeConflict(formData.selectedEvents);
 
     useEffect(() => {
         if (selectedEventSlug) return; // locked — constraints are fixed
@@ -172,12 +225,18 @@ export default function RegistrationForm({ selectedEventSlug }) {
         if (selectedEventSlug) return; // locked mode
         setFormData((prev) => {
             const already = prev.selectedEvents.includes(slug);
-            return {
-                ...prev,
-                selectedEvents: already
-                    ? prev.selectedEvents.filter((s) => s !== slug)
-                    : [...prev.selectedEvents, slug],
-            };
+            const next = already
+                ? prev.selectedEvents.filter((s) => s !== slug)
+                : [...prev.selectedEvents, slug];
+            // Block toggle if adding this event creates a scheduling conflict
+            if (!already) {
+                const conflict = getTimeConflict(next);
+                if (conflict) {
+                    // Still update so we can surface the warning, no — better UX: block it
+                    return prev; // reject the toggle silently (UI shows the conflict badge)
+                }
+            }
+            return { ...prev, selectedEvents: next };
         });
         setFieldErrors((prev) => ({ ...prev, selectedEvents: undefined }));
     };
@@ -285,6 +344,7 @@ export default function RegistrationForm({ selectedEventSlug }) {
             }
 
             setSubmitState("success");
+            try { localStorage.removeItem(LS_KEY); } catch { /* ignore */ }
         } catch {
             setServerError("Network error. Please check your connection and try again.");
             setSubmitState("error");
@@ -388,7 +448,7 @@ export default function RegistrationForm({ selectedEventSlug }) {
                         </p>
                     )}
                 </div>
-                
+
 
                 {/* Phone */}
                 <div>
@@ -460,7 +520,7 @@ export default function RegistrationForm({ selectedEventSlug }) {
                     )}
                 </div>
 
-                
+
             </section>
 
             {/* ---------------------------------------------------------------- */}
@@ -493,6 +553,10 @@ export default function RegistrationForm({ selectedEventSlug }) {
                         >
                             {events.map((event) => {
                                 const isSelected = formData.selectedEvents.includes(event.slug);
+                                // Would selecting this event cause a time conflict?
+                                const wouldConflict = !isSelected && !!getTimeConflict(
+                                    [...formData.selectedEvents, event.slug]
+                                );
                                 const teamLabel =
                                     event.minTeamSize === event.maxTeamSize
                                         ? event.minTeamSize === 1
@@ -504,21 +568,29 @@ export default function RegistrationForm({ selectedEventSlug }) {
                                         key={event.slug}
                                         type="button"
                                         onClick={() => handleEventToggle(event.slug)}
+                                        disabled={wouldConflict}
+                                        title={wouldConflict ? "This event overlaps with one you already selected" : undefined}
                                         className={`p-4 rounded-xl border text-left transition-all ${isSelected
                                             ? "bg-primary/20 border-primary text-white"
-                                            : "bg-white/5 border-white/10 text-white/60 hover:border-white/25 hover:text-white/80"
+                                            : wouldConflict
+                                                ? "bg-white/[0.02] border-white/5 text-white/25 cursor-not-allowed"
+                                                : "bg-white/5 border-white/10 text-white/60 hover:border-white/25 hover:text-white/80"
                                             }`}
                                     >
                                         <div className="flex items-start gap-3">
                                             <span
-                                                className={`material-symbols-outlined text-base mt-0.5 shrink-0 ${isSelected ? "text-primary" : "text-white/30"
+                                                className={`material-symbols-outlined text-base mt-0.5 shrink-0 ${isSelected ? "text-primary" : wouldConflict ? "text-white/20" : "text-white/30"
                                                     }`}
                                             >
-                                                {isSelected ? "check_circle" : "radio_button_unchecked"}
+                                                {isSelected ? "check_circle" : wouldConflict ? "event_busy" : "radio_button_unchecked"}
                                             </span>
                                             <div>
                                                 <p className="text-sm font-semibold leading-snug">{event.title}</p>
-                                                <p className="text-xs text-white/40 mt-0.5">{teamLabel}</p>
+                                                <p className="text-xs text-white/40 mt-0.5">
+                                                    {wouldConflict ? (
+                                                        <span className="text-amber-500/70">Schedule conflict</span>
+                                                    ) : teamLabel}
+                                                </p>
                                             </div>
                                         </div>
                                     </button>
@@ -526,7 +598,17 @@ export default function RegistrationForm({ selectedEventSlug }) {
                             })}
                         </div>
 
-                        {/* Conflict warning */}
+                        {/* Time conflict warning */}
+                        {timeConflict && (
+                            <div className="flex items-start gap-2 p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
+                                <span className="material-symbols-outlined text-base mt-0.5 shrink-0">schedule</span>
+                                <span>
+                                    <strong>{timeConflict.a}</strong> and <strong>{timeConflict.b}</strong> overlap — you can&apos;t attend both. Please deselect one.
+                                </span>
+                            </div>
+                        )}
+
+                        {/* Team-size conflict warning */}
                         {constraints.conflict && formData.selectedEvents.length > 1 && (
                             <div className="flex items-start gap-2 p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 text-sm">
                                 <span className="material-symbols-outlined text-base mt-0.5 shrink-0">warning</span>
