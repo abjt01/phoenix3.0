@@ -1,7 +1,7 @@
 export const events = [
     {
         slug: "code-a-thon-2026",
-        title: "Code-NO-Thon 2026",
+        title: "Code-HAa-Thon 2026",
         description: '"The ultimate battle of logic and speed where every millisecond counts."',
         category: "Technology",
         categoryColor: "orange",
@@ -146,7 +146,7 @@ export const events = [
         ],
         schedule: "March 6, 2026 — 1:00 PM to 3:00 PM",
         venue: "Innovation Hall, Tech Block"
-    },
+    }
 ];
 
 export function getEventBySlug(slug) {

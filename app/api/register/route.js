@@ -122,7 +122,6 @@ export async function POST(request) {
             .join(", ");
 
         await appendToSheet({
-            timestamp: new Date().toISOString(),
             name: name.trim(),
             email: email.trim().toLowerCase(),
             college: college.trim(),

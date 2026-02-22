@@ -45,53 +45,7 @@ export default function HomePage() {
         </div>
       </main>
 
-      {/* The Awakening Section */}
-      <section className="py-24 md:py-32 px-6 bg-background-dark relative overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-16 items-start">
-            <div className="lg:w-1/2">
-              <h2 className="text-primary text-sm font-bold tracking-[0.4em] uppercase mb-4">The Awakening</h2>
-              <h3 className="text-4xl md:text-6xl font-bold tracking-tighter leading-tight mb-8">
-                Ignite Your <br /> Potential
-              </h3>
-              <p className="text-white/60 text-lg leading-relaxed mb-10 max-w-lg">
-                Phoenix 3.0 is more than a festival—it&apos;s a catalyst for the next generation of thinkers. Experience the evolution of creativity and tech at DSCE&apos;s premier flagship celebration.
-              </p>
-              <div className="h-1 w-24 bg-primary rounded-full"></div>
-            </div>
-            <div className="lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-              {/* Card 1 */}
-              <div className="bg-accent-dark/30 border border-primary/10 p-8 rounded-xl hover:bg-accent-dark/50 transition-all group">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-                  <span className="material-symbols-outlined">flare</span>
-                </div>
-                <h4 className="text-xl font-bold mb-3 tracking-tight">Rise</h4>
-                <p className="text-white/50 text-sm leading-relaxed">Overcome boundaries and elevate your professional skills through high-octane workshops.</p>
-              </div>
-              {/* Card 2 */}
-              <div className="bg-accent-dark/30 border border-primary/10 p-8 rounded-xl hover:bg-accent-dark/50 transition-all group">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-                  <span className="material-symbols-outlined">architecture</span>
-                </div>
-                <h4 className="text-xl font-bold mb-3 tracking-tight">Rebuild</h4>
-                <p className="text-white/50 text-sm leading-relaxed">Construct new foundations for the future with hands-on technical architecture sessions.</p>
-              </div>
-              {/* Card 3 */}
-              <div className="bg-accent-dark/30 border border-primary/10 p-8 rounded-xl hover:bg-accent-dark/50 transition-all group md:col-span-2">
-                <div className="flex flex-col md:flex-row items-start md:items-center gap-8">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary shrink-0 group-hover:scale-110 transition-transform">
-                    <span className="material-symbols-outlined">bolt</span>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-bold mb-3 tracking-tight">Reinvent</h4>
-                    <p className="text-white/50 text-sm leading-relaxed max-w-md">Transform raw ideas into groundbreaking reality. Collaborate with industry leaders and visionary creators to change the status quo.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* Visual Divider */}
       <div className="w-full h-[400px] overflow-hidden relative">
