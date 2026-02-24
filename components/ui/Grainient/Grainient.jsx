@@ -39,7 +39,7 @@ uniform vec2 uCenterOffset;
 uniform float uZoom;
 uniform vec3 uColor1;
 uniform vec3 uColor2;
-uniform vec3 uColor3;
+
 out vec4 fragColor;
 #define S(a,b,t) smoothstep(a,b,t)
 mat2 Rot(float a){float s=sin(a),c=cos(a);return mat2(c,-s,s,c);} 
@@ -64,20 +64,15 @@ void mainImage(out vec4 o, vec2 C){
   tuv.x+=sin(tuv.y*frequency+warpTime)/amplitude;
   tuv.y+=sin(tuv.x*(frequency*1.5)+warpTime)/(amplitude*0.5);
 
-  vec3 colLav=uColor1;
-  vec3 colOrg=uColor2;
-  vec3 colDark=uColor3;
+  vec3 colA=uColor1;
+  vec3 colB=uColor2;
   float b=uColorBalance;
   float s=max(uBlendSoftness,0.0);
   mat2 blendRot=Rot(radians(uBlendAngle));
   float blendX=(tuv*blendRot).x;
   float edge0=-0.3-b-s;
   float edge1=0.2-b+s;
-  float v0=0.5-b+s;
-  float v1=-0.3-b-s;
-  vec3 layer1=mix(colDark,colOrg,S(edge0,edge1,blendX));
-  vec3 layer2=mix(colOrg,colLav,S(edge0,edge1,blendX));
-  vec3 col=mix(layer1,layer2,S(v0,v1,tuv.y));
+  vec3 col=mix(colB,colA,S(edge0,edge1,blendX));
 
   vec2 grainUv=uv*max(uGrainScale,0.001);
   if(uGrainAnimated>0.5){grainUv+=vec2(iTime*0.05);} 
@@ -121,7 +116,6 @@ const Grainient = ({
   zoom = 0.9,
   color1 = '#FF9FFC',
   color2 = '#5227FF',
-  color3 = '#B19EEF',
   className = ''
 }) => {
   const containerRef = useRef(null);
@@ -171,8 +165,7 @@ const Grainient = ({
         uCenterOffset: { value: new Float32Array([centerX, centerY]) },
         uZoom: { value: zoom },
         uColor1: { value: new Float32Array(hexToRgb(color1)) },
-        uColor2: { value: new Float32Array(hexToRgb(color2)) },
-        uColor3: { value: new Float32Array(hexToRgb(color3)) }
+        uColor2: { value: new Float32Array(hexToRgb(color2)) }
       }
     });
 
@@ -231,8 +224,7 @@ const Grainient = ({
     centerY,
     zoom,
     color1,
-    color2,
-    color3
+    color2
   ]);
 
   return <div ref={containerRef} className={`grainient-container ${className}`.trim()} />;

@@ -11,14 +11,13 @@ export default function HomePage() {
         {/* Grainient Background */}
         <div className="absolute inset-0 z-0">
           <Grainient
-            color1="#1565C0"
-            color2="#FF4500"
-            // color3="#05060D"
+            color1="#1E90FF"
+            color2="#FF4E1F"
             timeSpeed={0.18}
             grainAmount={0.08}
             grainAnimated={true}
-            warpStrength={1.2}
-            warpFrequency={4.0}
+            warpStrength={0}
+            warpFrequency={0}
             contrast={1.4}
             saturation={1.2}
             zoom={0.85}
@@ -26,8 +25,8 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-background-dark/40"></div>
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/50 to-background-dark pointer-events-none z-1"></div>
-        <div className="relative z-10 text-center max-w-5xl mb-10">
-          <h1 className="text-5xl md:text-8xl font-bold leading-[1.1] tracking-tighter mb-8 mt glow-text ">
+        <div className="relative z-10 text-center max-w-5xl">
+          <h1 className="text-5xl md:text-8xl font-bold leading-[1.1] tracking-tighter  mt-20 glow-text ">
             PHOENIX 3.0 <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#ff9d5c]">Rise. Rebuild. Reinvent.</span>
           </h1>
@@ -35,7 +34,7 @@ export default function HomePage() {
             Annual Celebration of Knowledge, Creativity, and Innovation.{" "}
             Witness the transformation on <span className="text-white font-medium underline decoration-primary underline-offset-4">March 5–6</span>.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center ">
             <Link href="/events" className="w-full sm:w-auto min-w-[220px] bg-primary text-white font-bold py-5 px-8 rounded-lg text-sm tracking-widest uppercase btn-glow text-center">
               Explore the Flame
             </Link>
@@ -45,9 +44,11 @@ export default function HomePage() {
           </div>
         </div>
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-70 pt-10 z-10">
-          <p className="text-[10px] tracking-[0.3em] uppercase text-white">Scroll to awaken</p>
-          <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent "></div>
+        <div className="mt-10 pb-10">
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-70 z-10 ">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-white ">Scroll to awaken</p>
+            <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent "></div>
+          </div>
         </div>
       </main>
 
