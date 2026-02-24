@@ -26,7 +26,7 @@ export default function HomePage() {
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/50 to-background-dark pointer-events-none z-1"></div>
         <div className="relative z-10 text-center max-w-5xl">
-          <h1 className="text-5xl md:text-8xl font-bold leading-[1.1] tracking-tighter  mt-20 glow-text ">
+          <h1 className="text-5xl md:text-8xl font-bold leading-[1.1] tracking-tighter mt-14 md:mt-20 glow-text ">
             PHOENIX 3.0 <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#ff9d5c]">Rise. Rebuild. Reinvent.</span>
           </h1>

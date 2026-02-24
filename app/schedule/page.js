@@ -119,7 +119,7 @@ export default function SchedulePage() {
     }
 
     return (
-        <div className="arena-body-bg min-h-screen pt-24">
+        <div className="arena-body-bg min-h-screen pt-16 md:pt-24">
             <main className="max-w-4xl mx-auto w-full px-6 py-12">
                 {/* ── Hero ── */}
                 <div className="mb-12 space-y-4 text-center md:text-left">
