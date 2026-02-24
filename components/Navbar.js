@@ -16,9 +16,8 @@ export default function Navbar() {
 
     // Close mobile menu on route change
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        if (menuOpen) setMenuOpen(false);
-    }, [pathname, menuOpen]);
+        setMenuOpen(false);
+    }, [pathname]);
 
     // Prevent body scroll when menu is open
     useEffect(() => {
@@ -85,9 +84,8 @@ export default function Navbar() {
 
             {/* Mobile drawer */}
             <div
-                className={`md:hidden absolute top-full left-0 right-0 glass-nav border-t border-white/10 px-6 flex flex-col gap-4 overflow-hidden transition-all duration-300 ease-in-out ${
-                    menuOpen ? "py-6 max-h-screen opacity-100 pointer-events-auto" : "max-h-0 py-0 opacity-0 pointer-events-none"
-                }`}
+                className={`md:hidden absolute top-full left-0 right-0 glass-nav border-t border-white/10 px-6 flex flex-col gap-4 overflow-hidden transition-all duration-300 ease-in-out ${menuOpen ? "py-6 max-h-screen opacity-100 pointer-events-auto" : "max-h-0 py-0 opacity-0 pointer-events-none"
+                    }`}
             >
                 {navLinks.map((link) => (
                     <Link
