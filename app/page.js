@@ -1,23 +1,29 @@
+'use client';
 import Link from "next/link";
 import Image from "next/image";
-export const metadata = {
-  title: "PHOENIX 3.0 — Rise. Rebuild. Reinvent.",
-  description: "DSCE's Annual Celebration of Knowledge, Creativity, and Innovation. Witness the transformation on March 5–6.",
-};
+import Grainient from '@/components/ui/Grainient/Grainient';
 
 export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
       <main className="relative min-h-screen flex flex-col justify-center items-center px-6 ember-bg -mt-10">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0 mt-0">
-          {/* <img
-            src="/bird.jpeg"
-            alt=""
-            className="w-full h-full object-cover opacity-100 mix-blend-overlay"
-          /> */}
-          <div className="absolute inset-0 bg-background-dark/30"></div>
+        {/* Grainient Background */}
+        <div className="absolute inset-0 z-0">
+          <Grainient
+            color1="#1565C0"
+            color2="#FF4500"
+            // color3="#05060D"
+            timeSpeed={0.18}
+            grainAmount={0.08}
+            grainAnimated={true}
+            warpStrength={1.2}
+            warpFrequency={4.0}
+            contrast={1.4}
+            saturation={1.2}
+            zoom={0.85}
+          />
+          <div className="absolute inset-0 bg-background-dark/40"></div>
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/50 to-background-dark pointer-events-none z-1"></div>
         <div className="relative z-10 text-center max-w-5xl mb-10">
@@ -45,7 +51,7 @@ export default function HomePage() {
         </div>
       </main>
 
-      
+
 
       {/* Visual Divider */}
       <div className="w-full h-[400px] overflow-hidden relative">
