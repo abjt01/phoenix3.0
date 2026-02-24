@@ -23,7 +23,7 @@ export default async function EventDetailPage({ params }) {
 
     return (
         <div className="arena-body-bg min-h-screen">
-            <main className="max-w-5xl mx-auto w-full px-6 py-12">
+            <main className="max-w-5xl mx-auto w-full px-6 py-30">
                 {/* Breadcrumb */}
                 <div className="flex items-center gap-2 text-sm text-white/40 mb-8">
                     <Link href="/events" className="hover:text-primary transition-colors">Arena</Link>

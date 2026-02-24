@@ -2,11 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function EventCard({ title, description, slug, image, imageAlt, participants }) {
-
     return (
         <div className="event-card group bg-charcoal border border-white/5 rounded-xl overflow-hidden flex flex-col">
             <div className="h-48 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal to-transparent z-10"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal to-transparent z-10" />
                 <Image
                     alt={imageAlt || title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
@@ -14,7 +13,6 @@ export default function EventCard({ title, description, slug, image, imageAlt, p
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
                 />
-
             </div>
             <div className="p-6 flex flex-col flex-1">
                 <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{title}</h3>

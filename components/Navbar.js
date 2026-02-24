@@ -18,6 +18,13 @@ const mobileNavItems = [
     { name: "Schedule", url: "/schedule", icon: Clock },
 ];
 
+const glassStyle = {
+    background: "rgba(10, 6, 20, 0.55)",
+    backdropFilter: "blur(20px) saturate(180%)",
+    WebkitBackdropFilter: "blur(20px) saturate(180%)",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)",
+};
+
 export default function Navbar() {
     const pathname = usePathname();
     const [scrolled, setScrolled] = useState(false);
@@ -30,51 +37,31 @@ export default function Navbar() {
 
     return (
         <>
-            {/* Floating pill nav — desktop only */}
-            <header
-                className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 hidden md:block ${scrolled ? "top-3" : "top-5"
-                    }`}
-            >
-                <div
-                    className="flex items-center gap-8 px-6 py-3 rounded-full border border-white/10 shadow-2xl"
-                    style={{
-                        background: "rgba(10, 6, 20, 0.55)",
-                        backdropFilter: "blur(20px) saturate(180%)",
-                        WebkitBackdropFilter: "blur(20px) saturate(180%)",
-                        boxShadow:
-                            "0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)",
-                    }}
+            {/* Desktop logo — fixed top-left */}
+            {/* <div className={`fixed left-6 z-50 hidden md:block transition-all duration-500 ${scrolled ? "top-3" : "top-5"}`}>
+                <Link
+                    href="/"
+                    className="flex items-center gap-2 text-xl font-bold tracking-[0.15em] uppercase"
                 >
-                    {/* Logo */}
-                    <Link
-                        href="/"
-                        className="text-sm font-bold tracking-[0.15em] uppercase flex items-center gap-2 shrink-0"
-                    >
-                        <span className="material-symbols-outlined text-primary text-xl leading-none"></span>
-                        Phoenix <span className="text-primary">3.0</span>
-                    </Link>
+                    <span className="material-symbols-outlined text-primary text-xl leading-none"></span>
+                    Phoenix <span className="text-primary">3.0</span>
+                </Link>
+            </div> */}
 
-                    {/* Divider */}
-                    <div className="w-px h-4 bg-white/15" />
-
-                    {/* Nav links */}
+            {/* Desktop nav links — centered pill */}
+            <header className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 hidden md:block ${scrolled ? "top-3" : "top-5"}`}>
+                <div className="flex items-center gap-6 px-6 py-3 rounded-full border border-white/10 shadow-2xl" style={glassStyle}>
                     <nav className="flex items-center gap-6">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className={`relative text-xs font-semibold tracking-[0.18em] uppercase transition-colors duration-200 group ${pathname === link.href
-                                    ? "text-primary"
-                                    : "text-white/60 hover:text-white"
+                                className={`relative text-xs font-semibold tracking-[0.18em] uppercase transition-colors duration-200 group ${pathname === link.href ? "text-primary" : "text-white/60 hover:text-white"
                                     }`}
                             >
                                 {link.label}
-                                <span
-                                    className={`absolute -bottom-1 left-0 h-px bg-primary transition-all duration-300 ${pathname === link.href
-                                        ? "w-full"
-                                        : "w-0 group-hover:w-full"
-                                        }`}
-                                />
+                                <span className={`absolute -bottom-1 left-0 h-px bg-primary transition-all duration-300 ${pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+                                    }`} />
                             </Link>
                         ))}
                     </nav>
@@ -86,7 +73,7 @@ export default function Navbar() {
                 <TubelightNavbar items={mobileNavItems} />
             </div>
 
-            {/* Mobile top-left logo  */}
+            {/* Mobile top-left logo — hidden on home page */}
             {pathname !== "/" && (
                 <div className="md:hidden fixed top-4 left-4 z-50">
                     <Link
