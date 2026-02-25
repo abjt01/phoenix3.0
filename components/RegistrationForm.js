@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { events } from "@/data/events";
+import TeamSizeSelector from "@/components/TeamSizeSelector";
 
 // ---------------------------------------------------------------------------
 // Helper: compute the effective team-size constraints for a set of event slugs.
@@ -640,36 +641,21 @@ export default function RegistrationForm({ selectedEventSlug }) {
                         Team Size <span className="text-primary">*</span>
                     </label>
 
-                    {/* Show helpful constraint info */}
-                    {!selectedEventSlug && formData.selectedEvents.length > 0 && !constraints.conflict && (
-                        <p className="text-xs text-white/40 mb-2">
-                            Allowed for your selected events:{" "}
-                            <span className="text-white/60 font-semibold">
-                                {constraints.min === constraints.max
-                                    ? `${constraints.min} member${constraints.min > 1 ? "s" : ""}`
-                                    : `${constraints.min}–${constraints.max} members`}
-                            </span>
-                        </p>
-                    )}
-
+                    {/* Team Size Selector */}
                     {constraints.conflict || teamSizeOptions.length === 0 ? (
                         <div className="w-full bg-white/5 border border-amber-500/30 rounded-lg px-4 py-3 text-amber-400 text-sm">
                             Resolve event conflict above to set team size.
                         </div>
                     ) : (
-                        <select
-                            name="teamSize"
+                        <TeamSizeSelector
                             value={formData.teamSize}
-                            onChange={handleChange}
-                            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary/60 transition-all appearance-none"
-                        >
-                            {teamSizeOptions.map((num) => (
-                                <option key={num} value={num} className="bg-neutral-900 text-white">
-                                    {num} Member{num > 1 ? "s" : ""}
-                                    {num === 1 ? " (Solo)" : ""}
-                                </option>
-                            ))}
-                        </select>
+                            onChange={(val) => {
+                                setFormData((prev) => ({ ...prev, teamSize: val }));
+                                setFieldErrors((prev) => ({ ...prev, teamSize: undefined }));
+                            }}
+                            min={effectiveMin}
+                            max={effectiveMax}
+                        />
                     )}
                 </div>
 
