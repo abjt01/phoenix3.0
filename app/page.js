@@ -15,12 +15,12 @@ export default function HomePage() {
             color2="#FF4E1F"
             timeSpeed={0.18}
             grainAmount={0.08}
-            grainAnimated={true}
+            grainAnimated={false}
             warpStrength={0}
             warpFrequency={0}
             contrast={1.4}
             saturation={1.2}
-            zoom={0.85}
+            zoom={1}
           />
           <div className="absolute inset-0 bg-background-dark/40"></div>
         </div>
@@ -59,7 +59,7 @@ export default function HomePage() {
         <Image
           alt="Phoenix 3.0 visual"
           className="w-full h-full object-cover opacity-40 hover:grayscale-0 transition-all duration-1000"
-          src="/bird.jpeg"
+          src="/bird2.png"
           fill
           sizes="100vw"
         />

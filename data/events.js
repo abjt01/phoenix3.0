@@ -123,8 +123,8 @@ export const events = [
         participants: "300+",
         minTeamSize: 3,
         maxTeamSize: 4,
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAne1bIuYKj5HR7n_SH6h4QP5d2MxkQROxfO_Q3-eK6Yne167qey01GnWENlX8B4T9Ohe3I9KFMmzOdRr2ezhG-1nDFvW4I23aR-OWzEdtHsqgmwgLrHtwhrp7p07ZRsBCCOlKr1QkLFq3C7gGrxGDgk_e1mMLan0PTrZ36JD_DxdvMImJUb_dcJcsXNCqHMj0rLeXqalAYdBaP-zyeQ3tE_7Dm3QJQHetTvYDe6NZFunUAv4rm0Ppz0EUCyoF_RycGL7vqB6x4P4",
-        imageAlt: "Stylized glowing question mark symbol",
+        image: "/bird2.png",
+        imageAlt: "hein",
         longDescription: "The Grand Quiz is Phoenix 3.0's flagship knowledge competition — an epic battle of wits spanning technology, science, history, literature, pop culture, and more. Teams go through multiple elimination rounds, each more challenging than the last, culminating in a thrilling grand finale on the main stage.",
         rules: [
             "Teams of 3–4 members",

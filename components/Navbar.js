@@ -27,10 +27,17 @@ const glassStyle = {
 
 export default function Navbar() {
     const pathname = usePathname();
-    const [scrolled, setScrolled] = useState(false);
+    const [hidden, setHidden] = useState(false);
+    const [atTop, setAtTop] = useState(true);
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 20);
+        let lastY = window.scrollY;
+        const onScroll = () => {
+            const y = window.scrollY;
+            setAtTop(y < 20);
+            setHidden(y > lastY && y > 80); // hide on scroll down, show on scroll up
+            lastY = y;
+        };
         window.addEventListener("scroll", onScroll, { passive: true });
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
@@ -49,7 +56,7 @@ export default function Navbar() {
             </div> */}
 
             {/* Desktop nav links — centered pill */}
-            <header className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 hidden md:block ${scrolled ? "top-3" : "top-5"}`}>
+            <header className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 hidden md:block ${atTop ? "top-5" : "top-3"} ${hidden ? "-translate-y-24 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}`}>
                 <div className="flex items-center gap-6 px-6 py-3 rounded-full border border-white/10 shadow-2xl" style={glassStyle}>
                     <nav className="flex items-center gap-6">
                         {navLinks.map((link) => (
@@ -69,13 +76,14 @@ export default function Navbar() {
             </header>
 
             {/* Tubelight bottom navbar — mobile only */}
-            <div className="md:hidden">
-                <TubelightNavbar items={mobileNavItems} />
-            </div>
+            <TubelightNavbar
+                items={mobileNavItems}
+                className={`md:hidden transition-all duration-500 ${hidden ? "translate-y-24 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}`}
+            />
 
             {/* Mobile top-left logo — hidden on home page */}
             {pathname !== "/" && (
-                <div className="md:hidden fixed top-4 left-4 z-50">
+                <div className={`md:hidden fixed top-4 left-4 z-50 transition-all duration-500 ${hidden ? "-translate-y-16 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}`}>
                     <Link
                         href="/"
                         className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-sm font-bold tracking-[0.12em] uppercase"
