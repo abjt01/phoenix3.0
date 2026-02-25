@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
 import { events } from "@/data/events";
 import ScheduleEventCard from "@/components/ScheduleEventCard";
@@ -8,76 +8,62 @@ import ScheduleEventCard from "@/components/ScheduleEventCard";
 /* ──── helpers ──── */
 
 function parseSchedule(scheduleStr) {
-    // e.g. "March 5, 2026 — 10:00 AM to 4:00 PM"
-    // We want to extract the date part "March 5, 2026" and the time part
-    // Splits by the mdash
     const parts = scheduleStr.split("—").map((s) => s.trim());
-
-    // If no mdash, just assume the whole thing is date or time (fallback)
     const dateStr = parts.length > 1 ? parts[0] : scheduleStr;
     const timeStr = parts.length > 1 ? parts[1] : "";
 
-    // Extract just the day number for sorting if needed, or use the full date string for grouping
-    // Matches "March 5"
     const dayMatch = dateStr.match(/([A-Za-z]+)\s+(\d+)/);
     const month = dayMatch ? dayMatch[1] : "";
     const day = dayMatch ? parseInt(dayMatch[2], 10) : 0;
 
-    // To get a sortable date object
-    // If year is missing in dateStr but present in "2026", we can try to parse it. 
-    // For now "March 5, 2026" works with new Date() usually
     const dateObj = new Date(dateStr);
 
-    // Parse time into minutes for sorting
     let minutes = 0;
     if (timeStr) {
-        // match "10:00", "AM" - takes the first time found (start time)
         const match = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/i);
         if (match) {
             let h = parseInt(match[1], 10);
             let m = parseInt(match[2], 10);
             const period = match[3].toUpperCase();
-
             if (period === "PM" && h !== 12) h += 12;
             if (period === "AM" && h === 12) h = 0;
-
             minutes = h * 60 + m;
         }
     }
 
+    // Short day-of-week abbreviation
+    const weekdays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+    const dayOfWeek = isNaN(dateObj.getTime()) ? "" : weekdays[dateObj.getDay()];
+
+    // Short month abbreviation
+    const monthShort = month.slice(0, 3).toUpperCase();
+
     return {
-        fullDate: dateStr, // "March 5, 2026"
-        month,             // "March"
-        day,               // 5
-        year: dateObj.getFullYear() || new Date().getFullYear(),
-        time: timeStr,     // "10:00 AM to 4:00 PM"
-        minutes,           // minutes from midnight
-        dateObj
+        fullDate: dateStr,
+        month,
+        monthShort,
+        day,
+        dayOfWeek,
+        year: isNaN(dateObj.getFullYear()) ? new Date().getFullYear() : dateObj.getFullYear(),
+        time: timeStr,
+        minutes,
+        dateObj,
     };
 }
 
 export default function SchedulePage() {
-    // Group events by their date string (e.g. "March 5, 2026")
     const { groupedEvents, sortedDates } = useMemo(() => {
         const grouped = {};
 
         events.forEach((ev) => {
-            // guard against missing schedule
             if (!ev.schedule) return;
-
             const { fullDate } = parseSchedule(ev.schedule);
             if (!grouped[fullDate]) grouped[fullDate] = [];
             grouped[fullDate].push(ev);
         });
 
-        // Sort dates chronologically
-        const dates = Object.keys(grouped).sort((a, b) => {
-            const dateA = new Date(a);
-            const dateB = new Date(b);
-            return dateA - dateB;
-        });
+        const dates = Object.keys(grouped).sort((a, b) => new Date(a) - new Date(b));
 
-        // Sort events within each day by time
         dates.forEach((date) => {
             grouped[date].sort((a, b) => {
                 const timeA = parseSchedule(a.schedule).minutes;
@@ -89,24 +75,42 @@ export default function SchedulePage() {
         return { groupedEvents: grouped, sortedDates: dates };
     }, []);
 
-    // Default to the first day
     const [activeDate, setActiveDate] = useState(sortedDates[0]);
+    const [animKey, setAnimKey] = useState(0);
+    const scrollRef = useRef(null);
+    const activeRef = useRef(null);
+
     const currentEvents = groupedEvents[activeDate] || [];
 
-    // Derive date range for Hero section, safely
+    // Scroll the active pill into view when it changes
+    useEffect(() => {
+        if (activeRef.current && scrollRef.current) {
+            const container = scrollRef.current;
+            const pill = activeRef.current;
+            const containerRect = container.getBoundingClientRect();
+            const pillRect = pill.getBoundingClientRect();
+            const scrollOffset =
+                pillRect.left - containerRect.left - containerRect.width / 2 + pillRect.width / 2;
+            container.scrollBy({ left: scrollOffset, behavior: "smooth" });
+        }
+    }, [activeDate]);
+
+    // Derive date range for Hero section
     let dateRangeString = "Upcoming Events";
     if (sortedDates.length > 0) {
         const first = parseSchedule(groupedEvents[sortedDates[0]][0].schedule);
         const last = parseSchedule(groupedEvents[sortedDates[sortedDates.length - 1]][0].schedule);
-
-        if (first.month === last.month) {
-            dateRangeString = `${first.month} ${first.day} – ${last.day}, ${first.year}`;
-        } else {
-            dateRangeString = `${first.month} ${first.day} – ${last.month} ${last.day}, ${first.year}`;
-        }
+        dateRangeString =
+            first.month === last.month
+                ? `${first.month} ${first.day} – ${last.day}, ${first.year}`
+                : `${first.month} ${first.day} – ${last.month} ${last.day}, ${first.year}`;
     }
 
-    // If no events, show empty state (optional but good practice)
+    function handleDateSelect(date) {
+        setActiveDate(date);
+        setAnimKey((k) => k + 1);
+    }
+
     if (!sortedDates.length) {
         return (
             <div className="arena-body-bg min-h-screen flex items-center justify-center">
@@ -120,13 +124,47 @@ export default function SchedulePage() {
 
     return (
         <div className="arena-body-bg min-h-screen pt-16 md:pt-24">
-            <main className="max-w-4xl mx-auto w-full px-6 py-12">
+            <style>{`
+                /* Horizontal date picker scrollbar hidden */
+                .date-scroll::-webkit-scrollbar { display: none; }
+                .date-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+
+                /* Event card entrance animation */
+                @keyframes cardSlideUp {
+                    from { opacity: 0; transform: translateY(24px); }
+                    to   { opacity: 1; transform: translateY(0); }
+                }
+                .event-card-anim {
+                    animation: cardSlideUp 0.35s ease forwards;
+                }
+
+                /* Date pill radial glow on active */
+                .pill-active {
+                    position: relative;
+                }
+                .pill-active::after {
+                    content: '';
+                    position: absolute;
+                    inset: -6px;
+                    border-radius: 50%;
+                    background: radial-gradient(ellipse at center, rgba(255,106,0,0.55) 0%, rgba(255,106,0,0.15) 50%, transparent 75%);
+                    animation: pillRadialPulse 2.4s ease-in-out infinite;
+                    pointer-events: none;
+                    z-index: -1;
+                }
+                @keyframes pillRadialPulse {
+                    0%, 100% { opacity: 0.7; transform: scale(0.95); }
+                    50%       { opacity: 1;   transform: scale(1.15); }
+                }
+
+            `}</style>
+
+            <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 py-10">
+
                 {/* ── Hero ── */}
-                <div className="mb-12 space-y-4 text-center md:text-left">
+                <div className="max-w-3xl mx-auto mb-10 space-y-3">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest">
-                        <span className="material-symbols-outlined text-sm">
-                            calendar_month
-                        </span>
+                        <span className="material-symbols-outlined text-sm">calendar_month</span>
                         {dateRangeString}
                     </div>
                     <h2 className="text-5xl md:text-6xl font-black tracking-tight leading-none uppercase italic">
@@ -136,51 +174,110 @@ export default function SchedulePage() {
                         </span>
                     </h2>
                     <p className="text-white/50 text-lg max-w-2xl font-light">
-                        Plan your journey through the proving grounds. Select a day to view
-                        the lineup.
+                        Pick a date below to explore events happening that day.
                     </p>
                 </div>
 
-                {/* ── Tabs ── */}
-                <div className="flex flex-col sm:flex-row gap-4 mb-12 border-b border-white/5 pb-8">
-                    {sortedDates.map((date, index) => {
-                        // grab the first event of this group to parse the date parts again for display
-                        const { day, month } = parseSchedule(groupedEvents[date][0].schedule);
+                {/* ── Horizontal Date Picker ── */}
+                <div className="relative mb-10">
+                    {/* Fade edges */}
+                    {/* <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 bg-gradient-to-r from-[var(--bg,#0a0a0a)] to-transparent z-10" />
+                    <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-[var(--bg,#0a0a0a)] to-transparent z-10" /> */}
 
-                        // If activeDate wasn't set (initial render), use first date
-                        const currentActive = activeDate || sortedDates[0];
-                        const isActive = currentActive === date;
+                    <div
+                        ref={scrollRef}
+                        className="date-scroll date-track relative flex justify-center gap-3 overflow-x-auto py-4 px-4"
+                    >
+                        {sortedDates.map((date, index) => {
+                            const { day, monthShort, dayOfWeek } = parseSchedule(
+                                groupedEvents[date][0].schedule
+                            );
+                            const isActive = activeDate === date;
+                            const count = groupedEvents[date].length;
 
-                        return (
-                            <button
-                                key={date}
-                                onClick={() => setActiveDate(date)}
-                                className={`flex-1 py-4 px-6 rounded-xl border transition-all duration-300 relative overflow-hidden group ${isActive
-                                    ? "bg-primary border-primary text-white shadow-[0_0_20px_rgba(255,106,0,0.3)]"
-                                    : "bg-white/5 border-white/10 text-white/40 hover:bg-white/10 hover:border-white/20 hover:text-white"
-                                    }`}
-                            >
-                                <div className="relative z-10 flex flex-col items-center sm:items-start gap-1">
-                                    <span className="text-xs font-bold tracking-[0.2em] uppercase opacity-80">
-                                        Day {String(index + 1).padStart(2, "0")}
+                            return (
+                                <button
+                                    key={date}
+                                    ref={isActive ? activeRef : null}
+                                    onClick={() => handleDateSelect(date)}
+                                    className={`
+                                        relative flex-shrink-0 flex flex-col items-center justify-center
+                                        w-16 rounded-2xl border transition-all duration-300 select-none
+                                        ${isActive
+                                            ? "bg-primary border-primary text-white pill-active py-4"
+                                            : "bg-white/5 border-white/10 text-white/50 hover:bg-white/10 hover:border-white/20 hover:text-white py-3"
+                                        }
+                                    `}
+                                    style={{ minHeight: isActive ? "88px" : "100px" }}
+                                >
+                                    {/* Day label (DAY 01) */}
+                                    <span className={`text-[9px] font-bold tracking-widest mb-0.5 ${isActive ? "text-white/70" : "text-white/30"}`}>
+                                        DAY {String(index + 1).padStart(2, "0")}
                                     </span>
-                                    <span className="text-2xl font-black italic uppercase tracking-tight">
-                                        {month} {day}
+
+                                    {/* Big date number */}
+                                    <span className={`text-2xl font-black leading-none ${isActive ? "text-white" : "text-white/70"}`}>
+                                        {day}
                                     </span>
-                                </div>
-                                {isActive && (
-                                    <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent pointer-events-none" />
-                                )}
-                            </button>
-                        );
-                    })}
+
+                                    {/* Month short */}
+                                    <span className={`text-[10px] font-semibold tracking-wide mt-0.5 ${isActive ? "text-white/80" : "text-white/40"}`}>
+                                        {monthShort}
+                                    </span>
+
+                                    {/* Event count badge */}
+                                    <span className={`
+                                        mt-1.5 text-[9px] font-bold px-2 py-0.5 rounded-full
+                                        ${isActive
+                                            ? "bg-white/20 text-white"
+                                            : "bg-white/5 text-white/30"
+                                        }
+                                    `}>
+                                        {count} {count === 1 ? "event" : "events"}
+                                    </span>
+
+
+                                </button>
+                            );
+                        })}
+                    </div>
                 </div>
 
-                {/* ── Event List ── */}
-                <div className="space-y-4">
-                    {currentEvents.map((ev) => (
-                        <ScheduleEventCard key={ev.slug} event={ev} />
-                    ))}
+                {/* ── Active Date Header ── */}
+                {activeDate && (() => {
+                    const { day, month, dayOfWeek } = parseSchedule(
+                        groupedEvents[activeDate][0].schedule
+                    );
+                    return (
+                        <div className="max-w-3xl mx-auto flex items-center gap-4 mb-6">
+                            <div className="flex items-baseline gap-2">
+                                <span className="text-3xl font-black text-white italic uppercase">
+                                    {dayOfWeek && <span className="text-primary mr-1">{dayOfWeek}, </span>}
+                                    {month} {day}
+                                </span>
+                                {/* <span className="text-white/30 text-sm font-medium">{year}</span> */}
+                            </div>
+                            <div className="h-px flex-1 bg-gradient-to-r from-primary/40 to-transparent" />
+                            <span className="text-white/40 text-sm font-medium">
+                                {currentEvents.length} {currentEvents.length === 1 ? "event" : "events"}
+                            </span>
+                        </div>
+                    );
+                })()}
+
+                {/* ── Event Cards (animated) ── */}
+                <div className="max-w-3xl mx-auto">
+                    <div key={animKey} className="space-y-4">
+                        {currentEvents.map((ev, i) => (
+                            <div
+                                key={ev.slug}
+                                className="event-card-anim"
+                                style={{ animationDelay: `${i * 60}ms` }}
+                            >
+                                <ScheduleEventCard event={ev} />
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 {/* ── Bottom CTA ── */}
@@ -190,9 +287,7 @@ export default function SchedulePage() {
                         className="inline-flex items-center gap-2 text-white/40 hover:text-primary font-bold text-sm tracking-widest uppercase transition-colors"
                     >
                         Register for Events
-                        <span className="material-symbols-outlined text-lg">
-                            arrow_forward
-                        </span>
+                        <span className="material-symbols-outlined text-lg">arrow_forward</span>
                     </Link>
                 </div>
             </main>

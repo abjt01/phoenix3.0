@@ -1,17 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { forwardRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export function TubelightNavbar({ items, className = "" }) {
+export const TubelightNavbar = forwardRef(function TubelightNavbar({ items, className = "" }, ref) {
     const pathname = usePathname();
     // Derive active tab directly from pathname — no setState needed
     const activeTab = items.find((i) => i.url === pathname)?.name ?? items[0].name;
 
     return (
-        <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 ${className}`}>
+        <div ref={ref} className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 ${className}`} style={{ transition: "transform 0.4s ease, opacity 0.4s ease" }}>
             <div className="flex items-center gap-1 bg-black/40 border border-white/10 backdrop-blur-xl py-1 px-1 rounded-full shadow-2xl">
                 {items.map((item) => {
                     const Icon = item.icon;
@@ -22,8 +22,8 @@ export function TubelightNavbar({ items, className = "" }) {
                             key={item.name}
                             href={item.url}
                             className={`relative cursor-pointer text-xs font-semibold px-5 py-2.5 rounded-full transition-colors ${isActive
-                                    ? "text-white"
-                                    : "text-white/50 hover:text-white/80"
+                                ? "text-white"
+                                : "text-white/50 hover:text-white/80"
                                 }`}
                         >
                             <span className="flex flex-col items-center gap-1">
@@ -53,4 +53,4 @@ export function TubelightNavbar({ items, className = "" }) {
             </div>
         </div>
     );
-}
+});

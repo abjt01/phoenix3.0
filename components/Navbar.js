@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, CalendarDays, Clock } from "lucide-react";
@@ -27,36 +27,85 @@ const glassStyle = {
 
 export default function Navbar() {
     const pathname = usePathname();
-    const [hidden, setHidden] = useState(false);
-    const [atTop, setAtTop] = useState(true);
+
+    const desktopNavRef = useRef(null);
+    const mobileLogoRef = useRef(null);
+    const mobileNavWrapRef = useRef(null);
 
     useEffect(() => {
         let lastY = window.scrollY;
+        let isHidden = false;
+
+        const applyHide = () => {
+            if (isHidden) return;
+            isHidden = true;
+            if (desktopNavRef.current) {
+                desktopNavRef.current.style.transform = "translateX(-50%) translateY(-80px)";
+                desktopNavRef.current.style.opacity = "0";
+                desktopNavRef.current.style.pointerEvents = "none";
+            }
+            if (mobileNavWrapRef.current) {
+                mobileNavWrapRef.current.style.transform = "translateY(80px)";
+                mobileNavWrapRef.current.style.opacity = "0";
+                mobileNavWrapRef.current.style.pointerEvents = "none";
+            }
+            if (mobileLogoRef.current) {
+                mobileLogoRef.current.style.transform = "translateY(-60px)";
+                mobileLogoRef.current.style.opacity = "0";
+                mobileLogoRef.current.style.pointerEvents = "none";
+            }
+        };
+
+        const applyShow = () => {
+            if (!isHidden) return;
+            isHidden = false;
+            if (desktopNavRef.current) {
+                desktopNavRef.current.style.transform = "translateX(-50%) translateY(0)";
+                desktopNavRef.current.style.opacity = "1";
+                desktopNavRef.current.style.pointerEvents = "";
+            }
+            if (mobileNavWrapRef.current) {
+                mobileNavWrapRef.current.style.transform = "translateY(0)";
+                mobileNavWrapRef.current.style.opacity = "1";
+                mobileNavWrapRef.current.style.pointerEvents = "";
+            }
+            if (mobileLogoRef.current) {
+                mobileLogoRef.current.style.transform = "translateY(0)";
+                mobileLogoRef.current.style.opacity = "1";
+                mobileLogoRef.current.style.pointerEvents = "";
+            }
+        };
+
         const onScroll = () => {
             const y = window.scrollY;
-            setAtTop(y < 20);
-            setHidden(y > lastY && y > 80); // hide on scroll down, show on scroll up
+
+            if (y < 50) {
+                applyShow();
+            } else if (y > lastY + 4) {
+                applyHide();
+            } else if (y < lastY - 4) {
+                applyShow();
+            }
+
             lastY = y;
         };
+
         window.addEventListener("scroll", onScroll, { passive: true });
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
     return (
         <>
-            {/* Desktop logo — fixed top-left */}
-            {/* <div className={`fixed left-6 z-50 hidden md:block transition-all duration-500 ${scrolled ? "top-3" : "top-5"}`}>
-                <Link
-                    href="/"
-                    className="flex items-center gap-2 text-xl font-bold tracking-[0.15em] uppercase"
-                >
-                    <span className="material-symbols-outlined text-primary text-xl leading-none"></span>
-                    Phoenix <span className="text-primary">3.0</span>
-                </Link>
-            </div> */}
-
             {/* Desktop nav links — centered pill */}
-            <header className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 hidden md:block ${atTop ? "top-5" : "top-3"} ${hidden ? "-translate-y-24 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}`}>
+            <header
+                ref={desktopNavRef}
+                className="fixed top-5 z-50 hidden md:block"
+                style={{
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    transition: "transform 0.4s ease, opacity 0.4s ease",
+                }}
+            >
                 <div className="flex items-center gap-6 px-6 py-3 rounded-full border border-white/10 shadow-2xl" style={glassStyle}>
                     <nav className="flex items-center gap-6">
                         {navLinks.map((link) => (
@@ -77,13 +126,18 @@ export default function Navbar() {
 
             {/* Tubelight bottom navbar — mobile only */}
             <TubelightNavbar
+                ref={mobileNavWrapRef}
                 items={mobileNavItems}
-                className={`md:hidden transition-all duration-500 ${hidden ? "translate-y-24 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}`}
+                className="md:hidden"
             />
 
             {/* Mobile top-left logo — hidden on home page */}
             {pathname !== "/" && (
-                <div className={`md:hidden fixed top-4 left-4 z-50 transition-all duration-500 ${hidden ? "-translate-y-16 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}`}>
+                <div
+                    ref={mobileLogoRef}
+                    className="md:hidden fixed top-4 left-4 z-50"
+                    style={{ transition: "transform 0.4s ease, opacity 0.4s ease" }}
+                >
                     <Link
                         href="/"
                         className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-sm font-bold tracking-[0.12em] uppercase"
