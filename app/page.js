@@ -35,12 +35,12 @@ export default function HomePage() {
             Witness the transformation on <span className="text-white font-medium underline decoration-primary underline-offset-4">March 5–6</span>.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center ">
-            <Link href="/events" className="w-full sm:w-auto min-w-[220px] bg-primary text-white font-bold py-5 px-8 rounded-lg text-sm tracking-widest uppercase btn-glow text-center">
+            <Link href="/events" className="w-auto min-w-[200px] sm:min-w-[220px] bg-primary text-white font-bold py-5 px-8 rounded-lg text-sm tracking-widest uppercase btn-glow text-center">
               Explore the Flame
             </Link>
-            <a href="/brochure.pdf" download className="w-full sm:w-auto min-w-[220px] bg-transparent border border-white/20 hover:border-primary/50 text-white font-bold py-5 px-8 rounded-lg text-sm tracking-widest uppercase transition-all hover:bg-white/5 text-center">
+            {/* <a href="/brochure.pdf" download className="w-full sm:w-auto min-w-[220px] bg-transparent border border-white/20 hover:border-primary/50 text-white font-bold py-5 px-8 rounded-lg text-sm tracking-widest uppercase transition-all hover:bg-white/5 text-center">
               Download Brochure
-            </a>
+            </a> */}
           </div>
         </div>
         {/* Scroll Indicator */}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { events } from "@/data/events";
 import TeamSizeSelector from "@/components/TeamSizeSelector";
@@ -43,7 +43,7 @@ function getTimeConflict(slugs) {
     return null;
 }
 
-const LS_KEY = "phoenix_reg_draft";
+const LS_KEY = "phoenix_reg_draft_v2";
 
 // ---------------------------------------------------------------------------
 // TeamMemberFields — renders name + email inputs for extra members
@@ -148,11 +148,16 @@ export default function RegistrationForm({ selectedEventSlug }) {
         try {
             const saved = JSON.parse(localStorage.getItem(LS_KEY) || "null");
             if (!saved) return;
+
+            // Filter out stale slugs that no longer exist in the current events list
+            const validSlugs = new Set(events.map((e) => e.slug));
+            const restoredEvents = (saved.formData?.selectedEvents ?? []).filter((s) => validSlugs.has(s));
+
             setFormData((prev) => ({
                 ...prev,
                 ...saved.formData,
                 // In locked mode, keep the locked event + its min team size
-                selectedEvents: lockedEvent ? [lockedEvent.slug] : (saved.formData?.selectedEvents ?? []),
+                selectedEvents: lockedEvent ? [lockedEvent.slug] : restoredEvents,
                 teamSize: lockedEvent ? String(lockedEvent.minTeamSize) : (saved.formData?.teamSize ?? "1"),
             }));
             if (!lockedEvent && saved.teamMembers?.length) {
@@ -169,8 +174,15 @@ export default function RegistrationForm({ selectedEventSlug }) {
 
     // ---------------------------------------------------------------------------
     // Persist draft to localStorage whenever formData or teamMembers change
+    // Skip the very first run so the blank default state doesn't overwrite
+    // a previously saved draft before the restore effect has committed.
     // ---------------------------------------------------------------------------
+    const hasMounted = useRef(false);
     useEffect(() => {
+        if (!hasMounted.current) {
+            hasMounted.current = true;
+            return; // skip the initial mount run
+        }
         if (submitState === "success") return; // don't re-save after success
         try {
             localStorage.setItem(LS_KEY, JSON.stringify({ formData, teamMembers }));
@@ -543,58 +555,102 @@ export default function RegistrationForm({ selectedEventSlug }) {
                         </div>
                     </div>
                 ) : (
-                    /* Multi-event toggle grid */
+                    /* Multi-event toggle grid — grouped by day */
                     <>
-                        <div
-                            className="grid grid-cols-1 sm:grid-cols-2 gap-3"
-                            data-field-error={fieldErrors.selectedEvents ? "true" : undefined}
-                        >
-                            {events.map((event) => {
-                                const isSelected = formData.selectedEvents.includes(event.slug);
-                                // Would selecting this event cause a time conflict?
-                                const wouldConflict = !isSelected && !!getTimeConflict(
-                                    [...formData.selectedEvents, event.slug]
-                                );
-                                const teamLabel =
-                                    event.minTeamSize === event.maxTeamSize
-                                        ? event.minTeamSize === 1
-                                            ? "Solo"
-                                            : `${event.minTeamSize} members`
-                                        : `${event.minTeamSize}–${event.maxTeamSize} members`;
-                                return (
-                                    <button
-                                        key={event.slug}
-                                        type="button"
-                                        onClick={() => handleEventToggle(event.slug)}
-                                        disabled={wouldConflict}
-                                        title={wouldConflict ? "This event overlaps with one you already selected" : undefined}
-                                        className={`p-4 rounded-xl border text-left transition-all ${isSelected
-                                            ? "bg-primary/20 border-primary text-white"
-                                            : wouldConflict
-                                                ? "bg-white/[0.02] border-white/5 text-white/25 cursor-not-allowed"
-                                                : "bg-white/5 border-white/10 text-white/60 hover:border-white/25 hover:text-white/80"
-                                            }`}
-                                    >
-                                        <div className="flex items-start gap-3">
-                                            <span
-                                                className={`material-symbols-outlined text-base mt-0.5 shrink-0 ${isSelected ? "text-primary" : wouldConflict ? "text-white/20" : "text-white/30"
-                                                    }`}
-                                            >
-                                                {isSelected ? "check_circle" : wouldConflict ? "event_busy" : "radio_button_unchecked"}
-                                            </span>
-                                            <div>
-                                                <p className="text-sm font-semibold leading-snug">{event.title}</p>
-                                                <p className="text-xs text-white/40 mt-0.5">
-                                                    {wouldConflict ? (
-                                                        <span className="text-amber-500/70">Schedule conflict</span>
-                                                    ) : teamLabel}
-                                                </p>
+                        {/* Build day-grouped structure from startTime */}
+                        {(() => {
+                            // Group events by their date string (YYYY-MM-DD)
+                            const dayMap = new Map();
+                            events.forEach((event) => {
+                                const dateKey = event.startTime
+                                    ? event.startTime.slice(0, 10)
+                                    : "TBD";
+                                if (!dayMap.has(dateKey)) dayMap.set(dateKey, []);
+                                dayMap.get(dateKey).push(event);
+                            });
+                            const days = [...dayMap.entries()].sort(([a], [b]) => a.localeCompare(b));
+
+                            return (
+                                <div
+                                    className={`grid gap-6 ${days.length > 1 ? "md:grid-cols-2" : "grid-cols-1"}`}
+                                    data-field-error={fieldErrors.selectedEvents ? "true" : undefined}
+                                >
+                                    {days.map(([dateKey, dayEvents], dayIdx) => {
+                                        // Human-readable date label
+                                        const dateLabel = dateKey !== "TBD"
+                                            ? new Date(dateKey + "T12:00:00").toLocaleDateString("en-IN", { day: "numeric", month: "long" })
+                                            : "TBD";
+
+                                        return (
+                                            <div key={dateKey} className="space-y-2">
+                                                {/* Day header */}
+                                                <div className="flex items-center gap-2 mb-3">
+                                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary bg-primary/10 border border-primary/30 px-2.5 py-1 rounded-full">
+                                                        Day {dayIdx + 1}
+                                                    </span>
+                                                    <span className="text-xs text-white/30 font-medium">{dateLabel}</span>
+                                                    <div className="h-px flex-1 bg-white/5" />
+                                                </div>
+
+                                                {/* Events for this day */}
+                                                {dayEvents.map((event) => {
+                                                    const isSelected = formData.selectedEvents.includes(event.slug);
+                                                    const wouldConflict = !isSelected && !!getTimeConflict(
+                                                        [...formData.selectedEvents, event.slug]
+                                                    );
+                                                    const teamLabel =
+                                                        event.minTeamSize === event.maxTeamSize
+                                                            ? event.minTeamSize === 1
+                                                                ? "Solo"
+                                                                : `${event.minTeamSize} members`
+                                                            : `${event.minTeamSize}–${event.maxTeamSize} members`;
+                                                    return (
+                                                        <button
+                                                            key={event.slug}
+                                                            type="button"
+                                                            onClick={() => handleEventToggle(event.slug)}
+                                                            disabled={wouldConflict}
+                                                            title={wouldConflict ? "This event overlaps with one you already selected" : undefined}
+                                                            className={`w-full p-4 rounded-xl border text-left transition-all ${isSelected
+                                                                ? "bg-primary/20 border-primary text-white"
+                                                                : wouldConflict
+                                                                    ? "bg-white/[0.02] border-white/5 text-white/25 cursor-not-allowed"
+                                                                    : "bg-white/5 border-white/10 text-white/60 hover:border-white/25 hover:text-white/80"
+                                                                }`}
+                                                        >
+                                                            <div className="flex items-start gap-3">
+                                                                <span
+                                                                    className={`material-symbols-outlined text-base mt-0.5 shrink-0 ${isSelected ? "text-primary" : wouldConflict ? "text-white/20" : "text-white/30"
+                                                                        }`}
+                                                                >
+                                                                    {isSelected ? "check_circle" : wouldConflict ? "event_busy" : "radio_button_unchecked"}
+                                                                </span>
+                                                                <div>
+                                                                    <p className="text-sm font-semibold leading-snug">{event.title}</p>
+                                                                    
+                                                                    <p className="text-xs text-white/40 mt-0.5">
+                                                                        {wouldConflict ? (
+                                                                            <span className="text-amber-500/70">Schedule conflict</span>
+                                                                        ) : teamLabel}
+                                                                    </p>
+                                                                    {(event.startTime || event.endTime) && (
+                                                                        <p className="text-[13px] text-white/25 mt-1">
+                                                                            {event.startTime && new Date(event.startTime).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", hour12: true })}
+                                                                            {event.startTime && event.endTime && " – "}
+                                                                            {event.endTime && new Date(event.endTime).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", hour12: true })}
+                                                                        </p>
+                                                                    )}
+                                                                </div>
+                                                            </div>
+                                                        </button>
+                                                    );
+                                                })}
                                             </div>
-                                        </div>
-                                    </button>
-                                );
-                            })}
-                        </div>
+                                        );
+                                    })}
+                                </div>
+                            );
+                        })()}
 
                         {/* Time conflict warning */}
                         {timeConflict && (
