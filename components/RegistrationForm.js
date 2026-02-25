@@ -129,38 +129,37 @@ export default function RegistrationForm({ selectedEventSlug }) {
         ? events.find((e) => e.slug === selectedEventSlug)
         : null;
 
-    // Core form state — restored from localStorage draft on first render
-    const [formData, setFormData] = useState(() => {
-        const defaults = {
-            name: "",
-            email: "",
-            college: "",
-            phone: "",
-            teamSize: lockedEvent ? String(lockedEvent.minTeamSize) : "1",
-            selectedEvents: lockedEvent ? [lockedEvent.slug] : [],
-        };
-        if (typeof window === "undefined") return defaults;
-        try {
-            const saved = JSON.parse(localStorage.getItem(LS_KEY) || "null");
-            if (!saved) return defaults;
-            // In locked mode don't restore event selection
-            return {
-                ...defaults,
-                ...saved.formData,
-                selectedEvents: lockedEvent ? [lockedEvent.slug] : (saved.formData?.selectedEvents ?? []),
-                teamSize: lockedEvent ? String(lockedEvent.minTeamSize) : (saved.formData?.teamSize ?? "1"),
-            };
-        } catch { return defaults; }
+    // Core form state — always start with safe server-side defaults
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        college: "",
+        phone: "",
+        teamSize: lockedEvent ? String(lockedEvent.minTeamSize) : "1",
+        selectedEvents: lockedEvent ? [lockedEvent.slug] : [],
     });
 
     // Team member additional details (array of { name, email, phone })
-    const [teamMembers, setTeamMembers] = useState(() => {
-        if (typeof window === "undefined") return [];
+    const [teamMembers, setTeamMembers] = useState([]);
+
+    // Restore draft from localStorage after first client paint (avoids hydration mismatch)
+    useEffect(() => {
         try {
             const saved = JSON.parse(localStorage.getItem(LS_KEY) || "null");
-            return saved?.teamMembers ?? [];
-        } catch { return []; }
-    });
+            if (!saved) return;
+            setFormData((prev) => ({
+                ...prev,
+                ...saved.formData,
+                // In locked mode, keep the locked event + its min team size
+                selectedEvents: lockedEvent ? [lockedEvent.slug] : (saved.formData?.selectedEvents ?? []),
+                teamSize: lockedEvent ? String(lockedEvent.minTeamSize) : (saved.formData?.teamSize ?? "1"),
+            }));
+            if (!lockedEvent && saved.teamMembers?.length) {
+                setTeamMembers(saved.teamMembers);
+            }
+        } catch { /* ignore corrupt data */ }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []); // run once on mount
 
     // UI state
     const [fieldErrors, setFieldErrors] = useState({});

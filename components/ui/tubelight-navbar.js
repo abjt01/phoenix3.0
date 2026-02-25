@@ -8,7 +8,9 @@ import { usePathname } from "next/navigation";
 export const TubelightNavbar = forwardRef(function TubelightNavbar({ items, className = "" }, ref) {
     const pathname = usePathname();
     // Derive active tab directly from pathname — no setState needed
-    const activeTab = items.find((i) => i.url === pathname)?.name ?? items[0].name;
+    const activeTab = items.find((i) =>
+        i.url === "/" ? pathname === "/" : pathname.startsWith(i.url)
+    )?.name ?? items[0].name;
 
     return (
         <div ref={ref} className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 ${className}`} style={{ transition: "transform 0.4s ease, opacity 0.4s ease" }}>

@@ -3,19 +3,21 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, CalendarDays, Clock } from "lucide-react";
+import { Home, CalendarDays, Clock, Pencil } from "lucide-react";
 import { TubelightNavbar } from "@/components/ui/tubelight-navbar";
 
 const navLinks = [
     { href: "/", label: "Home" },
     { href: "/events", label: "Events" },
     { href: "/schedule", label: "Schedule" },
+    { href: "/register", label: "Register" },
 ];
 
 const mobileNavItems = [
     { name: "Home", url: "/", icon: Home },
     { name: "Events", url: "/events", icon: CalendarDays },
     { name: "Schedule", url: "/schedule", icon: Clock },
+    { name: "Register", url: "/register", icon: Pencil },
 ];
 
 const glassStyle = {
@@ -112,11 +114,13 @@ export default function Navbar() {
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className={`relative text-xs font-semibold tracking-[0.18em] uppercase transition-colors duration-200 group ${pathname === link.href ? "text-primary" : "text-white/60 hover:text-white"
+                                className={`relative text-xs font-semibold tracking-[0.18em] uppercase transition-colors duration-200 group ${(link.href === "/" ? pathname === "/" : pathname.startsWith(link.href))
+                                    ? "text-primary" : "text-white/60 hover:text-white"
                                     }`}
                             >
                                 {link.label}
-                                <span className={`absolute -bottom-1 left-0 h-px bg-primary transition-all duration-300 ${pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+                                <span className={`absolute -bottom-1 left-0 h-px bg-primary transition-all duration-300 ${(link.href === "/" ? pathname === "/" : pathname.startsWith(link.href))
+                                    ? "w-full" : "w-0 group-hover:w-full"
                                     }`} />
                             </Link>
                         ))}

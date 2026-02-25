@@ -7,8 +7,8 @@ export const metadata = {
 
 export default function RegisterPage() {
     return (
-        <div className="min-h-screen bg-background-dark">
-            <main className="max-w-4xl mx-auto px-6 py-16">
+        <div className="min-h-screen bg-background-dark ">
+            <main className="max-w-4xl mx-auto px-6 pt-20 md:pt-28 pb-12">
                 {/* Header */}
                 <div className="text-center mb-16">
                     <span className="inline-block px-4 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-6">
