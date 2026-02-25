@@ -123,7 +123,7 @@ export default function SchedulePage() {
     }
 
     return (
-        <div className="arena-body-bg min-h-screen pt-16 md:pt-24">
+        <div className="arena-body-bg min-h-screen">
             <style>{`
                 /* Horizontal date picker scrollbar hidden */
                 .date-scroll::-webkit-scrollbar { display: none; }
@@ -159,14 +159,14 @@ export default function SchedulePage() {
 
             `}</style>
 
-            <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 py-10">
+            <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 pt-20 md:pt-28 pb-10">
 
                 {/* ── Hero ── */}
                 <div className="max-w-3xl mx-auto mb-10 space-y-3">
-                    
-                    <h2 className="text-5xl md:text-6xl font-black tracking-tight leading-none uppercase italic">
+
+                    <h2 className="text-5xl md:text-6xl font-black tracking-tight leading-none uppercase">
                         Event{" "}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400 pr-2">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400 pr-2 italic">
                             Schedule
                         </span>
                     </h2>

@@ -183,7 +183,6 @@ export default function RegistrationForm({ selectedEventSlug }) {
     useEffect(() => {
         const size = parseInt(formData.teamSize, 10);
         const extras = Math.max(0, size - 1);
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setTeamMembers((prev) => {
             if (prev.length === extras) return prev;
             if (prev.length < extras) {
@@ -204,7 +203,6 @@ export default function RegistrationForm({ selectedEventSlug }) {
         const size = parseInt(formData.teamSize, 10);
         if (!constraints.conflict) {
             if (size < constraints.min) {
-                // eslint-disable-next-line react-hooks/set-state-in-effect
                 setFormData((prev) => ({ ...prev, teamSize: String(constraints.min) }));
             } else if (size > constraints.max) {
                 setFormData((prev) => ({ ...prev, teamSize: String(constraints.max) }));

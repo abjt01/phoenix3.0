@@ -6,7 +6,7 @@
  */
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 const AVATAR_OVERLAP = 10;
 
@@ -44,7 +44,7 @@ const animations = {
 
 export default function TeamSizeSelector({ value, onChange, min = 1, max = 6 }) {
     const count = parseInt(value, 10) || 1;
-    const directionRef = useRef(1);
+    const [direction, setDirection] = useState(1);
     const [isVibrating, setIsVibrating] = useState(false);
 
     const slots = Array.from({ length: max }, (_, i) => i);
@@ -57,7 +57,7 @@ export default function TeamSizeSelector({ value, onChange, min = 1, max = 6 }) 
     function handleIncrement(e) {
         e.preventDefault();
         if (count < max) {
-            directionRef.current = 1;
+            setDirection(1);
             onChange(String(count + 1));
         } else {
             triggerVibration();
@@ -67,7 +67,7 @@ export default function TeamSizeSelector({ value, onChange, min = 1, max = 6 }) 
     function handleDecrement(e) {
         e.preventDefault();
         if (count > min) {
-            directionRef.current = -1;
+            setDirection(-1);
             onChange(String(count - 1));
         } else {
             triggerVibration();
@@ -143,11 +143,11 @@ export default function TeamSizeSelector({ value, onChange, min = 1, max = 6 }) 
                                     key={count}
                                     aria-label={`Current team size: ${count}`}
                                     className="block select-none bg-gradient-to-b from-white to-white/50 bg-clip-text text-4xl font-black text-transparent"
-                                    initial={{ opacity: 0, y: directionRef.current * 18 }}
+                                    initial={{ opacity: 0, y: direction * 18 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{
                                         opacity: 0,
-                                        y: directionRef.current * -18,
+                                        y: direction * -18,
                                         transition: { duration: 0.14, ease: "easeIn" },
                                     }}
                                     transition={{ duration: 0.2, ease: "easeOut" }}
