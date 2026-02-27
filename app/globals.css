@@ -18,6 +18,17 @@
 }
 
 /* =============================================
+   Title Gradient (6-stop: orange → blue)
+   ============================================= */
+
+.gradient-title {
+  background: linear-gradient(135deg, #c62f00 0%, #f37b27 15%, #ff6900 30%, #ffb27c 50%, #57d2fd 75%, #00a2ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =============================================
    Page 1: The Awakening (Landing Page) Styles
    ============================================= */
 
@@ -68,6 +79,77 @@
 }
 
 /* =============================================
+   Stats Ribbon
+   ============================================= */
+
+.stats-ribbon {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 105, 0, 0.06) 0%, rgba(10, 10, 10, 0.95) 30%, rgba(10, 10, 10, 0.95) 70%, rgba(0, 162, 255, 0.06) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.stats-ribbon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #c62f00 15%, #ff6900 30%, #ffb27c 50%, #57d2fd 75%, #00a2ff 85%, transparent 100%);
+  opacity: 0.6;
+}
+
+.stats-ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #00a2ff 15%, #57d2fd 30%, #ffb27c 50%, #ff6900 75%, #c62f00 85%, transparent 100%);
+  opacity: 0.6;
+}
+
+.stat-item {
+  position: relative;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  background: linear-gradient(135deg, #c62f00 0%, #ff6900 30%, #ffb27c 55%, #57d2fd 80%, #00a2ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-top: 0.5rem;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.12) 50%, transparent 100%);
+}
+
+@media (min-width: 768px) {
+  .stat-value {
+    font-size: 3.5rem;
+  }
+}
+
+/* =============================================
    Page 2: The Legend (Storytelling) Styles
    ============================================= */
 
@@ -112,10 +194,17 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Default hover — orange */
 .event-card:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 0 20px rgba(255, 106, 0, 0.15);
   border-color: rgba(255, 106, 0, 0.4);
+}
+
+/* Alternate hover — blue (applied via class on events page) */
+.event-card.hover-blue:hover {
+  box-shadow: 0 0 20px rgba(0, 162, 255, 0.2);
+  border-color: rgba(0, 162, 255, 0.4);
 }
 
 .glass-panel {

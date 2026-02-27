@@ -1,9 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function EventCard({ title, description, slug, image, imageAlt, participants }) {
+export default function EventCard({ title, description, slug, image, imageAlt, participants, index = 0 }) {
+    const isBlueHover = index % 2 === 1;
+
     return (
-        <div className="event-card group bg-charcoal border border-white/5 rounded-xl overflow-hidden flex flex-col">
+        <div className={`event-card ${isBlueHover ? 'hover-blue' : ''} group bg-charcoal border border-white/5 rounded-xl overflow-hidden flex flex-col`}>
             <div className="h-48 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal to-transparent z-10" />
                 <Image

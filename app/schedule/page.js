@@ -16,7 +16,7 @@ function parseSchedule(scheduleStr) {
     const month = dayMatch ? dayMatch[1] : "";
     const day = dayMatch ? parseInt(dayMatch[2], 10) : 0;
 
-    const dateObj = new Date(dateStr);
+    const dateObj = new Date(dateStr + ", 2026");
 
     let minutes = 0;
     if (timeStr) {
@@ -166,7 +166,7 @@ export default function SchedulePage() {
 
                     <h2 className="text-5xl md:text-6xl font-black tracking-tight leading-none uppercase">
                         Event{" "}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400 pr-2 italic">
+                        <span className="gradient-title pr-2 italic">
                             Schedule
                         </span>
                     </h2>

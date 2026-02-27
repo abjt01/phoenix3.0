@@ -125,7 +125,7 @@ function TeamMemberFields({ index, value, onChange, errors }) {
 // ---------------------------------------------------------------------------
 // Main RegistrationForm component
 // ---------------------------------------------------------------------------
-export default function RegistrationForm({ selectedEventSlug }) {
+export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
     const lockedEvent = selectedEventSlug
         ? events.find((e) => e.slug === selectedEventSlug)
         : null;
@@ -354,6 +354,7 @@ export default function RegistrationForm({ selectedEventSlug }) {
             }
 
             setSubmitState("success");
+            if (onSuccess) onSuccess();
             try { localStorage.removeItem(LS_KEY); } catch { /* ignore */ }
         } catch {
             setServerError("Network error. Please check your connection and try again.");
@@ -627,7 +628,7 @@ export default function RegistrationForm({ selectedEventSlug }) {
                                                                 </span>
                                                                 <div>
                                                                     <p className="text-sm font-semibold leading-snug">{event.title}</p>
-                                                                    
+
                                                                     <p className="text-xs text-white/40 mt-0.5">
                                                                         {wouldConflict ? (
                                                                             <span className="text-amber-500/70">Schedule conflict</span>
