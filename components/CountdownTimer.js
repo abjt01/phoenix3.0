@@ -39,7 +39,7 @@ export default function CountdownTimer({ targetDate }) {
                         justifyContent: 'center',
                         padding: '8px 0px',
                         minWidth: '56px',
-                    }}>
+                    }}> 
                         <span style={{
                             fontSize: 'clamp(2.5rem, 5vw, 4rem)',
                             fontWeight: 800,

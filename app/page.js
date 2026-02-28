@@ -6,6 +6,10 @@ import CountdownTimer from '@/components/CountdownTimer';
 import CountUp from '@/components/CountUp';
 import ScrollVelocity from '@/components/ScrollVelocity';
 export default function HomePage() {
+  let targetDate = new Date("2026-03-15T23:59:00+05:30");
+  const now = new Date();
+  const diffMs = targetDate - now;
+  const diffDays = diffMs / (1000 * 60 * 60 * 24); 
   return (
     <>
       {/* Hero Section */}
@@ -30,9 +34,10 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/50 to-background-dark pointer-events-none z-1"></div>
 
         {/* ScrollVelocity Decorative Top */}
-        <div className="absolute top-24 md:top-32 w-full z-0 opacity-20 pointer-events-none overflow-hidden">
+        <div className="text-sl font-bold absolute top-10 md:top-30 w-full z-0 opacity-20 pointer-events-none overflow-hidden">
+          
           <ScrollVelocity
-            texts={['PHOENIX 3.0', 'RISE. REBUILD. REINVENT.']}
+            texts={[`👉🏻${diffDays.toFixed(0)} Days Until Registration Closes👈🏼` ]}
             velocity={50}
             className="text-white"
           />
@@ -40,7 +45,7 @@ export default function HomePage() {
 
         <div className="relative z-10 text-center max-w-5xl mt-10 md:mt-32">
           <h1 className="text-5xl md:text-9xl font-bold leading-[1.1] tracking-tighter mt-0 md:mt-20 glow-text ">
-            <span className="gradient-title">PHOENIX 3.0</span> <br />
+            <span className="gradient-title">PHOENIX 3.0</span> <br />  
           </h1>
           <h1 className="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tighter mt-2  glow-text ">
             <span className="text-white opacity-80 bg-clip-text bg-gradient-to-r from-primary to-[#ff9d5c]">Rise. Rebuild. Reinvent.</span>
