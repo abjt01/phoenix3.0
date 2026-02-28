@@ -116,21 +116,29 @@ export async function POST(request) {
     const { name, email, college, phone, teamSize, selectedEvents, teamMembers } = body;
     const teamSizeNum = parseInt(teamSize, 10);
 
-    // 4. Write to Google Sheets
+    // 4. Write to each event's own Google Sheet in parallel
     try {
-        const eventTitles = selectedEvents
-            .map((slug) => events.find((e) => e.slug === slug)?.title ?? slug)
-            .join(", ");
+        const sheetWrites = selectedEvents.map((slug) => {
+            const event = events.find((e) => e.slug === slug);
+            if (!event?.sheetId) {
+                throw new Error(`No sheetId configured for event: "${slug}"`);
+            }
 
-        await appendToSheet({
-            name: name.trim(),
-            email: email.trim().toLowerCase(),
-            college: college.trim(),
-            phone: phone.trim(),
-            events: eventTitles,
-            teamSize: teamSizeNum,
-            teamMembers: Array.isArray(teamMembers) ? teamMembers.slice(0, teamSizeNum - 1) : [],
+            return appendToSheet(
+                {
+                    name: name.trim(),
+                    email: email.trim().toLowerCase(),
+                    college: college.trim(),
+                    phone: phone.trim(),
+                    events: event.title,          // only this event's title in its own sheet
+                    teamSize: teamSizeNum,
+                    teamMembers: Array.isArray(teamMembers) ? teamMembers.slice(0, teamSizeNum - 1) : [],
+                },
+                event.sheetId                     // ← target spreadsheet for this event
+            );
         });
+
+        await Promise.all(sheetWrites);
 
         return NextResponse.json(
             { success: true, message: "Registration successful! Check your email for confirmation." },

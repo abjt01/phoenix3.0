@@ -1,4 +1,5 @@
 export const events = [
+
     // 17th March — Morning (10:30 AM – 1:30 PM)
     {
         slug: "treasure-hunt",
@@ -21,7 +22,9 @@ export const events = [
         schedule: "March 17 — 10:30 AM to 1:30 PM",
         startTime: "2026-03-17T10:30",
         endTime: "2026-03-17T13:30",
-        venue: "Campus Grounds"
+        venue: "Campus Grounds",
+        sheetId: "1GptdkuMjZhiMtkAxOzJWEiXuwLVuN8Ox3WZRz7vARH8"
+
     },
     {
         slug: "ad-venture",
@@ -44,7 +47,8 @@ export const events = [
         schedule: "March 17 — 10:30 AM to 1:30 PM",
         startTime: "2026-03-17T10:30",
         endTime: "2026-03-17T13:30",
-        venue: "Seminar Hall"
+        venue: "Seminar Hall",
+        sheetId: "1jMihm5piVjRl6iet8RG1zaO38DHsouFDO2zjSi-uRqI"
     },
 
     // 17th March — Afternoon (2:00 PM – 5:00 PM)
@@ -69,7 +73,8 @@ export const events = [
         schedule: "March 17 — 2:00 PM to 5:00 PM",
         startTime: "2026-03-17T14:00",
         endTime: "2026-03-17T17:00",
-        venue: "Conference Room"
+        venue: "Conference Room",
+        sheetId: "1kLWdQOgsRSXVUzrmUjimnjHToo-3N1nbbR9TLKReIMg"
     },
     {
         slug: "fyp",
@@ -92,7 +97,8 @@ export const events = [
         schedule: "March 17 — 2:00 PM to 5:00 PM",
         startTime: "2026-03-17T14:00",
         endTime: "2026-03-17T17:00",
-        venue: "Project Lab"
+        venue: "Project Lab",
+        sheetId: "1YEL4wvj6KvCNUau96feMW_cqup631FeLX6_OSK4nduQ"
     },
 
     // 18th March — Morning (10:00 AM – 1:00 PM)
@@ -117,7 +123,8 @@ export const events = [
         schedule: "March 18 — 10:00 AM to 1:00 PM",
         startTime: "2026-03-18T10:00",
         endTime: "2026-03-18T13:00",
-        venue: "Innovation Lab"
+        venue: "Innovation Lab",
+        sheetId: "1fGQtadd4nFn3IIOWDqkUy3BXEwVdHo4GOt5pVPu5jCU"
     },
     {
         slug: "ccid",
@@ -140,7 +147,8 @@ export const events = [
         schedule: "March 18 — 10:00 AM to 1:00 PM",
         startTime: "2026-03-18T10:00",
         endTime: "2026-03-18T13:00",
-        venue: "Tech Lab"
+        venue: "Tech Lab",
+        sheetId: "1rEp36_p2XJpeamT4XbsiRZbgHM4qQR5OqQVCyMrBi9k"
     },
 
     // 18th March — Afternoon (1:30 PM – 4:30 PM)
@@ -165,7 +173,8 @@ export const events = [
         schedule: "March 18 — 1:30 PM to 4:30 PM",
         startTime: "2026-03-18T13:30",
         endTime: "2026-03-18T16:30",
-        venue: "Main Hall"
+        venue: "Main Hall",
+        sheetId: "1PdqoE3Fiq5NuT2Kx8RetkjWZS5gzymlTqap_4x5aQHY"
     },
     {
         slug: "entropy",
@@ -188,7 +197,8 @@ export const events = [
         schedule: "March 18 — 1:30 PM to 4:30 PM",
         startTime: "2026-03-18T13:30",
         endTime: "2026-03-18T16:30",
-        venue: "Computer Lab"
+        venue: "Computer Lab",
+        sheetId: "1-To5eWerJlVF99XFW1EKLaPvNJDgk_6e_WnAQCe2p7E"
     }
 ];
 
