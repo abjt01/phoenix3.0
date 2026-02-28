@@ -14,7 +14,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <main className="relative min-h-screen flex flex-col justify-center items-center px-6 ember-bg -mt-10">
+      <main className="relative min-h-screen flex flex-col justify-center items-center px-6 ember-bg -mt-10 pb-10 md:pb-0">
         {/* Grainient Background */}
         <div className="absolute inset-0 z-0">
           <Grainient
@@ -48,9 +48,9 @@ export default function HomePage() {
           <h1 className="text-5xl md:text-9xl font-bold leading-[1.1] tracking-tighter mt-0 md:mt-20 glow-text ">
             <span className="gradient-title">PHOENIX 3.0</span> <br />
           </h1>
-          <h1 className="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tighter mt-2  glow-text ">
+          <h1 className="text-4xl md:text-6xl font-bold leading-[1.1] tracking-tighter mt-2  glow-text ">
             <span className="text-white opacity-80 bg-clip-text bg-gradient-to-r from-primary to-[#ff9d5c]">
-              <TextAnimate animation="blurIn" as="h1">
+              <TextAnimate animation="blurIn">
                 Rise. Rebuild. Reinvent.
               </TextAnimate>
             </span>
@@ -68,36 +68,16 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        {/* Scroll Indicator */}
-        {/* <div className="absolute bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-90 z-10">
-          <p className="text-[10px] tracking-[0.4em] uppercase text-white/80 pl-[0.4em]">
-            Scroll to awaken
-          </p>
-
-          <div
-            className="h-40 md:h-56 w-1"
-            style={{
-              background: `
-                linear-gradient(
-                  to bottom,
-                  #00a2ff 0%,
-                  #57d2fd 20%,
-                  #ffb27c 40%,
-                  #ff6900 60%,
-                  #f37b27 80%,
-                  #c62f00 100%
-                )
-              `,
-              clipPath: 'polygon(30% 0%, 70% 0%, 50% 100%)'
-            }}
-          />
-        </div> */}
+        {/* Hard black strip at the very bottom of hero — covers any canvas rendering seam from overflow:hidden */}
+        <div className="absolute bottom-0 left-0 right-0 h-4 bg-background-dark z-20 pointer-events-none" />
       </main>
+      {/* Gap bridge — fills the mt-10 gap with exact body bg so no contrast line is visible on mobile */}
+      <div className="h-10 bg-background-dark md:hidden" />
 
 
 
       {/* Stats Ribbon */}
-      <div className="stats-ribbon py-8 md:py-14 mb-16 md:mb-24 mt-32 md:mt-48">
+      <div className="stats-ribbon py-8 md:py-14 mb-16 md:mb-24 mt-0 md:mt-48">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           {/* Mobile Grid Layout - Desktop Flex Layout */}
           <div className="grid grid-cols-2 gap-y-8 md:flex md:flex-row md:items-center md:justify-center md:gap-8 lg:gap-12">
@@ -133,7 +113,7 @@ export default function HomePage() {
 
             <div className="col-span-2 md:col-span-1 stat-item flex flex-col items-center justify-center">
               <div className="stat-value text-3xl md:text-[2.5rem] lg:text-[3.5rem] ">
-                 Exciting
+                Exciting
               </div>
               <div className="stat-label text-[0.6rem] md:text-[0.7rem]">Cash Prizes</div>
             </div>

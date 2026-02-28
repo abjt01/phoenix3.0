@@ -24,7 +24,6 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${spaceGrotesk.variable} dark bg-background-dark text-white selection:bg-primary/30 selection:text-white`}>
         <Navbar />
-      
         {children}
         <Footer />
       </body>

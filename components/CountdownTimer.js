@@ -4,22 +4,26 @@ import { useState, useEffect } from 'react';
 const getDiff = (targetDate) => Math.max(0, new Date(targetDate) - Date.now());
 
 export default function CountdownTimer({ targetDate }) {
-    const [diff, setDiff] = useState(() => getDiff(targetDate));
+    const [mounted, setMounted] = useState(false);
+    const [diff, setDiff] = useState(0);
 
     useEffect(() => {
+        setMounted(true);
         if (!targetDate) return;
+        setDiff(getDiff(targetDate));
+
         const id = setInterval(() => setDiff(getDiff(targetDate)), 200);
         return () => clearInterval(id);
     }, [targetDate]);
 
     if (!targetDate) return null;
-    if (diff === 0) return null;
+    if (mounted && diff === 0) return null;
 
     const units = [
-        { label: 'Days', value: Math.floor(diff / 86400000) },
-        { label: 'Hours', value: Math.floor(diff / 3600000) % 24 },
-        { label: 'Min', value: Math.floor(diff / 60000) % 60 },
-        { label: 'Sec', value: Math.floor(diff / 1000) % 60 },
+        { label: 'Days', value: mounted ? Math.floor(diff / 86400000) : 0 },
+        { label: 'Hours', value: mounted ? Math.floor(diff / 3600000) % 24 : 0 },
+        { label: 'Min', value: mounted ? Math.floor(diff / 60000) % 60 : 0 },
+        { label: 'Sec', value: mounted ? Math.floor(diff / 1000) % 60 : 0 },
     ];
 
     return (
@@ -39,8 +43,8 @@ export default function CountdownTimer({ targetDate }) {
                         justifyContent: 'center',
                         padding: '8px 0px',
                         minWidth: '56px',
-                    }}> 
-                        <span style={{
+                    }}>
+                        <span suppressHydrationWarning style={{
                             fontSize: 'clamp(2.5rem, 5vw, 4rem)',
                             fontWeight: 800,
                             lineHeight: 1,
