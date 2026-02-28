@@ -27,20 +27,17 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/50 to-background-dark pointer-events-none z-1"></div>
         <div className="relative z-10 text-center max-w-5xl">
           <h1 className="text-5xl md:text-8xl font-bold leading-[1.1] tracking-tighter mt-14 md:mt-20 glow-text ">
-            PHOENIX 3.0 <br />
+            <span className="gradient-title">PHOENIX 3.0</span> <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#ff9d5c]">Rise. Rebuild. Reinvent.</span>
           </h1>
           <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
             Annual Celebration of Knowledge, Creativity, and Innovation.{" "}
-            Witness the transformation on <span className="text-white font-medium underline decoration-primary underline-offset-4">March 5–6</span>.
+            Witness the transformation on <span className="text-white font-medium underline decoration-primary underline-offset-4">March 17–18</span>.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center ">
             <Link href="/events" className="w-auto min-w-[200px] sm:min-w-[220px] bg-primary text-white font-bold py-5 px-8 rounded-lg text-sm tracking-widest uppercase btn-glow text-center">
               Explore the Flame
             </Link>
-            {/* <a href="/brochure.pdf" download className="w-full sm:w-auto min-w-[220px] bg-transparent border border-white/20 hover:border-primary/50 text-white font-bold py-5 px-8 rounded-lg text-sm tracking-widest uppercase transition-all hover:bg-white/5 text-center">
-              Download Brochure
-            </a> */}
           </div>
         </div>
         {/* Scroll Indicator */}
@@ -52,7 +49,30 @@ export default function HomePage() {
         </div>
       </main>
 
-
+      {/* Stats Ribbon */}
+      <div className="stats-ribbon py-10 md:py-14">
+        <div className="max-w-6xl mx-auto px-6 flex items-center justify-center gap-6 md:gap-12">
+          <div className="stat-item">
+            <div className="stat-value">8</div>
+            <div className="stat-label">Events</div>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <div className="stat-value">2</div>
+            <div className="stat-label">Days</div>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <div className="stat-value">500+</div>
+            <div className="stat-label">Participants</div>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <div className="stat-value">₹20K</div>
+            <div className="stat-label">Prize Pool</div>
+          </div>
+        </div>
+      </div>
 
       {/* Visual Divider */}
       <div className="w-full h-[400px] overflow-hidden relative">
@@ -69,9 +89,9 @@ export default function HomePage() {
       {/* Final CTA Section */}
       <section className="py-24 md:py-40 px-6 bg-background-dark">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-8">Join the Flame</h2>
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-8"><span className="gradient-title">Join the Flame</span></h2>
           <p className="text-white/60 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
-            Be part of the transformation. Secure your spot for March 5–6 and witness the rebirth of innovation.
+            Be part of the transformation. Secure your spot for March 17–18 and witness the rebirth of innovation.
           </p>
           <div className="flex justify-center">
             <a href="/brochure.pdf" download className="min-w-[280px] bg-primary text-white font-bold py-6 px-10 rounded-lg text-sm tracking-[0.2em] uppercase btn-glow inline-block text-center">
