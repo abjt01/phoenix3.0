@@ -139,7 +139,7 @@ export default function SchedulePage() {
                     <h2 className="text-5xl md:text-6xl font-black tracking-tight leading-none uppercase">
                         Event{" "}
                         <span className="gradient-title pr-2 italic">
-                            Schedule
+                            Schedule{" "}
                         </span>
                     </h2>
                     <p className="text-white/50 text-lg max-w-2xl font-light">

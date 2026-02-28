@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-under: linear-gradient(135deg, #c62f00 0%, #f37b27 15%, #ff6900 30%, #ffb27c 50%, #57d2fd 75%, #00a2ff 100%);
   --color-primary: #ff6a00;
   --color-background-light: #f8f7f5;
   --color-background-dark: #0a0a0a;

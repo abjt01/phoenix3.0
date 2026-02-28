@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { events } from "@/data/events";
 import TeamSizeSelector from "@/components/TeamSizeSelector";
+import { Progress } from "@/components/animate-ui/components/radix/progress";
 
 // ---------------------------------------------------------------------------
 // Helper: compute the effective team-size constraints for a set of event slugs.
@@ -427,8 +428,46 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
         `w-full bg-white/5 border rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 transition-all ${fieldErrors[field] ? "border-red-500" : "border-white/10 focus:border-primary/60"
         }`;
 
+    // Calculate form progress percentage
+    const teamSizeNum = parseInt(formData.teamSize, 10) || 1;
+    const totalFields = 5 + (teamSizeNum > 1 ? (teamSizeNum - 1) * 3 : 0);
+    let filledFields = 0;
+    if (formData.name.trim()) filledFields++;
+    if (formData.email.trim()) filledFields++;
+    if (formData.college.trim()) filledFields++;
+    if (formData.phone.trim()) filledFields++;
+    if (formData.selectedEvents.length > 0 && (!constraints || !constraints.conflict)) filledFields++;
+    if (teamSizeNum > 1) {
+        for (let i = 0; i < teamSizeNum - 1; i++) {
+            const m = teamMembers[i] ?? {};
+            if (m.name?.trim()) filledFields++;
+            if (m.email?.trim()) filledFields++;
+            if (m.phone?.trim()) filledFields++;
+        }
+    }
+    const progressPercentage = Math.round((filledFields / totalFields) * 100);
+
     return (
-        <form onSubmit={handleSubmit} noValidate className="max-w-2xl mx-auto space-y-10">
+        <form onSubmit={handleSubmit} noValidate className="max-w-2xl mx-auto space-y-10 relative">
+            {/* ---------------------------------------------------------------- */}
+            {/* Progress Bar with Navbar Spacer                                  */}
+            {/* ---------------------------------------------------------------- */}
+            <div className="sticky top-0 z-30 bg-background-dark/80 backdrop-blur-md mb-8 -mx-6 px-6 sm:-mx-12 sm:px-12 md:-mx-20 md:px-20 border-b border-white/5">
+                {/* Spacer block (invisible area reserved for your logo/navbar) */}
+                <div className="h-19 w-full" />
+
+                {/* Actual Form Progress Content */}
+                <div className="pb-6">
+                    <div className="flex items-center justify-between mb-4 max-w-2xl mx-auto">
+                        <span className="text-sm font-bold uppercase tracking-widest text-white/50">Form Progress</span>
+                        <span className="text-sm font-bold text-white/80">{progressPercentage}%</span>
+                    </div>
+                    <div className="max-w-6xl mx-auto">
+                        <Progress value={progressPercentage} className="h-2" />
+                    </div>
+                </div>
+            </div>
+
             {/* ---------------------------------------------------------------- */}
             {/* Section 1: Personal Details                                       */}
             {/* ---------------------------------------------------------------- */}

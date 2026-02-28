@@ -14,8 +14,9 @@ export default function RegisterPage() {
                     <div className="mb-12 space-y-4">
                         <h1 className="text-5xl md:text-6xl font-black tracking-tight leading-none uppercase">
                             Join the{" "}
+                            <br />
                             <span className="gradient-title italic">
-                                Flame
+                                Flame.{" "}
                             </span>
                         </h1>
                         <p className="text-white/50 text-lg max-w-2xl font-light">

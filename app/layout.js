@@ -11,14 +11,13 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata = {
   title: "PHOENIX 3.0 — Rise. Rebuild. Reinvent.",
-  description: "DSCE's Annual Celebration of Knowledge, Creativity, and Innovation. March 17–18.",
+  description: "CSBS's Annual Celebration of Knowledge, Creativity, and Innovation. March 17–18.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark">
       <head>
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
