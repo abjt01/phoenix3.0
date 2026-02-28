@@ -112,7 +112,7 @@ export default function HomePage() {
 
             <div className="stat-item flex flex-col items-center justify-center">
               <div className="stat-value text-3xl md:text-[2.5rem] lg:text-[3.5rem]">
-                <CountUp to={200} />+
+                <CountUp to={200} />K+
               </div>
               <div className="stat-label text-[0.6rem] md:text-[0.7rem]">Prize Pool</div>
             </div>

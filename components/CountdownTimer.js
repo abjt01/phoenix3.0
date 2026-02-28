@@ -4,11 +4,10 @@ import { useState, useEffect } from 'react';
 const getDiff = (targetDate) => Math.max(0, new Date(targetDate) - Date.now());
 
 export default function CountdownTimer({ targetDate }) {
-    const [diff, setDiff] = useState(0);
+    const [diff, setDiff] = useState(() => getDiff(targetDate));
 
     useEffect(() => {
         if (!targetDate) return;
-        setDiff(getDiff(targetDate));
         const id = setInterval(() => setDiff(getDiff(targetDate)), 200);
         return () => clearInterval(id);
     }, [targetDate]);

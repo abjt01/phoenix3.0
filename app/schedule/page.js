@@ -4,6 +4,7 @@ import { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
 import { events } from "@/data/events";
 import ScheduleEventCard from "@/components/ScheduleEventCard";
+import AnimatedList, { AnimatedItem } from "@/components/AnimatedList";
 
 /* ──── helpers ──── */
 
@@ -128,35 +129,6 @@ export default function SchedulePage() {
                 /* Horizontal date picker scrollbar hidden */
                 .date-scroll::-webkit-scrollbar { display: none; }
                 .date-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-
-                /* Event card entrance animation */
-                @keyframes cardSlideUp {
-                    from { opacity: 0; transform: translateY(24px); }
-                    to   { opacity: 1; transform: translateY(0); }
-                }
-                .event-card-anim {
-                    animation: cardSlideUp 0.35s ease forwards;
-                }
-
-                /* Date pill radial glow on active */
-                .pill-active {
-                    position: relative;
-                }
-                .pill-active::after {
-                    content: '';
-                    position: absolute;
-                    inset: -6px;
-                    border-radius: 50%;
-                    background: radial-gradient(ellipse at center, rgba(255,106,0,0.55) 0%, rgba(255,106,0,0.15) 50%, transparent 75%);
-                    animation: pillRadialPulse 2.4s ease-in-out infinite;
-                    pointer-events: none;
-                    z-index: -1;
-                }
-                @keyframes pillRadialPulse {
-                    0%, 100% { opacity: 0.7; transform: scale(0.95); }
-                    50%       { opacity: 1;   transform: scale(1.15); }
-                }
-
             `}</style>
 
             <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 pt-20 md:pt-28 pb-10">
@@ -263,16 +235,12 @@ export default function SchedulePage() {
                 })()}
 
                 {/* ── Event Cards (animated) ── */}
-                <div className="max-w-3xl mx-auto">
-                    <div key={animKey} className="space-y-4">
+                <div className="max-w-3xl mx-auto flex justify-center w-full">
+                    <div key={animKey} className="space-y-4 w-full">
                         {currentEvents.map((ev, i) => (
-                            <div
-                                key={ev.slug}
-                                className="event-card-anim"
-                                style={{ animationDelay: `${i * 60}ms` }}
-                            >
+                            <AnimatedItem key={ev.slug} index={i} delay={i * 0.05} onMouseEnter={() => { }} onClick={() => { }}>
                                 <ScheduleEventCard event={ev} />
-                            </div>
+                            </AnimatedItem>
                         ))}
                     </div>
                 </div>
