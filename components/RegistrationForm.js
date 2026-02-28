@@ -144,6 +144,10 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
     // Team member additional details (array of { name, email, phone })
     const [teamMembers, setTeamMembers] = useState([]);
 
+    // Flag: true when we've just restored teamMembers from localStorage,
+    // so the teamSize sync effect below won't wipe them out.
+    const restoredMembersRef = useRef(false);
+
     // Restore draft from localStorage after first client paint (avoids hydration mismatch)
     useEffect(() => {
         try {
@@ -162,6 +166,7 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
                 teamSize: lockedEvent ? String(lockedEvent.minTeamSize) : (saved.formData?.teamSize ?? "1"),
             }));
             if (!lockedEvent && saved.teamMembers?.length) {
+                restoredMembersRef.current = true; // tell the sync effect to skip
                 setTeamMembers(saved.teamMembers);
             }
         } catch { /* ignore corrupt data */ }
@@ -194,6 +199,12 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
     // Keep teamMembers array length in sync with teamSize
     // ---------------------------------------------------------------------------
     useEffect(() => {
+        // If we just restored from localStorage, skip this run so we don't
+        // overwrite the restored member data with empty objects.
+        if (restoredMembersRef.current) {
+            restoredMembersRef.current = false;
+            return;
+        }
         const size = parseInt(formData.teamSize, 10);
         const extras = Math.max(0, size - 1);
         setTeamMembers((prev) => {
