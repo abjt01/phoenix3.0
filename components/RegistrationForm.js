@@ -428,24 +428,45 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
         `w-full bg-white/5 border rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 transition-all ${fieldErrors[field] ? "border-red-500" : "border-white/10 focus:border-primary/60"
         }`;
 
-    // Calculate form progress percentage
+    // Calculate form progress percentage by weighting the active sections equally
+
+    // Section 1: Team Leader Details (4 fields)
+    let s1Filled = 0;
+    if (formData.name.trim()) s1Filled++;
+    if (formData.email.trim()) s1Filled++;
+    if (formData.college.trim()) s1Filled++;
+    if (formData.phone.trim()) s1Filled++;
+    const s1Progress = s1Filled / 4;
+
+    // Section 2: Event Selection (1 field)
+    let s2Progress = 0;
+    if (formData.selectedEvents.length > 0 && (!constraints || !constraints.conflict)) {
+        s2Progress = 1;
+    }
+
+    // Section 3: Team Details (Dynamic weight)
     const teamSizeNum = parseInt(formData.teamSize, 10) || 1;
-    const totalFields = 5 + (teamSizeNum > 1 ? (teamSizeNum - 1) * 3 : 0);
-    let filledFields = 0;
-    if (formData.name.trim()) filledFields++;
-    if (formData.email.trim()) filledFields++;
-    if (formData.college.trim()) filledFields++;
-    if (formData.phone.trim()) filledFields++;
-    if (formData.selectedEvents.length > 0 && (!constraints || !constraints.conflict)) filledFields++;
+    let s3Progress = 0;
+    let s3Weight = 0; // Only count Section 3 in the denominator if there are actual team members to fill
+
     if (teamSizeNum > 1) {
+        s3Weight = 1;
+        let memberFieldsFilled = 0;
+        const totalMemberFields = (teamSizeNum - 1) * 3;
         for (let i = 0; i < teamSizeNum - 1; i++) {
             const m = teamMembers[i] ?? {};
-            if (m.name?.trim()) filledFields++;
-            if (m.email?.trim()) filledFields++;
-            if (m.phone?.trim()) filledFields++;
+            if (m.name?.trim()) memberFieldsFilled++;
+            if (m.email?.trim()) memberFieldsFilled++;
+            if (m.phone?.trim()) memberFieldsFilled++;
         }
+        s3Progress = memberFieldsFilled / totalMemberFields;
     }
-    const progressPercentage = Math.round((filledFields / totalFields) * 100);
+
+    // Total progress is the average of the active sections
+    // If teamSize == 1, we average over 2 sections (Leader details and Event selection)
+    // If teamSize > 1, we average over 3 sections.
+    const activeSections = 2 + s3Weight;
+    const progressPercentage = Math.round(((s1Progress + s2Progress + s3Progress) / activeSections) * 100);
 
     return (
         <form onSubmit={handleSubmit} noValidate className="max-w-2xl mx-auto space-y-10 relative">
