@@ -440,7 +440,9 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
 
     // Section 2: Event Selection (1 field)
     let s2Progress = 0;
-    if (formData.selectedEvents.length > 0 && (!constraints || !constraints.conflict)) {
+    // If the event is locked from the URL, skip this section for progress calculation
+    let s2Weight = selectedEventSlug ? 0 : 1;
+    if (s2Weight === 1 && formData.selectedEvents.length > 0 && (!constraints || !constraints.conflict)) {
         s2Progress = 1;
     }
 
@@ -463,10 +465,9 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
     }
 
     // Total progress is the average of the active sections
-    // If teamSize == 1, we average over 2 sections (Leader details and Event selection)
-    // If teamSize > 1, we average over 3 sections.
-    const activeSections = 2 + s3Weight;
-    const progressPercentage = Math.round(((s1Progress + s2Progress + s3Progress) / activeSections) * 100);
+    // Section 1 is always active (weight 1)
+    const activeSections = 1 + s2Weight + s3Weight;
+    const progressPercentage = activeSections > 0 ? Math.round(((s1Progress + s2Progress + s3Progress) / activeSections) * 100) : 0;
 
     return (
         <form onSubmit={handleSubmit} noValidate className="max-w-2xl mx-auto space-y-10 relative">
@@ -481,10 +482,18 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
                 <div className="pb-6">
                     <div className="flex items-center justify-between mb-4 max-w-2xl mx-auto">
                         <span className="text-sm font-bold uppercase tracking-widest text-white/50">Form Progress</span>
-                        <span className="text-sm font-bold text-white/80">{progressPercentage}%</span>
+                        <span className="text-sm font-bold text-white/80">{hasMounted.current ? progressPercentage : 0}%</span>
                     </div>
                     <div className="max-w-6xl mx-auto">
-                        <Progress value={progressPercentage} className="h-2" />
+                        <div className="bg-white/10 relative h-2 w-full overflow-hidden rounded-full">
+                            <div
+                                className="rounded-full h-full transition-all duration-300 ease-out"
+                                style={{
+                                    width: hasMounted.current ? `${progressPercentage}%` : "0%",
+                                    background: "linear-gradient(90deg, #c62f00 0%, #f37b27 15%, #ff6900 30%, #ffb27c 50%, #57d2fd 75%, #00a2ff 100%)"
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -796,12 +805,14 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
             {/* ---------------------------------------------------------------- */}
             {/* Server error banner                                               */}
             {/* ---------------------------------------------------------------- */}
-            {submitState === "error" && serverError && (
-                <div className="flex items-start gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
-                    <span className="material-symbols-outlined text-base mt-0.5 shrink-0">error</span>
-                    <span>{serverError}</span>
-                </div>
-            )}
+            {
+                submitState === "error" && serverError && (
+                    <div className="flex items-start gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
+                        <span className="material-symbols-outlined text-base mt-0.5 shrink-0">error</span>
+                        <span>{serverError}</span>
+                    </div>
+                )
+            }
 
             {/* ---------------------------------------------------------------- */}
             {/* Submit button                                                     */}
@@ -843,6 +854,6 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
             <p className="text-center text-xs text-white/30">
                 By registering you agree to abide by Phoenix 3.0 event rules and code of conduct.
             </p>
-        </form>
+        </form >
     );
 }

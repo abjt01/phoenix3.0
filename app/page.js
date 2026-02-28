@@ -4,6 +4,7 @@ import Image from "next/image";
 import Grainient from '@/components/ui/Grainient/Grainient';
 import CountdownTimer from '@/components/CountdownTimer';
 import CountUp from '@/components/CountUp';
+import ScrollVelocity from '@/components/ScrollVelocity';
 export default function HomePage() {
   return (
     <>
@@ -25,6 +26,7 @@ export default function HomePage() {
           />
           <div className="absolute inset-0 bg-background-dark/40"></div>
         </div>
+        
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/50 to-background-dark pointer-events-none z-1"></div>
         <div className="relative z-10 text-center max-w-5xl mt-10 md:mt-32">
           <h1 className="text-5xl md:text-9xl font-bold leading-[1.1] tracking-tighter mt-0 md:mt-20 glow-text ">

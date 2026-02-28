@@ -2,7 +2,6 @@ import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
@@ -25,6 +24,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${spaceGrotesk.variable} dark bg-background-dark text-white selection:bg-primary/30 selection:text-white`}>
         <Navbar />
+      
         {children}
         <Footer />
       </body>

@@ -8,8 +8,17 @@ import { cn } from '@/lib/utils';
 
 function Progress({
   className,
+  value,
   ...props
 }) {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    // Add a tiny delay before enabling transitions to ensure initial render is instant
+    const timer = setTimeout(() => setMounted(true), 50);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <ProgressPrimitive
       className={cn(
@@ -18,11 +27,12 @@ function Progress({
       )}
       {...props}>
       <ProgressIndicatorPrimitive
-        className="gradient-title rounded-full h-full w-full flex-1 transition-all duration-300 ease-out"
+        className="gradient-title rounded-full h-full w-full flex-1"
         style={{
-          transform: `translateX(-${100 - (props.value || 0)}%)`,
+          transform: `translateX(-${100 - (value || 0)}%)`,
           WebkitBackgroundClip: 'padding-box',
-          WebkitTextFillColor: 'initial'
+          WebkitTextFillColor: 'initial',
+          transition: mounted ? 'transform 300ms ease-out' : 'none'
         }}
       />
     </ProgressPrimitive>
