@@ -8,6 +8,7 @@ export default function CountdownTimer({ targetDate }) {
     const [diff, setDiff] = useState(0);
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
         if (!targetDate) return;
         setDiff(getDiff(targetDate));
