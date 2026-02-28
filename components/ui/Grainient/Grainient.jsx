@@ -116,6 +116,7 @@ const Grainient = ({
   zoom = 0.9,
   color1 = '#FF9FFC',
   color2 = '#5227FF',
+  color3 = '#B19EEF',
   className = ''
 }) => {
   const containerRef = useRef(null);

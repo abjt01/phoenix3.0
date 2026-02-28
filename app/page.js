@@ -2,7 +2,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import Grainient from '@/components/ui/Grainient/Grainient';
-
+import CountdownTimer from '@/components/CountdownTimer';
+import CountUp from '@/components/CountUp';
 export default function HomePage() {
   return (
     <>
@@ -11,14 +12,14 @@ export default function HomePage() {
         {/* Grainient Background */}
         <div className="absolute inset-0 z-0">
           <Grainient
-            color1="#00a2ff"
-            color2="#EF6D1C"
+            color1="#4A7F9C"
+            color2="#CC6528"
             timeSpeed={0.18}
             grainAmount={0.08}
             grainAnimated={false}
             warpStrength={0}
             warpFrequency={0}
-            contrast={1.4}
+            contrast={1.2}
             saturation={1.2}
             zoom={1}
           />
@@ -26,15 +27,20 @@ export default function HomePage() {
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/50 to-background-dark pointer-events-none z-1"></div>
         <div className="relative z-10 text-center max-w-5xl mt-24 md:mt-32">
-          <h1 className="text-5xl md:text-8xl font-bold leading-[1.1] tracking-tighter mt-14 md:mt-20 glow-text ">
+          <h1 className="text-6xl md:text-9xl font-bold leading-[1.1] tracking-tighter mt-14 md:mt-20 glow-text ">
             <span className="gradient-title">PHOENIX 3.0</span> <br />
-            <span className="text-white opacity70 bg-clip-text bg-gradient-to-r from-primary to-[#]">Rise. Rebuild. Reinvent.</span>
+          </h1> 
+          <h1 className="text-5xl md:text-5xl font-bold leading-[1.1] tracking-tighter   glow-text ">
+            <span className="text-white opacity-80 bg-clip-text bg-gradient-to-r from-primary to-[#ff9d5c]">Rise. Rebuild. Reinvent.</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+          <p className="text-1xl md:text-xl text-white/70 max-w-2xl mx-auto mb-6 font-light leading-relaxed">
             Annual Celebration of Knowledge, Creativity, and Innovation.{" "}
             Witness the transformation on <span className="text-white font-medium underline decoration-primary underline-offset-4">March 17–18</span>.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center ">
+          <div className="mb-15 text-2xl md:text-2xl ">
+            <CountdownTimer targetDate="2026-03-17T09:00:00+05:30" />
+          </div>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Link href="/events" className="w-auto min-w-[200px] sm:min-w-[220px] bg-primary text-white font-bold py-5 px-8 rounded-lg text-sm tracking-widest uppercase btn-glow text-center">
               Explore the Flame
             </Link>
@@ -75,14 +81,18 @@ export default function HomePage() {
           <div className="grid grid-cols-2 gap-y-8 md:flex md:flex-row md:items-center md:justify-center md:gap-8 lg:gap-12">
 
             <div className="stat-item flex flex-col items-center justify-center">
-              <div className="stat-value text-3xl md:text-[2.5rem] lg:text-[3.5rem]">8</div>
+              <div className="stat-value text-3xl md:text-[2.5rem] lg:text-[3.5rem]">
+                <CountUp to={8} />
+              </div>
               <div className="stat-label text-[0.6rem] md:text-[0.7rem]">Events</div>
             </div>
 
             <div className="hidden md:block stat-divider"></div>
 
             <div className="stat-item flex flex-col items-center justify-center">
-              <div className="stat-value text-3xl md:text-[2.5rem] lg:text-[3.5rem]">2</div>
+              <div className="stat-value text-3xl md:text-[2.5rem] lg:text-[3.5rem]">
+                <CountUp to={2} />
+              </div>
               <div className="stat-label text-[0.6rem] md:text-[0.7rem]">Days</div>
             </div>
 
@@ -92,14 +102,18 @@ export default function HomePage() {
             <div className="hidden md:block stat-divider"></div>
 
             <div className="stat-item flex flex-col items-center justify-center">
-              <div className="stat-value text-3xl md:text-[2.5rem] lg:text-[3.5rem]">500+</div>
+              <div className="stat-value text-3xl md:text-[2.5rem] lg:text-[3.5rem]">
+                <CountUp to={500} />
+              </div>
               <div className="stat-label text-[0.6rem] md:text-[0.7rem]">Participants</div>
             </div>
 
             <div className="hidden md:block stat-divider"></div>
 
             <div className="stat-item flex flex-col items-center justify-center">
-              <div className="stat-value text-3xl md:text-[2.5rem] lg:text-[3.5rem]">₹200K+</div>
+              <div className="stat-value text-3xl md:text-[2.5rem] lg:text-[3.5rem]">
+                <CountUp to={200} />+
+              </div>
               <div className="stat-label text-[0.6rem] md:text-[0.7rem]">Prize Pool</div>
             </div>
 
