@@ -11,8 +11,8 @@ export default function HomePage() {
         {/* Grainient Background */}
         <div className="absolute inset-0 z-0">
           <Grainient
-            color1="#1E90FF"
-            color2="#FF4E1F"
+            color1="#00a2ff"
+            color2="#EF6D1C"
             timeSpeed={0.18}
             grainAmount={0.08}
             grainAnimated={false}
@@ -25,10 +25,10 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-background-dark/40"></div>
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/50 to-background-dark pointer-events-none z-1"></div>
-        <div className="relative z-10 text-center max-w-5xl">
+        <div className="relative z-10 text-center max-w-5xl mt-24 md:mt-32">
           <h1 className="text-5xl md:text-8xl font-bold leading-[1.1] tracking-tighter mt-14 md:mt-20 glow-text ">
             <span className="gradient-title">PHOENIX 3.0</span> <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#ff9d5c]">Rise. Rebuild. Reinvent.</span>
+            <span className="text-white opacity70 bg-clip-text bg-gradient-to-r from-primary to-[#]">Rise. Rebuild. Reinvent.</span>
           </h1>
           <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
             Annual Celebration of Knowledge, Creativity, and Innovation.{" "}
@@ -41,41 +41,74 @@ export default function HomePage() {
           </div>
         </div>
         {/* Scroll Indicator */}
-        <div className="mt-10 pb-10">
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-70 z-10 ">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-white ">Scroll to awaken</p>
-            <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent "></div>
-          </div>
-        </div>
+        {/* <div className="absolute bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-90 z-10">
+          <p className="text-[10px] tracking-[0.4em] uppercase text-white/80 pl-[0.4em]">
+            Scroll to awaken
+          </p>
+
+          <div
+            className="h-40 md:h-56 w-1"
+            style={{
+              background: `
+                linear-gradient(
+                  to bottom,
+                  #00a2ff 0%,
+                  #57d2fd 20%,
+                  #ffb27c 40%,
+                  #ff6900 60%,
+                  #f37b27 80%,
+                  #c62f00 100%
+                )
+              `,
+              clipPath: 'polygon(30% 0%, 70% 0%, 50% 100%)'
+            }}
+          />
+        </div> */}
       </main>
 
+
+
       {/* Stats Ribbon */}
-      <div className="stats-ribbon py-10 md:py-14">
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-center gap-6 md:gap-12">
-          <div className="stat-item">
-            <div className="stat-value">8</div>
-            <div className="stat-label">Events</div>
-          </div>
-          <div className="stat-divider"></div>
-          <div className="stat-item">
-            <div className="stat-value">2</div>
-            <div className="stat-label">Days</div>
-          </div>
-          <div className="stat-divider"></div>
-          <div className="stat-item">
-            <div className="stat-value">500+</div>
-            <div className="stat-label">Participants</div>
-          </div>
-          <div className="stat-divider"></div>
-          <div className="stat-item">
-            <div className="stat-value">₹20K</div>
-            <div className="stat-label">Prize Pool</div>
+      <div className="stats-ribbon py-8 md:py-14 mb-16 md:mb-24 mt-32 md:mt-48">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          {/* Mobile Grid Layout - Desktop Flex Layout */}
+          <div className="grid grid-cols-2 gap-y-8 md:flex md:flex-row md:items-center md:justify-center md:gap-8 lg:gap-12">
+
+            <div className="stat-item flex flex-col items-center justify-center">
+              <div className="stat-value text-3xl md:text-[2.5rem] lg:text-[3.5rem]">8</div>
+              <div className="stat-label text-[0.6rem] md:text-[0.7rem]">Events</div>
+            </div>
+
+            <div className="hidden md:block stat-divider"></div>
+
+            <div className="stat-item flex flex-col items-center justify-center">
+              <div className="stat-value text-3xl md:text-[2.5rem] lg:text-[3.5rem]">2</div>
+              <div className="stat-label text-[0.6rem] md:text-[0.7rem]">Days</div>
+            </div>
+
+            {/* Horizontal divider for mobile */}
+            <div className="col-span-2 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent md:hidden"></div>
+
+            <div className="hidden md:block stat-divider"></div>
+
+            <div className="stat-item flex flex-col items-center justify-center">
+              <div className="stat-value text-3xl md:text-[2.5rem] lg:text-[3.5rem]">500+</div>
+              <div className="stat-label text-[0.6rem] md:text-[0.7rem]">Participants</div>
+            </div>
+
+            <div className="hidden md:block stat-divider"></div>
+
+            <div className="stat-item flex flex-col items-center justify-center">
+              <div className="stat-value text-3xl md:text-[2.5rem] lg:text-[3.5rem]">₹200K+</div>
+              <div className="stat-label text-[0.6rem] md:text-[0.7rem]">Prize Pool</div>
+            </div>
+
           </div>
         </div>
       </div>
 
       {/* Visual Divider */}
-      <div className="w-full h-[400px] overflow-hidden relative">
+      <div className="w-full h-[400px] overflow-hidden relative mt-16 md:mt-32">
         <Image
           alt="Phoenix 3.0 visual"
           className="w-full h-full object-cover opacity-40 hover:grayscale-0 transition-all duration-1000"
