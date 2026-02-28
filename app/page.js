@@ -26,18 +26,18 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-background-dark/40"></div>
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/50 to-background-dark pointer-events-none z-1"></div>
-        <div className="relative z-10 text-center max-w-5xl mt-24 md:mt-32">
-          <h1 className="text-6xl md:text-9xl font-bold leading-[1.1] tracking-tighter mt-14 md:mt-20 glow-text ">
+        <div className="relative z-10 text-center max-w-5xl mt-10 md:mt-32">
+          <h1 className="text-5xl md:text-9xl font-bold leading-[1.1] tracking-tighter mt-0 md:mt-20 glow-text ">
             <span className="gradient-title">PHOENIX 3.0</span> <br />
-          </h1> 
-          <h1 className="text-5xl md:text-5xl font-bold leading-[1.1] tracking-tighter   glow-text ">
+          </h1>
+          <h1 className="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tighter mt-2  glow-text ">
             <span className="text-white opacity-80 bg-clip-text bg-gradient-to-r from-primary to-[#ff9d5c]">Rise. Rebuild. Reinvent.</span>
           </h1>
-          <p className="text-1xl md:text-xl text-white/70 max-w-2xl mx-auto mb-6 font-light leading-relaxed">
+          <p className="text-base md:text-xl text-white/70 max-w-2xl mx-auto mb-6  mt-2 font-light leading-relaxed">
             Annual Celebration of Knowledge, Creativity, and Innovation.{" "}
             Witness the transformation on <span className="text-white font-medium underline decoration-primary underline-offset-4">March 17–18</span>.
           </p>
-          <div className="mb-15 text-2xl md:text-2xl ">
+          <div className="mb-15 text-1xl md:text-2xl ">
             <CountdownTimer targetDate="2026-03-17T09:00:00+05:30" />
           </div>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -101,12 +101,12 @@ export default function HomePage() {
 
             <div className="hidden md:block stat-divider"></div>
 
-            <div className="stat-item flex flex-col items-center justify-center">
+            {/* <div className="stat-item flex flex-col items-center justify-center">
               <div className="stat-value text-3xl md:text-[2.5rem] lg:text-[3.5rem]">
                 <CountUp to={500} />
               </div>
               <div className="stat-label text-[0.6rem] md:text-[0.7rem]">Participants</div>
-            </div>
+            </div> */}
 
             <div className="hidden md:block stat-divider"></div>
 

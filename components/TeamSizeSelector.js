@@ -103,10 +103,13 @@ export default function TeamSizeSelector({ value, onChange, min = 1, max = 6 }) 
                                 className="flex items-center justify-center"
                             >
                                 <div
-                                    className={`w-11 h-11 rounded-full bg-gradient-to-br ${SLOT_COLORS[i % SLOT_COLORS.length]} border-2 border-[#0a0a0a] flex items-center justify-center shadow-lg`}
+                                    className="w-11 h-11 rounded-full border-2 border-[#0a0a0a] flex items-center justify-center shadow-lg relative overflow-hidden group"
                                 >
+                                    {/* The gradient background */}
+                                    <div className={`absolute inset-0 opacity-80 z-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br ${SLOT_COLORS[i % SLOT_COLORS.length]}`} />
+
                                     {/* Person silhouette */}
-                                    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white/80" xmlns="http://www.w3.org/2000/svg">
+                                    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white/90 z-10 relative" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="12" cy="8" r="4" />
                                         <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
                                     </svg>
