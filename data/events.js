@@ -135,7 +135,7 @@ export const events = [
         participants: "Open",
         minTeamSize: 1,
         maxTeamSize: 2,
-        image: "/events/ccid.jpg",
+        image: "/ccid.png",
         imageAlt: "Technical problem-solving competition",
         longDescription: "CCID is a competitive technical event where participants solve domain-specific challenges requiring accuracy and quick thinking.",
         rules: [
