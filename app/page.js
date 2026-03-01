@@ -14,7 +14,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <main className="relative min-h-screen flex flex-col justify-center items-center px-6 ember-bg -mt-10 pb-10 md:pb-0">
+      <main className="relative min-h-screen flex flex-col justify-center items-center px-6 ember-bg -mt-10 pb-10 md:pb-30">
         {/* Grainient Background */}
         <div className="absolute inset-0 z-0">
           <Grainient
@@ -77,7 +77,7 @@ export default function HomePage() {
 
 
       {/* Stats Ribbon */}
-      <div className="stats-ribbon py-8 md:py-14 mb-16 md:mb-24 mt-0 md:mt-48">
+      <div className="stats-ribbon py-8 md:py-14 mb-16 md:mb-24 mt-0 md:mt-0">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           {/* Mobile Grid Layout - Desktop Flex Layout */}
           <div className="grid grid-cols-2 gap-y-8 md:flex md:flex-row md:items-center md:justify-center md:gap-8 lg:gap-12">
