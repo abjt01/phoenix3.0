@@ -42,7 +42,7 @@ const animations = {
     },
 };
 
-export default function TeamSizeSelector({ value, onChange, min = 1, max = 6 }) {
+export default function TeamSizeSelector({ value, onChange, min = 1, max = 4 }) {
     const count = parseInt(value, 10) || 1;
     const [direction, setDirection] = useState(1);
     const [isVibrating, setIsVibrating] = useState(false);

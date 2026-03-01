@@ -128,14 +128,14 @@ export const events = [
 
 {
   slug: "ccid",
-  title: "CCID – Cyber Crime Investigation Department",
+  title: "CCID",
   description: '"Decode clues, solve cases, and uncover the truth."',
   category: "Technical",
   categoryColor: "orange",
   participants: "Open",
   minTeamSize: 1,
   maxTeamSize: 2,
-  image: "/ccid.png",
+  image: "/cards/CCID.png",
   imageAlt: "Crime investigation themed challenge",
   longDescription: "An investigative challenge blending logic puzzles, code cracking, and multi-stage case analysis culminating in a final twist investigation.",
   rules: [

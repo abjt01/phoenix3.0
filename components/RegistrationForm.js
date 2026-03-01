@@ -12,7 +12,7 @@ import { Progress } from "@/components/animate-ui/components/radix/progress";
 // effectiveMax = min of all maxTeamSizes (must satisfy the strictest maximum)
 // ---------------------------------------------------------------------------
 function getTeamSizeConstraints(slugs) {
-    if (!slugs || slugs.length === 0) return { min: 1, max: 6, conflict: false };
+    if (!slugs || slugs.length === 0) return { min: 1, max: 4, conflict: false };
     const selected = events.filter((e) => slugs.includes(e.slug));
     const min = Math.max(...selected.map((e) => e.minTeamSize));
     const max = Math.min(...selected.map((e) => e.maxTeamSize));
