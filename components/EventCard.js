@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function EventCard({ title, description, slug, image, imageAlt, participants, index = 0 }) {
+export default function EventCard({ title, description, slug, image, imageAlt, participants, coordinators, index = 0 }) {
     const isBlueHover = index % 2 === 1;
 
     return (
@@ -18,7 +18,8 @@ export default function EventCard({ title, description, slug, image, imageAlt, p
             </div>
             <div className="p-6 flex flex-col flex-1">
                 <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{title}</h3>
-                <p className="text-white/40 text-sm mb-6 flex-1 italic leading-relaxed">{description}</p>
+                <p className="text-white/40 text-sm mb-4 flex-1 italic leading-relaxed">{description}</p>
+
                 <div className="flex items-center justify-between mt-auto">
                     <div className="flex -space-x-2">
                         <div className="w-8 h-8 rounded-full border-2 border-charcoal bg-white/10 flex items-center justify-center text-[10px]">{participants}</div>

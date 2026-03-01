@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { appendToSheet } from "@/lib/googleSheets";
 import { events } from "@/data/events";
+import { sendRegistrationConfirmationEmail } from "@/lib/email";
 
 // ---------------------------------------------------------------------------
 // Simple in-memory rate limiter (resets on cold start / server restart).
@@ -113,7 +114,7 @@ export async function POST(request) {
         return NextResponse.json({ error: validationError }, { status: 400 });
     }
 
-    const { name, email, college, phone, teamSize, selectedEvents, teamMembers } = body;
+    const { name, email, college, phone, teamSize, selectedEvents, teamMembers, teamName } = body;
     const teamSizeNum = parseInt(teamSize, 10);
 
     // 4. Write to each event's own Google Sheet in parallel
@@ -139,6 +140,37 @@ export async function POST(request) {
         });
 
         await Promise.all(sheetWrites);
+
+        // 5. Send Confirmation Email
+        // Format the date
+        const dateOptions = { day: '2-digit', month: 'short', year: 'numeric' };
+        const registeredDate = new Date().toLocaleDateString('en-GB', dateOptions); // e.g. "01 Mar 2026"
+
+        // Generate a simple registration ID (could be improved with a real DB ID)
+        const timestampStr = Date.now().toString().slice(-5);
+        const registration_id = `PHX3-2026-${timestampStr}`;
+
+        // Map selected slugs to full event details needed for email
+        const registeredEventsDetails = selectedEvents.map((slug) => {
+            const event = events.find((e) => e.slug === slug);
+            return {
+                icon: event.icon || '🔥',
+                name: event.title,
+                date: event.time || 'TBD', // using 'time' field from events config
+                venue: event.location || 'TBD' // using 'location' field from events config
+            }
+        });
+
+        // Fire and forget (or await it depending on preference, awaiting is safer to guarantee delivery before success msg)
+        await sendRegistrationConfirmationEmail({
+            participant_name: name.trim(),
+            email: email.trim().toLowerCase(),
+            registration_id,
+            team_name: teamName ? teamName.trim() : 'N/A', // If teamName exists in form
+            team_size: teamSizeNum,
+            registered_date: registeredDate,
+            events: registeredEventsDetails
+        });
 
         return NextResponse.json(
             { success: true, message: "Registration successful! Check your email for confirmation." },

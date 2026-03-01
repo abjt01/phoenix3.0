@@ -9,7 +9,7 @@ export const events = [
   participants: "Open",
   minTeamSize: 3,
   maxTeamSize: 4,
-  image: "/cards/TreasureHunt.png",
+  image: "/cards/TreasureHunt.webp",
   imageAlt: "Teams solving clues during treasure hunt",
   longDescription: "Treasure Hunt is an adventurous challenge where teams solve riddles and follow sequential clues across checkpoints. Speed, teamwork, and accuracy determine the winners.",
   rules: [
@@ -22,7 +22,16 @@ export const events = [
   startTime: "2026-03-17T10:30",
   endTime: "2026-03-17T13:30",
   venue: "Amphitheatre",
-  sheetId: "1GptdkuMjZhiMtkAxOzJWEiXuwLVuN8Ox3WZRz7vARH8"
+  sheetId: "1GptdkuMjZhiMtkAxOzJWEiXuwLVuN8Ox3WZRz7vARH8",
+  coordinators: [
+    {
+      name: "Gayatri",
+      phone: "+918897748027"
+    } , {
+        name: "Sangamesh",
+        phone: "8123012983"
+    }
+  ]
 },
 
 {
@@ -48,7 +57,17 @@ export const events = [
   startTime: "2026-03-17T10:30",
   endTime: "2026-03-17T13:30",
   venue: "506, NEB",
-  sheetId: "1jMihm5piVjRl6iet8RG1zaO38DHsouFDO2zjSi-uRqI"
+  sheetId: "1jMihm5piVjRl6iet8RG1zaO38DHsouFDO2zjSi-uRqI",
+  coordinators: [
+    {
+      name: "Pallavi",
+      phone: "8296691294"
+    },
+    {
+      name: "Muskan",
+      phone: "8431415130"
+    }
+  ]
 },
 
 {
@@ -73,7 +92,17 @@ export const events = [
   startTime: "2026-03-18T10:00",
   endTime: "2026-03-18T13:00",
   venue: "506, NEB",
-  sheetId: "1fGQtadd4nFn3IIOWDqkUy3BXEwVdHo4GOt5pVPu5jCU"
+  sheetId: "1fGQtadd4nFn3IIOWDqkUy3BXEwVdHo4GOt5pVPu5jCU",
+  coordinators: [
+    {
+      name: "Nidhi",
+      phone: "+919901901072"
+    },
+    {
+      name: "Rushi",
+      phone: "7483842676"
+    }
+  ]
 },
 
 {
@@ -99,7 +128,17 @@ export const events = [
   startTime: "2026-03-17T14:00",
   endTime: "2026-03-17T17:00",
   venue: "106, NEB",
-  sheetId: "1kLWdQOgsRSXVUzrmUjimnjHToo-3N1nbbR9TLKReIMg"
+  sheetId: "1kLWdQOgsRSXVUzrmUjimnjHToo-3N1nbbR9TLKReIMg",
+  coordinators: [
+    {
+      name: "Harshvardhan",
+      phone: "7415037348"
+    },
+    {
+      name: "Raghav",
+      phone: "+919972095343"
+    }
+  ]
 },
 
 {
@@ -123,7 +162,17 @@ export const events = [
   startTime: "2026-03-17T14:00",
   endTime: "2026-03-17T17:00",
   venue: "103, NEB",
-  sheetId: "1YEL4wvj6KvCNUau96feMW_cqup631FeLX6_OSK4nduQ"
+  sheetId: "1YEL4wvj6KvCNUau96feMW_cqup631FeLX6_OSK4nduQ",
+  coordinators: [
+    {
+      name: "Navya",
+      phone: "7204942757"
+    },
+    {
+      name: "Priyanka",
+      phone: "8217557366"
+    }
+  ]
 },
 
 {
@@ -148,7 +197,17 @@ export const events = [
   startTime: "2026-03-18T10:00",
   endTime: "2026-03-18T13:00",
   venue: "106, NEB",
-  sheetId: "1rEp36_p2XJpeamT4XbsiRZbgHM4qQR5OqQVCyMrBi9k"
+  sheetId: "1rEp36_p2XJpeamT4XbsiRZbgHM4qQR5OqQVCyMrBi9k",
+  coordinators: [
+    {
+      name: "Russian Maaal (500/hr)",
+      phone: "+919993269938"
+    }
+    // {
+    //   name: "Rishika",
+    //   phone: "8660349797"
+    // }
+  ]
 },
 
 {
@@ -173,19 +232,29 @@ export const events = [
   startTime: "2026-03-18T13:30",
   endTime: "2026-03-18T16:30",
   venue: "106, NEB",
-  sheetId: "1PdqoE3Fiq5NuT2Kx8RetkjWZS5gzymlTqap_4x5aQHY"
+  sheetId: "1PdqoE3Fiq5NuT2Kx8RetkjWZS5gzymlTqap_4x5aQHY",
+  coordinators: [
+    {
+      name: "Tanmay Kalanke",
+      phone: "9663756218"
+    },
+    {
+      name: "Nimai",
+      phone: "6363129609"
+    }
+  ]
 },
 
 {
   slug: "entropy",
-  title: "Entropy – AI Jailbreaking Sprint",
+  title: "Entropy",
   description: '"Break safeguards and extract valid flags from an AI model."',
   category: "Technical",
   categoryColor: "teal",
   participants: "Open",
   minTeamSize: 1,
   maxTeamSize: 2,
-  image: "/cards/Entropy.png",
+  image: "/cards/Entropy.webp",
   imageAlt: "Participants interacting with AI challenge",
   longDescription: "Participants use advanced prompt engineering techniques to bypass logical boundaries and extract hidden flags embedded within an AI model under strict time constraints.",
   rules: [
@@ -200,7 +269,17 @@ export const events = [
   startTime: "2026-03-18T13:30",
   endTime: "2026-03-18T16:30",
   venue: "506, NEB",
-  sheetId: "1-To5eWerJlVF99XFW1EKLaPvNJDgk_6e_WnAQCe2p7E"
+  sheetId: "1-To5eWerJlVF99XFW1EKLaPvNJDgk_6e_WnAQCe2p7E",
+  coordinators: [
+    {
+      name: "Saiprasad Rao",
+      phone: "+919902450514"
+    },
+    {
+      name: "Abhijeet Yadav",
+      phone: "9019723047"
+    }
+  ]
 }
 
 ];
