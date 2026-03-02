@@ -42,7 +42,7 @@ export const events = [
         category: "Creative",
         categoryColor: "pink",
         participants: "Open",
-        minTeamSize: 2,
+        minTeamSize: 3,
         maxTeamSize: 4,
         image: "/cards/AdVenture.png",
         imageAlt: "Team creating and presenting a brand campaign",
