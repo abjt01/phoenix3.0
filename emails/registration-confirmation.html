@@ -196,34 +196,23 @@
       gap: 16px;
     }
 
-    .event-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, rgba(255, 106, 0, 0.2), rgba(0, 162, 255, 0.1));
-      border: 1px solid rgba(255, 106, 0, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 18px;
-    }
-
     .event-details {
       flex: 1;
+      padding-left: 10px;
     }
 
     .event-name {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 700;
       color: #ffffff;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .event-meta {
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.4);
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
       font-weight: 500;
+      line-height: 1.5;
     }
 
     .event-badge {
@@ -237,7 +226,8 @@
       color: #ff6900;
       border: 1px solid rgba(255, 106, 0, 0.25);
       white-space: nowrap;
-      align-self: center;
+      align-self: flex-start;
+      margin-top: 2px;
     }
 
     /* ─── Divider ─── */
@@ -428,10 +418,13 @@
 
         <!-- Notice -->
         <div class="notice-box">
-          <div class="notice-box-title">📌 Good to Know</div>
+          <div class="notice-box-title">📌 Action Required</div>
           <div class="notice-box-text">
+            <strong style="color: #ffffff;">You will soon receive an email with a link to join the WhatsApp
+              group</strong> for the events you have registered for. Please keep an eye on your inbox!
+            <br /><br />
             Please carry a valid college ID on the event day. Arrive at least 15 minutes before your event begins. For
-            any queries, reach out to us on Instagram or email us at <a href="mailto:phoenix@udbhava.in"
+            any queries, reach out to us on Instagram or email us at <a href="mailto:csbs.udbhava@gmail.com"
               style="color:#57d2fd;">csbs.udbhava@gmail.com</a>.
           </div>
         </div>
@@ -462,31 +455,23 @@
     // ─────────────────────────────────────────────────────────────
     const DATA = {
       participant_name: "Arjun Sharma",
-      registration_id: "PHX3-2026-00142",
-      team_name: "Team Nebula",
+     
       team_size: 3,
+      teammates: ["Sophia M.", "Rahul K."],
       registered_date: "01 Mar 2026",
-      schedule_url: "https://phoenix.udbhava.in/schedule",
+      schedule_url: "https://phoenix3-0.vercel.app/schedule",
 
       // Add or remove event objects freely — the template adapts automatically.
       events: [
         {
-          icon: "⚔️",
           name: "Code Royale",
           date: "08 Mar 2026, 10:00 AM",
           venue: "Main Auditorium"
         },
         {
-          icon: "🛠️",
           name: "HackForge",
           date: "08 Mar 2026, 02:00 PM",
           venue: "Lab Block B, Room 204"
-        },
-        {
-          icon: "🎯",
-          name: "Debug Duel",
-          date: "09 Mar 2026, 11:00 AM",
-          venue: "CS Seminar Hall"
         }
       ]
     };
@@ -510,10 +495,12 @@
       eventsLabel.style.display = 'block';
       eventsContainer.innerHTML = DATA.events.map(ev => `
         <div class="event-card">
-          <div class="event-icon">${ev.icon || '📅'}</div>
-          <div class="event-details">
+          <div class="event-details" style="padding-left: 10px;">
             <div class="event-name">${ev.name}</div>
-            <div class="event-meta">${ev.date}&nbsp;&nbsp;·&nbsp;&nbsp;${ev.venue}</div>
+            <div class="event-meta" style="margin-top: 5px;">
+              <span style="display: block; margin-bottom: 2px;">⏰ ${ev.date}</span>
+              <span style="display: block;">📍 ${ev.venue}</span>
+            </div>
           </div>
           <div class="event-badge">Confirmed</div>
         </div>
@@ -524,20 +511,24 @@
     }
 
     // Info Grid
-    const infoItems = [
-      { label: 'Registration ID', value: DATA.registration_id },
-      { label: 'Team Name', value: DATA.team_name },
-      { label: 'Team Size', value: DATA.team_size + ' Member' + (DATA.team_size !== 1 ? 's' : '') },
-      { label: 'Registered On', value: DATA.registered_date },
-      { label: 'Events Count', value: DATA.events.length + ' Event' + (DATA.events.length !== 1 ? 's' : '') }
-    ];
+    let teammatesHtml = '';
+    if (DATA.teammates && Array.isArray(DATA.teammates) && DATA.teammates.length > 0) {
+      teammatesHtml = DATA.teammates.map((tm, idx) => `
+        <div class="info-item">
+          <div class="info-item-label">Teammate ${idx + 1}</div>
+          <div class="info-item-value">${tm.name || tm}</div>
+        </div>
+      `).join('');
+    }
 
-    document.getElementById('info-grid').innerHTML = infoItems.map(item => `
-      <div class="info-item">
-        <div class="info-item-label">${item.label}</div>
-        <div class="info-item-value">${item.value}</div>
+    document.getElementById('info-grid').innerHTML = `
+      <div class="info-item" style="grid-column: span 1;">
+        <div class="info-item-label">Team Lead</div>
+        <div class="info-item-value">${DATA.participant_name}</div>
       </div>
-    `).join('');
+      <br/>
+      ${teammatesHtml}
+    `;
 
     // CTA
     document.getElementById('cta-wrapper').innerHTML =

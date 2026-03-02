@@ -154,10 +154,9 @@ export async function POST(request) {
         const registeredEventsDetails = selectedEvents.map((slug) => {
             const event = events.find((e) => e.slug === slug);
             return {
-                icon: event.icon || '🔥',
                 name: event.title,
-                date: event.time || 'TBD', // using 'time' field from events config
-                venue: event.location || 'TBD' // using 'location' field from events config
+                date: event.schedule || 'TBD', // using 'schedule' field from events config
+                venue: event.venue || 'TBD' // using 'venue' field from events config
             }
         });
 
@@ -168,6 +167,7 @@ export async function POST(request) {
             registration_id,
             team_name: teamName ? teamName.trim() : 'N/A', // If teamName exists in form
             team_size: teamSizeNum,
+            teammates: Array.isArray(teamMembers) ? teamMembers.slice(0, teamSizeNum - 1) : [],
             registered_date: registeredDate,
             events: registeredEventsDetails
         });
