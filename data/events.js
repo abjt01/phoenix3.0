@@ -48,7 +48,7 @@ export const events = [
         imageAlt: "Team creating and presenting a brand campaign",
         longDescription: "AdVenture challenges teams to draw a comic real-world problem, build a fictional startup, and create a full campaign including video, poster, and brand snapshot within 3 hours. A mid-event twist tests adaptability.",
         rules: [
-            "Teams of 2–4 members",
+            "Teams of 3–4 members",
             "3-hour time limit",
             "Internet and editing tools permitted",
             "All content must be original",
