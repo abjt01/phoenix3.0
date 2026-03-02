@@ -22,7 +22,7 @@ export default function EventCard({ title, description, slug, image, imageAlt, p
 
                 <div className="flex items-center justify-between mt-auto">
                     <div className="flex -space-x-2">
-                        <div className="w-8 h-8 rounded-full border-2 border-charcoal bg-white/10 flex items-center justify-center text-[10px]">{participants}</div>
+                        <div className=" flex items-center justify-center text-[10px]"></div>
                     </div>
                     <Link
                         href={`/events/${slug}`}
