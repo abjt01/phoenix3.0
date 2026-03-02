@@ -22,7 +22,7 @@ export default function HomePage() {
             color2="#CC6528"
             timeSpeed={0.18}
             grainAmount={0.08}
-            grainAnimated={false}
+            grainAnimated={true}
             warpStrength={0}
             warpFrequency={0}
             contrast={1.2}
@@ -56,7 +56,7 @@ export default function HomePage() {
             </span>
           </h1>
           <p className="text-base md:text-xl text-white/70 max-w-2xl mx-auto mb-6  mt-2 font-light leading-relaxed">
-            Annual Celebration of Knowledge, Creativity, and Innovation.{" "}
+            Celebration of Knowledge, Creativity, and Innovation.{" "}
             Witness the transformation on <span className="text-white font-medium underline decoration-primary underline-offset-4">March 17–18</span>.
           </p>
           <div className="mb-15 text-1xl md:text-2xl ">
@@ -139,7 +139,7 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-8"><span className="gradient-title">Join the Flame</span></h2>
           <p className="text-white/60 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
-            Be part of the transformation. Secure your spot for March 17–18 and witness the rebirth of innovation.
+            Secure your spot for March 17–18 and be a part of the transformation.
           </p>
           <div className="flex justify-center">
             <a href="/brochure.pdf" download className="min-w-[280px] bg-primary text-white font-bold py-6 px-10 rounded-lg text-sm tracking-[0.2em] uppercase btn-glow inline-block text-center">

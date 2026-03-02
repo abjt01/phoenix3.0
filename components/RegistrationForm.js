@@ -419,12 +419,12 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
 
                 <div className="bg-primary/10 border-l-4 border-primary p-5 rounded-r-xl text-left mb-4 shadow-lg shadow-primary/5">
                     <p className="text-white/80 text-sm sm:text-base leading-relaxed">
-                        WhatsApp group link{isMultiple ? "s" : ""} for your registered event{isMultiple ? "s" : ""} have been sent to <span className="text-white font-bold">{formData.email}</span>. Join <span className="text-primary font-black uppercase tracking-wider text-sm sm:text-base">immediately</span> &mdash; all updates go there only.
+                        WhatsApp group link{isMultiple ? "s" : ""} for your registered event{isMultiple ? "s" : ""} have been sent to <span className="text-white font-bold">{formData.email}</span>. Join <span className="text-primary font-black uppercase tracking-wider text-sm sm:text-base">immediately</span> &mdash; as all official updates and communication will be shared exclusively through this group.
                     </p>
                 </div>
 
                 <p className="text-white/40 text-xs text-center mb-10">
-                    Didn&apos;t receive it? Check spam or contact us.
+                    Didn&apos;t receive it? Check spam or <a href="https://wa.me/918660841074?text=Hello%20Prakyat%2C%20I%20am%20facing%20an%20issue%20with%20my%20registration%20for%20Phoenix%203.0" className="text-primary font-bold" target="_blank" rel="noopener noreferrer">contact us</a>.
                 </p>
 
                 <div className="flex items-center justify-center gap-4 text-xs font-bold tracking-[0.15em] text-white/40 mb-8 uppercase">

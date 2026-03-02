@@ -1,39 +1,41 @@
 export const events = [
 
     {
-        slug: "treasure-hunt",
-        title: "Treasure Hunt",
-        description: '"Decode clues and race to uncover the hidden prize."',
-        category: "Fun Event",
-        categoryColor: "yellow",
-        participants: "Open",
-        minTeamSize: 3,
-        maxTeamSize: 4,
-        image: "/cards/TreasureHunt.webp",
-        imageAlt: "Teams solving clues during treasure hunt",
-        longDescription: "Treasure Hunt is an adventurous challenge where teams solve riddles and follow sequential clues across checkpoints. Speed, teamwork, and accuracy determine the winners.",
-        rules: [
-            "Teams of 3–4 members",
-            "Clues must be solved in sequence",
-            "No external assistance allowed",
-            "First team to finish wins"
-        ],
-        schedule: "March 17 — 10:30 AM to 1:30 PM",
-        startTime: "2026-03-17T10:30",
-        endTime: "2026-03-17T13:30",
-        venue: "Amphitheatre",
-        sheetId: "1GptdkuMjZhiMtkAxOzJWEiXuwLVuN8Ox3WZRz7vARH8",
-        whatsapp_link: "https://chat.whatsapp.com/FTp13ZXesYG3rXS2LOm0Q9?mode=gi_t",
-        coordinators: [
-            {
-                name: "Gayatri",
-                phone: "+918897748027"
-            }, {
-                name: "Sangamesh",
-                phone: "8123012983"
-            }
-        ]
-    },
+    slug: "treasure-hunt",
+    title: "Treasure Hunt",
+    description: '"Solve clues, unlock rounds, and race to claim the ultimate treasure."',
+    category: "Fun Event",
+    categoryColor: "yellow",
+    participants: "Open",
+    minTeamSize: 3,
+    maxTeamSize: 4,
+    image: "/cards/TreasureHunt.webp",
+    imageAlt: "Teams solving clues across venue locations",
+    longDescription: "Treasure Hunt is a multi-round adventure challenge where teams solve riddles to unlock locations, decode visual mysteries, complete time-bound activity tasks, and ultimately retrieve the final treasure. Observation, coordination, and strategic thinking determine the winners.",
+    rules: [
+        "Teams of 3–4 members",
+        "Each team must nominate one representative during registration",
+        "Tampering with materials leads to disqualification",
+        "Taking multiple clues for other teams is prohibited",
+        "Organizers’ decision is final"
+    ],
+    schedule: "March 17 — 10:30 AM to 1:30 PM",
+    startTime: "2026-03-17T10:30",
+    endTime: "2026-03-17T13:30",
+    venue: "Amphitheatre",
+    sheetId: "1GptdkuMjZhiMtkAxOzJWEiXuwLVuN8Ox3WZRz7vARH8",
+    whatsapp_link: "https://chat.whatsapp.com/FTp13ZXesYG3rXS2LOm0Q9?mode=gi_t",
+    coordinators: [
+        {
+            name: "Gayatri",
+            phone: "+918897748027"
+        },
+        {
+            name: "Sangamesh",
+            phone: "8123012983"
+        }
+    ]
+},
 
     {
         slug: "ad-venture",
@@ -62,7 +64,7 @@ export const events = [
         whatsapp_link: "https://chat.whatsapp.com/CDUK9FgKwjjLT0rnaZ0wtN?mode=gi_t",
         coordinators: [
             {
-                name: "Pallavi",
+                name: "Pallavi Prabhu",
                 phone: "8296691294"
             },
             {
@@ -72,41 +74,41 @@ export const events = [
         ]
     },
 
-    {
-        slug: "creative-circuit",
-        title: "Creative Circuit",
-        description: '"Design, adapt, and execute under creative constraints."',
-        category: "Creative",
-        categoryColor: "purple",
-        participants: "Open",
-        minTeamSize: 2,
-        maxTeamSize: 3,
-        image: "/cards/CreativeCircuit.png",
-        imageAlt: "Creative brainstorming session",
-        longDescription: "Creative Circuit features multiple creative rounds where originality, adaptability, and execution are evaluated.",
-        rules: [
-            "Teams of 2–3 members",
-            "Theme revealed at the event",
-            "Multiple creative rounds",
-            "Judging based on originality and impact"
-        ],
-        schedule: "March 18 — 10:00 AM to 1:00 PM",
-        startTime: "2026-03-18T10:00",
-        endTime: "2026-03-18T13:00",
-        venue: "506, NEB",
-        sheetId: "1fGQtadd4nFn3IIOWDqkUy3BXEwVdHo4GOt5pVPu5jCU",
-        whatsapp_link: "https://chat.whatsapp.com/JIkmWSmmRTeCCFERAQUhiO?mode=gi_t",
-        coordinators: [
-            {
-                name: "Nidhi",
-                phone: "+919901901072"
-            },
-            {
-                name: "Rishi",
-                phone: "7483842676"
-            }
-        ]
-    },
+   {
+    slug: "creative-circuit",
+    title: "Creative Circuit",
+    description: '"Pixel precision, rapid trivia, and high-constraint design under pressure."',
+    category: "Creative",
+    categoryColor: "purple",
+    participants: "Open",
+    minTeamSize: 2,
+    maxTeamSize: 3,
+    image: "/cards/CreativeCircuit.png",
+    imageAlt: "Teams designing and competing in creative rounds",
+    longDescription: "Creative Circuit is a three-round competition testing design accuracy, reflex thinking, and creative problem-solving under constraints. Teams compete in a pixel-accuracy design sprint, a rapid-fire trivia round, and a final constrained design challenge where limitations define creativity.",
+    rules: [
+        "Teams of 2–3 members",
+        "Round 1: Pixel Perfect – 2 stipulated design games (15–20 mins)",
+        "Round 2: Trivia – 30 seconds per question (15–20 mins)",
+        "Round 3: Design Glitch – 25 mins design + 5 min explanation",
+    ],
+    schedule: "March 18 — 10:00 AM to 1:00 PM",
+    startTime: "2026-03-18T10:00",
+    endTime: "2026-03-18T13:00",
+    venue: "506, NEB",
+    sheetId: "1fGQtadd4nFn3IIOWDqkUy3BXEwVdHo4GOt5pVPu5jCU",
+    whatsapp_link: "https://chat.whatsapp.com/JIkmWSmmRTeCCFERAQUhiO?mode=gi_t",
+    coordinators: [
+        {
+            name: "Nidhi",
+            phone: "+919901901072"
+        },
+        {
+            name: "Rishi",
+            phone: "7483842676"
+        }
+    ]
+},
 
     {
         slug: "game-of-tycoons",

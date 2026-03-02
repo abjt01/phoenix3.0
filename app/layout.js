@@ -11,7 +11,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata = {
   title: "PHOENIX 3.0 — Rise. Rebuild. Reinvent.",
-  description: "CSBS's Annual Celebration of Knowledge, Creativity, and Innovation. March 17–18.",
+  description: "Celebration of Knowledge, Creativity, and Innovation. March 17–18.",
 };
 
 export default function RootLayout({ children }) {

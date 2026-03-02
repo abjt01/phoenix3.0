@@ -7,7 +7,7 @@ export const revalidate = 60; // fetch counts every 60s
 
 export const metadata = {
     title: "Phoenix 3.0 | The Arena",
-    description: "Enter the proving grounds of the next generation. Compete in high-stakes technical battles, knowledge gauntlets, and creative showcases.",
+    description: "Step into the battleground of ideas. Take on tech-powered challenges, creative breakthroughs, strategic business clashes, and leadership-defining moments.",
 };
 
 export default async function EventsPage() {
@@ -27,7 +27,7 @@ export default async function EventsPage() {
                 {/* Hero Header */}
                 <div className="mb-12 space-y-4">
                     <h2 className="text-5xl md:text-6xl font-black tracking-tight leading-none uppercase">The <span className="gradient-title italic">Arena</span></h2>
-                    <p className="text-white/50 text-lg max-w-2xl font-light">Enter the proving grounds of the next generation. Compete in high-stakes technical battles, knowledge gauntlets, and creative showcases.</p>
+                    <p className="text-white/50 text-lg max-w-2xl font-light">Step into the battleground of ideas. Take on tech-powered challenges, creative breakthroughs, strategic business clashes, and leadership-defining moments.</p>
                 </div>
 
                 {/* Filter Tabs */}
