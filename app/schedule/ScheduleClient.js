@@ -73,7 +73,7 @@ export default function ScheduleClient({ events }) {
         });
 
         return { groupedEvents: grouped, sortedDates: dates };
-    }, []);
+    }, [events]);
 
     const [activeDate, setActiveDate] = useState(sortedDates[0]);
     const [animKey, setAnimKey] = useState(0);
