@@ -206,13 +206,13 @@ export const events = [
         whatsapp_link: "https://chat.whatsapp.com/JTqi73PEi81IdTxA9xZiOD",
         coordinators: [
             {
-                name: "Russian Maaal (500/hr)",
+                name: "Akshat Mishra",
                 phone: "+919993269938"
+            } ,
+            {
+              name: "Rishika",
+              phone: "8660349797"
             }
-            // {
-            //   name: "Rishika",
-            //   phone: "8660349797"
-            // }
         ]
     },
 

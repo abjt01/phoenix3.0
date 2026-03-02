@@ -30,7 +30,6 @@ export default async function EventRegistrationPage({ params }) {
     return (
         <div className="min-h-screen bg-background-dark">
             <main className="max-w-4xl mx-auto px-6 pt-20 md:pt-28 pb-12">
-
                 {/* Registration Form */}
                 <RegistrationForm selectedEventSlug={slug} />
             </main>
