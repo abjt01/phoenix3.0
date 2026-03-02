@@ -12,6 +12,7 @@ export default function Footer() {
                     <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-white/40 text-xs tracking-widest uppercase font-medium">
                         <a className="hover:text-primary transition-colors" href="https://instagram.com/_udbhava" target="_blank" rel="noopener noreferrer">Instagram</a>
                         <a className="hover:text-primary transition-colors" href="https://linkedin.com/company/udbhava-csbs" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a className="hover:text-primary transition-colors" href="mailto:udbhava.dsce@gmail.com" target="_blank" rel="noopener noreferrer">Email</a>
                     </div>
                 </div>
                 <p className="text-white/30 text-xs text-center md:text-right">© 2026 Phoenix 3.0. All rights reserved.</p>
