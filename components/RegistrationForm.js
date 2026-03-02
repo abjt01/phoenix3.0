@@ -381,81 +381,88 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
         const registeredEventTitles = formData.selectedEvents
             .map((slug) => events.find((e) => e.slug === slug)?.title)
             .filter(Boolean);
+        const isMultiple = registeredEventTitles.length > 1;
 
         return (
             <div className="text-center py-20 max-w-lg mx-auto">
-                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 ring-2 ring-primary/30">
-                    <span className="material-symbols-outlined text-primary text-4xl">check_circle</span>
-                </div>
-                <h2 className="text-3xl font-bold mb-3">You&apos;re Registered!</h2>
-                <p className="text-white/60 text-base mb-6">
-                    Welcome to <span className="text-primary font-semibold">Phoenix 3.0</span>. Your spot is confirmed.
-                </p>
+                <h2 className="text-4xl sm:text-5xl font-bold mb-6 tracking-tight">
+                    You&apos;re in, {formData.name.split(" ")[0]}.
+                </h2>
+
                 {registeredEventTitles.length > 0 && (
-                    <div className="mb-8 space-y-2">
-                        {registeredEventTitles.map((title) => (
-                            <div
-                                key={title}
-                                className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-white text-sm font-medium px-4 py-2 rounded-full mr-2"
-                            >
-                                <span className="material-symbols-outlined text-primary text-base">event</span>
-                                {title}
+                    <div className="mb-10 text-xl sm:text-2xl flex flex-col items-center justify-center gap-2">
+                        {isMultiple ? (
+                            <>
+                                {registeredEventTitles.map((title) => (
+                                    <span key={title} className="gradient-title font-black uppercase tracking-wider block">
+                                        {title}
+                                    </span>
+                                ))}
+                                <div className="h-1 w-full"></div>
+                                <span className="text-white/60 font-medium mt-2">
+                                     Spots confirmed 
+                                </span>
+                            </>
+                        ) : (
+                            <div className="flex flex-wrap items-center justify-center gap-2">
+                                <span className="gradient-title font-black uppercase tracking-wider">
+                                    {registeredEventTitles[0]}
+                                </span> 
+                                <div className="h-1 w-full"></div>
+                                <span className="text-white/60 font-medium">
+                                    Spot confirmed!
+                                </span>
                             </div>
-                        ))}
+                        )}
                     </div>
                 )}
-                <p className="text-white/40 text-sm mb-6">
-                    Keep an eye on our social channels for event updates and announcements.
-                </p>
 
-                {/* Follow Socials */}
-                <div className="mb-8">
-                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/30 mb-4">Follow us for updates</p>
-                    <div className="flex items-center justify-center gap-3">
-                        <a
-                            href="https://instagram.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-white/20 transition-all group"
-                        >
-                            {/* Instagram icon */}
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white/60 group-hover:text-white transition-colors">
-                                <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="1.8" />
-                                <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8" />
-                                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
-                            </svg>
-                            <span className="text-xs font-semibold uppercase tracking-widest text-white/50 group-hover:text-white/80 transition-colors">Instagram</span>
-                        </a>
-
-
-                        <a
-                            href="https://linkedin.com/udbhava-csbs"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-white/20 transition-all group"
-                        >
-                            {/* LinkedIn icon */}
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" className="text-white/60 group-hover:text-white transition-colors">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                            </svg>
-                            <span className="text-xs font-semibold uppercase tracking-widest text-white/50 group-hover:text-white/80 transition-colors">LinkedIn</span>
-                        </a>
-                    </div>
+                <div className="bg-primary/10 border-l-4 border-primary p-5 rounded-r-xl text-left mb-4 shadow-lg shadow-primary/5">
+                    <p className="text-white/80 text-sm sm:text-base leading-relaxed">
+                        WhatsApp group link{isMultiple ? "s" : ""} for your registered event{isMultiple ? "s" : ""} have been sent to <span className="text-white font-bold">{formData.email}</span>. Join <span className="text-primary font-black uppercase tracking-wider text-sm sm:text-base">immediately</span> &mdash; all updates go there only.
+                    </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                    <Link
-                        href="/events"
-                        className="text-primary border border-primary/30 hover:bg-primary/10 text-sm font-bold tracking-widest uppercase px-6 py-3 rounded-lg transition-all"
-                    >
+                <p className="text-white/40 text-xs text-center mb-10">
+                    Didn&apos;t receive it? Check spam or contact us.
+                </p>
+
+                <div className="flex items-center justify-center gap-4 text-xs font-bold tracking-[0.15em] text-white/40 mb-8 uppercase">
+                    <Link href="/events" className="hover:text-primary transition-colors">
                         Browse Events
                     </Link>
-                    <Link
-                        href="/schedule"
-                        className="bg-primary hover:bg-primary/90 text-white text-sm font-bold tracking-widest uppercase px-6 py-3 rounded-lg btn-glow transition-all"
-                    >
+                    <span className="opacity-30">&bull;</span>
+                    <Link href="/schedule" className="hover:text-primary transition-colors">
                         View Schedule
                     </Link>
+                </div>
+
+                {/* Socials Inline */}
+                <div className="flex items-center justify-center gap-6">
+                    <a
+                        href="https://instagram.com/_udbhava"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white/ hover:text-primary/80 transition-colors"
+                        aria-label="Instagram"
+                    >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="1.8" />
+                            <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8" />
+                            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+                        </svg>
+                    </a>
+                    <a
+                        href="https://linkedin.com/company/udbhava-csbs"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white/ hover:text-primary/80 transition-colors"
+                        aria-label="LinkedIn"
+                    >
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
+                    </a>
                 </div>
             </div>
         );

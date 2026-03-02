@@ -59,11 +59,6 @@ export default function ScheduleEventCard({ event }) {
                                 </span>
                                 {event.venue}
                             </span>
-                            <span className="w-1 h-1 rounded-full bg-white/20"></span>
-                            <span className="flex items-center gap-1.5">
-                                <span className="material-symbols-outlined text-sm">group</span>
-                                {event.participants}
-                            </span>
                         </div>
                     </div>
 

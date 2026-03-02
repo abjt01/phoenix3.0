@@ -156,7 +156,8 @@ export async function POST(request) {
             return {
                 name: event.title,
                 date: event.schedule || 'TBD', // using 'schedule' field from events config
-                venue: event.venue || 'TBD' // using 'venue' field from events config
+                venue: event.venue || 'TBD', // using 'venue' field from events config
+                whatsapp_link: event.whatsapp_link || 'https://chat.whatsapp.com/example' // fallback if not provided in events.js
             }
         });
 
