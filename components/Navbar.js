@@ -99,6 +99,8 @@ export default function Navbar() {
     return (
         <>
             {/* Desktop nav links — centered pill */}
+        
+
             <header
                 ref={desktopNavRef}
                 className="fixed top-5 z-50 hidden md:block"

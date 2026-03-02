@@ -102,7 +102,7 @@ export const events = [
                 phone: "+919901901072"
             },
             {
-                name: "Rushi",
+                name: "Rishi",
                 phone: "7483842676"
             }
         ]
@@ -174,8 +174,8 @@ export const events = [
                 phone: "7204942757"
             },
             {
-                name: "Priyanka",
-                phone: "8217557366"
+                name: "Samskruti",
+                phone: "7483860020"
             }
         ]
     },
@@ -210,7 +210,7 @@ export const events = [
                 phone: "+919993269938"
             } ,
             {
-              name: "Rishika",
+              name: "Rishika Kumari",
               phone: "8660349797"
             }
         ]

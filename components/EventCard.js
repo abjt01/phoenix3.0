@@ -10,10 +10,11 @@ export default function EventCard({ title, description, slug, image, imageAlt, p
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal to-transparent z-10" />
                 <Image
                     alt={imageAlt || title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     src={image}
                     fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    priority={index < 3}
                 />
             </div>
             <div className="p-6 flex flex-col flex-1">
