@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function EventCard({ title, description, slug, image, imageAlt, participants, coordinators, index = 0 }) {
+export default function EventCard({ title, description, slug, image, imageAlt, coordinators, index = 0 }) {
     const isBlueHover = index % 2 === 1;
 
     return (

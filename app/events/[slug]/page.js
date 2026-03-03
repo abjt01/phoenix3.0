@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getEventBySlug } from "@/data/events";
-import { getParticipantCount } from "@/lib/googleSheets";
 
 export const revalidate = 60; // fetch counts every 60s
 
@@ -23,9 +22,6 @@ export default async function EventDetailPage({ params }) {
     if (!event) {
         notFound();
     }
-
-    const count = await getParticipantCount(event.sheetId);
-    const participantCount = count > 0 ? count.toString() : "0";
 
     return (
         <div className="arena-body-bg min-h-screen">
@@ -88,13 +84,7 @@ export default async function EventDetailPage({ params }) {
                                     <span className="text-sm">{event.venue}</span>
                                 </div>
                             </div>
-                            <div>
-                                <div className="text-xs font-bold uppercase tracking-widest text-white/40 mb-2">Participants</div>
-                                <div className="flex items-center gap-2 text-white">
-                                    <span className="material-symbols-outlined text-primary text-sm">group</span>
-                                    <span className="text-sm">{participantCount} registered</span>
-                                </div>
-                            </div>
+
                             {event.coordinators && event.coordinators.length > 0 && (
                                 <div className="pt-4 mt-2 border-t border-white/5 space-y-3">
                                     <div className="text-xs font-bold uppercase tracking-widest text-white/40 mb-2">Coordinators</div>

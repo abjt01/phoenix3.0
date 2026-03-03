@@ -1,26 +1,14 @@
 import Link from "next/link";
 import EventGrid from "@/components/EventGrid";
 import { events } from "@/data/events";
-import { getParticipantCount } from "@/lib/googleSheets";
 
-export const revalidate = 60; // fetch counts every 60s
 
 export const metadata = {
     title: "Phoenix 3.0 | The Arena",
     description: "Step into the battleground of ideas. Take on tech-powered challenges, creative breakthroughs, strategic business clashes, and leadership-defining moments.",
 };
 
-export default async function EventsPage() {
-    const eventsWithCounts = await Promise.all(
-        events.map(async (event) => {
-            const count = await getParticipantCount(event.sheetId);
-            return {
-                ...event,
-                participants: count > 0 ? count.toString() : "0",
-            };
-        })
-    );
-
+export default function EventsPage() {
     return (
         <div className="arena-body-bg min-h-screen">
             <main className="max-w-7xl mx-auto w-full px-6 pt-20 md:pt-28 pb-12">
@@ -35,12 +23,12 @@ export default async function EventsPage() {
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-10 border-b border-white/5 pb-8">
                     <div className="flex items-center gap-3 text-white/40 text-sm">
                         <span>Showing {events.length} Active Arenas</span>
-                        
+
                     </div>
                 </div>
 
                 {/* Events Grid */}
-                <EventGrid events={eventsWithCounts} />
+                <EventGrid events={events} />
 
 
             </main>
