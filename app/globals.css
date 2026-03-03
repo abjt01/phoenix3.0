@@ -10,6 +10,7 @@
   --color-charcoal: #1a1a1a;
   --color-border-muted: #2d2d2d;
   --color-accent-glow: rgba(255, 106, 0, 0.15);
+  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-space-grotesk), sans-serif;
   --radius-default: 0.25rem;
   --radius-lg: 0.5rem;
