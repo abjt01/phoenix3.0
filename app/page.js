@@ -38,7 +38,7 @@ export default function HomePage() {
         <div className="text-sl font-bold absolute top-10 md:top-30 w-full z-0 opacity-20 pointer-events-none overflow-hidden">
 
           <ScrollVelocity
-            texts={[`👉🏻${diffDays.toFixed(0)} Days Until Registration Closes👈🏼`]}
+            texts={[`| ${diffDays.toFixed(0)} Days Until Registration Closes`]}
             velocity={50}
             className="text-white"
           />
@@ -126,7 +126,7 @@ export default function HomePage() {
       <div className="w-full h-[400px] overflow-hidden relative mt-16 md:mt-32">
         <Image
           alt="Phoenix 3.0 visual"
-          className="w-full h-full object-cover opacity-40 hover:grayscale-0 transition-all duration-1000"
+          className="w-full h-full object-cover opacity-90 hover:grayscale-0 transition-all duration-1000"
           src="/bird2.png"
           fill
           sizes="100vw"

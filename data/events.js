@@ -85,7 +85,7 @@ export const events = [
     maxTeamSize: 3,
     image: "/cards/CreativeCircuit.png",
     imageAlt: "Teams designing and competing in creative rounds",
-    longDescription: "Creative Circuit is a three-round competition testing design accuracy, reflex thinking, and creative problem-solving under constraints. Teams compete in a pixel-accuracy design sprint, a rapid-fire trivia round, and a final constrained design challenge where limitations define creativity.",
+    longDescription: "Creative Circuit is a three-round competition testing design accuracy, reflex thinking, and creative problem-solving under constraints. Teams compete in a pixel-accuracy design sprint, design and tech trivia round , a final design challenge where there's one element of surprise.",
     rules: [
         "Teams of 2–3 members",
         "Round 1: Pixel Perfect – 2 stipulated design games (15–20 mins)",
