@@ -1,41 +1,41 @@
 export const events = [
 
     {
-    slug: "treasure-hunt",
-    title: "Treasure Hunt",
-    description: '"Solve clues, unlock rounds, and race to claim the ultimate treasure."',
-    category: "Fun Event",
-    categoryColor: "yellow",
-    participants: "Open",
-    minTeamSize: 3,
-    maxTeamSize: 4,
-    image: "/cards/TreasureHunt.webp",
-    imageAlt: "Teams solving clues across venue locations",
-    longDescription: "Treasure Hunt is a multi-round adventure challenge where teams solve riddles to unlock locations, decode visual mysteries, complete time-bound activity tasks, and ultimately retrieve the final treasure. Observation, coordination, and strategic thinking determine the winners.",
-    rules: [
-        "Teams of 3–4 members",
-        "Each team must nominate one representative during registration",
-        "Tampering with materials leads to disqualification",
-        "Taking multiple clues for other teams is prohibited",
-        "Organizers’ decision is final"
-    ],
-    schedule: "March 17 — 10:30 AM to 1:30 PM",
-    startTime: "2026-03-17T10:30",
-    endTime: "2026-03-17T13:30",
-    venue: "Amphitheatre",
-    sheetId: "1GptdkuMjZhiMtkAxOzJWEiXuwLVuN8Ox3WZRz7vARH8",
-    whatsapp_link: "https://chat.whatsapp.com/FTp13ZXesYG3rXS2LOm0Q9?mode=gi_t",
-    coordinators: [
-        {
-            name: "Gayatri",
-            phone: "+918897748027"
-        },
-        {
-            name: "Sangamesh",
-            phone: "8123012983"
-        }
-    ]
-},
+        slug: "treasure-hunt",
+        title: "Treasure Hunt",
+        description: '"Solve clues, unlock rounds, and race to claim the ultimate treasure."',
+        category: "Fun Event",
+        categoryColor: "yellow",
+        participants: "Open",
+        minTeamSize: 3,
+        maxTeamSize: 4,
+        image: "/cards/TreasureHunt.png",
+        imageAlt: "Teams solving clues across venue locations",
+        longDescription: "Treasure Hunt is a multi-round adventure challenge where teams solve riddles to unlock locations, decode visual mysteries, complete time-bound activity tasks, and ultimately retrieve the final treasure. Observation, coordination, and strategic thinking determine the winners.",
+        rules: [
+            "Teams of 3–4 members",
+            "Each team must nominate one representative during registration",
+            "Tampering with materials leads to disqualification",
+            "Taking multiple clues for other teams is prohibited",
+            "Organizers’ decision is final"
+        ],
+        schedule: "March 17 — 10:30 AM to 1:30 PM",
+        startTime: "2026-03-17T10:30",
+        endTime: "2026-03-17T13:30",
+        venue: "Amphitheatre",
+        sheetId: "1GptdkuMjZhiMtkAxOzJWEiXuwLVuN8Ox3WZRz7vARH8",
+        whatsapp_link: "https://chat.whatsapp.com/FTp13ZXesYG3rXS2LOm0Q9?mode=gi_t",
+        coordinators: [
+            {
+                name: "Gayatri",
+                phone: "+918897748027"
+            },
+            {
+                name: "Sangamesh",
+                phone: "8123012983"
+            }
+        ]
+    },
 
     {
         slug: "ad-venture",
@@ -74,41 +74,41 @@ export const events = [
         ]
     },
 
-   {
-    slug: "creative-circuit",
-    title: "Creative Circuit",
-    description: '"Pixel precision, rapid trivia, and high-constraint design under pressure."',
-    category: "Creative",
-    categoryColor: "purple",
-    participants: "Open",
-    minTeamSize: 2,
-    maxTeamSize: 3,
-    image: "/cards/CreativeCircuit.png",
-    imageAlt: "Teams designing and competing in creative rounds",
-    longDescription: "Creative Circuit is a three-round competition testing design accuracy, reflex thinking, and creative problem-solving under constraints. Teams compete in a pixel-accuracy design sprint, design and tech trivia round , a final design challenge where there's one element of surprise.",
-    rules: [
-        "Teams of 2–3 members",
-        "Round 1: Pixel Perfect – 2 stipulated design games (15–20 mins)",
-        "Round 2: Trivia – 30 seconds per question (15–20 mins)",
-        "Round 3: Design Glitch – 25 mins design + 5 min explanation",
-    ],
-    schedule: "March 18 — 10:00 AM to 1:00 PM",
-    startTime: "2026-03-18T10:00",
-    endTime: "2026-03-18T13:00",
-    venue: "506, NEB",
-    sheetId: "1fGQtadd4nFn3IIOWDqkUy3BXEwVdHo4GOt5pVPu5jCU",
-    whatsapp_link: "https://chat.whatsapp.com/JIkmWSmmRTeCCFERAQUhiO?mode=gi_t",
-    coordinators: [
-        {
-            name: "Nidhi",
-            phone: "+919901901072"
-        },
-        {
-            name: "Rishi",
-            phone: "7483842676"
-        }
-    ]
-},
+    {
+        slug: "creative-circuit",
+        title: "Creative Circuit",
+        description: '"Pixel precision, rapid trivia, and high-constraint design under pressure."',
+        category: "Creative",
+        categoryColor: "purple",
+        participants: "Open",
+        minTeamSize: 2,
+        maxTeamSize: 3,
+        image: "/cards/CreativeCircuit.png",
+        imageAlt: "Teams designing and competing in creative rounds",
+        longDescription: "Creative Circuit is a three-round competition testing design accuracy, reflex thinking, and creative problem-solving under constraints. Teams compete in a pixel-accuracy design sprint, design and tech trivia round , a final design challenge where there's one element of surprise.",
+        rules: [
+            "Teams of 2–3 members",
+            "Round 1: Pixel Perfect – 2 stipulated design games (15–20 mins)",
+            "Round 2: Trivia – 30 seconds per question (15–20 mins)",
+            "Round 3: Design Glitch – 25 mins design + 5 min explanation",
+        ],
+        schedule: "March 18 — 10:00 AM to 1:00 PM",
+        startTime: "2026-03-18T10:00",
+        endTime: "2026-03-18T13:00",
+        venue: "506, NEB",
+        sheetId: "1fGQtadd4nFn3IIOWDqkUy3BXEwVdHo4GOt5pVPu5jCU",
+        whatsapp_link: "https://chat.whatsapp.com/JIkmWSmmRTeCCFERAQUhiO?mode=gi_t",
+        coordinators: [
+            {
+                name: "Nidhi",
+                phone: "+919901901072"
+            },
+            {
+                name: "Rishi",
+                phone: "7483842676"
+            }
+        ]
+    },
 
     {
         slug: "game-of-tycoons",
@@ -210,10 +210,10 @@ export const events = [
             {
                 name: "Akshat Mishra",
                 phone: "+919993269938"
-            } ,
+            },
             {
-              name: "Rishika Kumari",
-              phone: "8660349797"
+                name: "Rishika Kumari",
+                phone: "8660349797"
             }
         ]
     },
@@ -263,7 +263,7 @@ export const events = [
         participants: "Open",
         minTeamSize: 1,
         maxTeamSize: 2,
-        image: "/cards/Entropy.webp",
+        image: "/cards/Entropy.png",
         imageAlt: "Participants interacting with AI challenge",
         longDescription: "Participants use advanced prompt engineering techniques to bypass logical boundaries and extract hidden flags embedded within an AI model under strict time constraints.",
         rules: [
