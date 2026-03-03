@@ -24,6 +24,19 @@ const nextConfig = {
   async headers() {
     return [
       {
+        source: "/PHOENIX3.0-Brochure.pdf",
+        headers: [
+          {
+            key: "Content-Disposition",
+            value: "inline",
+          },
+          {
+            key: "Content-Type",
+            value: "application/pdf",
+          },
+        ],
+      },
+      {
         source: "/(.*)",
         headers: [
           { key: "X-Content-Type-Options", value: "nosniff" },
