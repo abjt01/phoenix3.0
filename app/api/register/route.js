@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { appendToSheet } from "@/lib/googleSheets";
 import { events } from "@/data/events";
-import { sendRegistrationConfirmationEmail, sendAdminNotificationEmail } from "@/lib/email";
+import { sendRegistrationConfirmationEmail } from "@/lib/email";
 
 // ---------------------------------------------------------------------------
 // Simple in-memory rate limiter (resets on cold start / server restart).
@@ -161,29 +161,17 @@ export async function POST(request) {
             }
         });
 
-        // Send confirmation email to participant + admin notification in parallel
-        await Promise.allSettled([
-            sendRegistrationConfirmationEmail({
-                participant_name: name.trim(),
-                email: email.trim().toLowerCase(),
-                registration_id,
-                team_name: teamName ? teamName.trim() : 'N/A',
-                team_size: teamSizeNum,
-                teammates: Array.isArray(teamMembers) ? teamMembers.slice(0, teamSizeNum - 1) : [],
-                registered_date: registeredDate,
-                events: registeredEventsDetails
-            }),
-            sendAdminNotificationEmail({
-                participant_name: name.trim(),
-                email: email.trim().toLowerCase(),
-                college: college.trim(),
-                phone: phone.trim(),
-                team_size: teamSizeNum,
-                teammates: Array.isArray(teamMembers) ? teamMembers.slice(0, teamSizeNum - 1) : [],
-                registered_date: registeredDate,
-                events: registeredEventsDetails
-            })
-        ]);
+        // Fire and forget (or await it depending on preference, awaiting is safer to guarantee delivery before success msg)
+        await sendRegistrationConfirmationEmail({
+            participant_name: name.trim(),
+            email: email.trim().toLowerCase(),
+            registration_id,
+            team_name: teamName ? teamName.trim() : 'N/A', // If teamName exists in form
+            team_size: teamSizeNum,
+            teammates: Array.isArray(teamMembers) ? teamMembers.slice(0, teamSizeNum - 1) : [],
+            registered_date: registeredDate,
+            events: registeredEventsDetails
+        });
 
         return NextResponse.json(
             { success: true, message: "Registration successful! Check your email for confirmation." },
