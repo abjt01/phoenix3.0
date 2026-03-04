@@ -249,7 +249,7 @@ export const events = [
 
     {
         slug: "entropy",
-        title: "Entropy",
+        title: "Entropy : AI Jailbreak Sprint",
         description: '"Break safeguards and extract valid flags from an AI model."',
         category: "Technical",
         categoryColor: "teal",
