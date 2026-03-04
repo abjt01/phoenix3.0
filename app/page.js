@@ -142,7 +142,7 @@ export default function HomePage() {
             Secure your spot for March 17–18 and be a part of the transformation.
           </p>
           <div className="flex justify-center">
-            <a href="/PHOENIX 3.0 Brochure.pdf" target="_blank" download className="min-w-[280px] bg-primary text-white font-bold py-6 px-10 rounded-lg text-sm tracking-[0.2em] uppercase btn-glow inline-block text-center">
+            <a href="/PHOENIX3.0-Brochure.pdf" target="_blank" rel="noopener noreferrer" className="min-w-[280px] bg-primary text-white font-bold py-6 px-10 rounded-lg text-sm tracking-[0.2em] uppercase btn-glow inline-block text-center">
               Download Brochure
             </a>
           </div>
