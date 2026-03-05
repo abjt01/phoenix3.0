@@ -137,6 +137,7 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
         email: "",
         college: "",
         phone: "",
+        teamName: "",
         teamSize: lockedEvent ? String(lockedEvent.minTeamSize) : "1",
         selectedEvents: lockedEvent ? [lockedEvent.slug] : [],
     });
@@ -164,6 +165,7 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
                 // In locked mode, keep the locked event + its min team size
                 selectedEvents: lockedEvent ? [lockedEvent.slug] : restoredEvents,
                 teamSize: lockedEvent ? String(lockedEvent.minTeamSize) : (saved.formData?.teamSize ?? "1"),
+                teamName: saved.formData?.teamName ?? "",
             }));
             if (!lockedEvent && saved.teamMembers?.length) {
                 restoredMembersRef.current = true; // tell the sync effect to skip
@@ -258,7 +260,9 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
                     return prev; // reject the toggle silently (UI shows the conflict badge)
                 }
             }
-            return { ...prev, selectedEvents: next };
+            // Clear teamName if Entropy is being deselected
+            const teamName = slug === "entropy" && already ? "" : prev.teamName;
+            return { ...prev, selectedEvents: next, teamName };
         });
         setFieldErrors((prev) => ({ ...prev, selectedEvents: undefined }));
     };
@@ -285,6 +289,9 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
         const errors = {};
         const EMAIL_RE = /^[^\s@]+@(gmail\.com|yahoo\.com|outlook\.com|hotmail\.com|[a-zA-Z0-9.-]+\.(edu\.in|ac\.in|edu))$/i;
         const PHONE_RE = /^(?:\+91|91)?[6-9]\d{9}$/;
+
+        const isEntropySelected = formData.selectedEvents.includes("entropy") || selectedEventSlug === "entropy";
+        if (isEntropySelected && !formData.teamName?.trim()) errors.teamName = "Team name is required for Entropy.";
 
         if (!formData.name.trim()) errors.name = "Full name is required.";
         if (!formData.email.trim()) errors.email = "Email address is required.";
@@ -349,6 +356,7 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
                     phone: formData.phone.trim(),
                     teamSize: formData.teamSize,
                     selectedEvents: formData.selectedEvents,
+                    teamName: formData.teamName?.trim() || undefined,
                     teamMembers: teamMembers.map((m) => ({
                         name: m.name?.trim() ?? "",
                         email: m.email?.trim() ?? "",
@@ -400,14 +408,14 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
                                 ))}
                                 <div className="h-1 w-full"></div>
                                 <span className="text-white/60 font-medium mt-2">
-                                     Spots confirmed 
+                                    Spots confirmed
                                 </span>
                             </>
                         ) : (
                             <div className="flex flex-wrap items-center justify-center gap-2">
                                 <span className="gradient-title font-black uppercase tracking-wider">
                                     {registeredEventTitles[0]}
-                                </span> 
+                                </span>
                                 <div className="h-1 w-full"></div>
                                 <span className="text-white/60 font-medium">
                                     Spot confirmed!
@@ -813,6 +821,30 @@ export default function RegistrationForm({ selectedEventSlug, onSuccess }) {
                 <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-white/40 border-b border-white/10 pb-3">
                     Team Details
                 </h3>
+
+                {/* Team Name — only for Entropy */}
+                {(formData.selectedEvents.includes("entropy") || selectedEventSlug === "entropy") && (
+                    <div>
+                        <label className="block text-sm font-bold uppercase tracking-widest text-white/60 mb-2">
+                            Team Name <span className="text-primary">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            name="teamName"
+                            value={formData.teamName}
+                            onChange={handleChange}
+                            placeholder="Enter your team name"
+                            className={inputClass("teamName")}
+                            data-field-error={fieldErrors.teamName ? "true" : undefined}
+                        />
+                        {fieldErrors.teamName && (
+                            <p className="mt-1.5 text-xs text-red-400 flex items-center gap-1">
+                                <span className="material-symbols-outlined text-sm">error</span>
+                                {fieldErrors.teamName}
+                            </p>
+                        )}
+                    </div>
+                )}
 
                 <div>
                     <label className="block text-sm font-bold uppercase tracking-widest text-white/60 mb-2">

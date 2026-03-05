@@ -83,6 +83,11 @@ function validateBody(body) {
         }
     }
 
+    // Validate team name — required for Entropy
+    if (selectedEvents.includes("entropy") && !body.teamName?.trim()) {
+        return "Team name is required for the Entropy event.";
+    }
+
     return null; // no error
 }
 
@@ -134,6 +139,7 @@ export async function POST(request) {
                     events: event.title,          // only this event's title in its own sheet
                     teamSize: teamSizeNum,
                     teamMembers: Array.isArray(teamMembers) ? teamMembers.slice(0, teamSizeNum - 1) : [],
+                    teamName: event.slug === "entropy" && teamName ? teamName.trim() : undefined,
                 },
                 event.sheetId                     // ← target spreadsheet for this event
             );
@@ -155,10 +161,11 @@ export async function POST(request) {
             const event = events.find((e) => e.slug === slug);
             return {
                 name: event.title,
-                date: event.schedule || 'TBD', // using 'schedule' field from events config
-                venue: event.venue || 'TBD', // using 'venue' field from events config
-                whatsapp_link: event.whatsapp_link || 'https://chat.whatsapp.com/example' // fallback if not provided in events.js
-            }
+                date: event.schedule || 'TBD',
+                venue: event.venue || 'TBD',
+                whatsapp_link: event.whatsapp_link || 'https://chat.whatsapp.com/example',
+                team_name: slug === 'entropy' && teamName ? teamName.trim() : null,
+            };
         });
 
         // Fire and forget (or await it depending on preference, awaiting is safer to guarantee delivery before success msg)
