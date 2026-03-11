@@ -257,14 +257,11 @@ export const events = [
         maxTeamSize: 2,
         image: "/cards/Entropy.png",
         imageAlt: "Participants interacting with AI challenge",
-        longDescription: "Participants use advanced prompt engineering techniques to bypass logical boundaries and extract hidden flags embedded within an AI model under strict time constraints.",
+        longDescription: "Participants use creative prompt engineering to interact with an AI model and discover hidden flags embedded within it before time runs out.",
         rules: [
             "Teams of 1–2 members",
             "3-hour time limit",
-            "No DDoS or server abuse",
             "No exploitation outside AI interface",
-            "No flag sharing",
-            "Infrastructure disruption results in disqualification"
         ],
         schedule: "March 18 — 1:30 PM to 4:30 PM",
         startTime: "2026-03-18T13:30",
