@@ -110,14 +110,14 @@ export const events = [
     {
         slug: "game-of-tycoons",
         title: "Game of Tycoons",
-        description: '"A high-energy pitching battle driven by strategy and adaptability."',
+        description: '"Build it. Pitch it. Protect it.  Game of Tycoons is an event where creativity and smart thinking can make you the next tycoon."',
         category: "Management",
         categoryColor: "blue",
         minTeamSize: 2,
         maxTeamSize: 3,
         image: "/cards/GOT.png",
         imageAlt: "Team pitching a startup idea",
-        longDescription: "A dynamic pitching competition where teams brainstorm within constraints, deliver rapid pitches, and defend their ideas in a boardroom-style evaluation.",
+        longDescription: "A dynamic idea-pitching event where teams brainstorm around a theme, shape their ideas quickly, and present them through a short pitch. Participants collaborate, think creatively, and explain their concepts in an engaging discussion with the judges.",
         rules: [
             "Teams of 2–3 members",
             "No electronic devices in Round 1",
