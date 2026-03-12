@@ -35,14 +35,14 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/50 to-background-dark pointer-events-none z-1"></div>
 
         {/* ScrollVelocity Decorative Top */}
-        <div className="text-sl font-bold absolute top-10 md:top-30 w-full z-0 opacity-20 pointer-events-none overflow-hidden">
+        {/* <div className="text-sl font-bold absolute top-10 md:top-30 w-full z-0 opacity-20 pointer-events-none overflow-hidden">
 
           <ScrollVelocity
             texts={[`| ${diffDays.toFixed(0)} Days Until Registration Closes`]}
             velocity={50}
             className="text-white"
           />
-        </div>
+        </div> */}
 
         <div className="relative z-10 text-center max-w-5xl mt-10 md:mt-32">
           <h1 className="text-5xl md:text-9xl font-bold leading-[1.1] tracking-tighter mt-0 md:mt-20 glow-text ">
