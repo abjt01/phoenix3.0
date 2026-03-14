@@ -39,14 +39,14 @@ export const events = [
     {
         slug: "ad-venture",
         title: "AdVenture",
-        description: '"Build a fictional brand and launch a full campaign in 3 hours."',
+        description: '"Create a short reel for a random topic within 3 hours."',
         category: "Creative",
         categoryColor: "pink",
         minTeamSize: 3,
         maxTeamSize: 4,
         image: "/cards/AdVenture.png",
         imageAlt: "Team creating and presenting a brand campaign",
-        longDescription: "AdVenture challenges teams to draw a comic real-world problem, build a fictional startup, and create a full campaign including video, poster, and brand snapshot within 3 hours. A mid-event twist tests adaptability.",
+        longDescription: "AdVenture enables teams to draw a comic real-world topic, build an ad reel, poster and brand snapshot within 3 hours.",
         rules: [
             "Teams of 3–4 members",
             "3-hour time limit",
