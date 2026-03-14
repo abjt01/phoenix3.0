@@ -90,7 +90,7 @@ export const events = [
             "Round 3: Design Glitch – 25 mins design + 5 min explanation",
         ],
         schedule: "March 18 — 9:00 AM to 12:00 PM",
-        startTime: "2026-03-18T9:00",
+        startTime: "2026-03-18T09:00",
         endTime: "2026-03-18T12:00",
         venue: "506, NEB",
         sheetId: "1fGQtadd4nFn3IIOWDqkUy3BXEwVdHo4GOt5pVPu5jCU",
@@ -195,7 +195,7 @@ export const events = [
             "Unfair practices result in disqualification"
         ],
         schedule: "March 18 — 9:00 AM to 12:00 PM",
-        startTime: "2026-03-18T9:00",
+        startTime: "2026-03-18T09:00",
         endTime: "2026-03-18T12:00",
         venue: "106, NEB",
         sheetId: "1rEp36_p2XJpeamT4XbsiRZbgHM4qQR5OqQVCyMrBi9k",
