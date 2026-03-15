@@ -75,7 +75,7 @@ export const events = [
     {
         slug: "creative-circuit",
         title: "Creative Circuit",
-        description: '"Pixel precision, rapid trivia, and high-constraint design under pressure."',
+        description: '"Games , Trivia and Design - Fun Guaranteed"',
         category: "Creative",
         categoryColor: "purple",
         minTeamSize: 2,
