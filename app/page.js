@@ -101,21 +101,13 @@ export default function HomePage() {
             {/* Horizontal divider for mobile */}
             <div className="col-span-2 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent md:hidden"></div>
 
-
-            {/* <div className="stat-item flex flex-col items-center justify-center">
-              <div className="stat-value text-3xl md:text-[2.5rem] lg:text-[3.5rem]">
-                <CountUp to={500} />
-              </div>
-              <div className="stat-label text-[0.6rem] md:text-[0.7rem]">Participants</div>
-            </div> */}
-
             <div className="hidden md:block stat-divider"></div>
 
             <div className="col-span-2 md:col-span-1 stat-item flex flex-col items-center justify-center">
               <div className="stat-value text-3xl md:text-[2.5rem] lg:text-[3.5rem] ">
-                Exciting
+                12{" "}K
               </div>
-              <div className="stat-label text-[0.6rem] md:text-[0.7rem]">Cash Prizes</div>
+              <div className="stat-label text-[0.6rem] md:text-[0.7rem]">Prize Pool</div>
             </div>
 
           </div>
