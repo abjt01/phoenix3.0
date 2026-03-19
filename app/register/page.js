@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import RegistrationForm from "@/components/RegistrationForm";
+// Registration is closed
 
 export default function RegisterPage() {
     const [isRegistered, setIsRegistered] = useState(false);
@@ -26,7 +26,10 @@ export default function RegisterPage() {
                 )}
 
                 {/* Registration Form */}
-                <RegistrationForm onSuccess={() => setIsRegistered(true)} />
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-8 text-center mt-12">
+                    <h2 className="text-2xl font-bold mb-4 text-white">Event Concluded</h2>
+                    <p className="text-white/60 mb-6">Phoenix 3.0 has successfully concluded. Thank you to everyone who participated!</p>
+                </div>
             </main>
         </div>
     );

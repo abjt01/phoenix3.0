@@ -108,12 +108,11 @@ export default async function EventDetailPage({ params }) {
                                     ))}
                                 </div>
                             )}
-                            <Link
-                                href={`/register/${event.slug}`}
-                                className="block w-full bg-primary hover:bg-orange-500 text-white px-5 py-3 rounded-lg font-bold text-sm uppercase tracking-widest transition-all text-center btn-glow"
+                            <div
+                                className="block w-full bg-white/10 text-white/50 px-5 py-3 rounded-lg font-bold text-sm uppercase tracking-widest text-center cursor-not-allowed"
                             >
-                                Register Now
-                            </Link>
+                                Event Concluded
+                            </div>
                         </div>
 
                         <Link

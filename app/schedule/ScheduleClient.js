@@ -246,13 +246,11 @@ export default function ScheduleClient({ events }) {
 
                 {/* ── Bottom CTA ── */}
                 <div className="mt-20 text-center">
-                    <Link
-                        href="/register"
-                        className="inline-flex items-center gap-2 text-white/40 hover:text-primary font-bold text-sm tracking-widest uppercase transition-colors"
+                    <div
+                        className="inline-flex items-center gap-2 text-white/40 font-bold text-sm tracking-widest uppercase cursor-not-allowed"
                     >
-                        Register for Events
-                        <span className="material-symbols-outlined text-lg">arrow_forward</span>
-                    </Link>
+                        Event Concluded
+                    </div>
                 </div>
             </main>
         </div>

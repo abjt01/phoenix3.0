@@ -56,12 +56,9 @@ export default function HomePage() {
             </span>
           </h1>
           <p className="text-base md:text-xl text-white/70 max-w-2xl mx-auto mb-6  mt-2 font-light leading-relaxed">
-            Celebration of Knowledge, Creativity, and Innovation.{" "}
-            Witness the transformation on <span className="text-white font-medium underline decoration-primary underline-offset-4">March 17–18</span>.
+            A Celebration of Knowledge, Creativity, and Innovation.{" "}
+            Thank you for being part of the transformation on <span className="text-white font-medium underline decoration-primary underline-offset-4">March 17–18</span>.
           </p>
-          <div className="mb-15 text-1xl md:text-2xl ">
-            <CountdownTimer targetDate="2026-03-17T09:00:00+05:30" />
-          </div>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Link href="/events" className="w-auto min-w-[200px] sm:min-w-[220px] bg-primary text-white font-bold py-5 px-8 rounded-lg text-sm tracking-widest uppercase btn-glow text-center">
               Explore the Flame
@@ -129,15 +126,10 @@ export default function HomePage() {
       {/* Final CTA Section */}
       <section className="py-24 md:py-40 px-6 bg-background-dark">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-8"><span className="gradient-title">Join the Flame</span></h2>
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-8"><span className="gradient-title">Thank You For Joining</span></h2>
           <p className="text-white/60 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
-            Secure your spot for March 17–18 and be a part of the transformation.
+            Phoenix 3.0 has officially concluded. See you next year!
           </p>
-          <div className="flex justify-center">
-            <a href="/PHOENIX3.0-Brochure.pdf" target="_blank" rel="noopener noreferrer" className="min-w-[280px] bg-primary text-white font-bold py-6 px-10 rounded-lg text-sm tracking-[0.2em] uppercase btn-glow inline-block text-center">
-              Download Brochure
-            </a>
-          </div>
         </div>
       </section>
     </>

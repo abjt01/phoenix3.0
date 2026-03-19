@@ -1,4 +1,4 @@
-import RegistrationForm from "@/components/RegistrationForm";
+// Registration is closed
 import { getEventBySlug } from "@/data/events";
 
 export async function generateMetadata({ params }) {
@@ -31,7 +31,10 @@ export default async function EventRegistrationPage({ params }) {
         <div className="min-h-screen bg-background-dark">
             <main className="max-w-4xl mx-auto px-6 pt-20 md:pt-28 pb-12">
                 {/* Registration Form */}
-                <RegistrationForm selectedEventSlug={slug} />
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-8 text-center mt-12">
+                    <h2 className="text-2xl font-bold mb-4 text-white">Event Concluded</h2>
+                    <p className="text-white/60 mb-6">Phoenix 3.0 has successfully concluded. Thank you to everyone who participated!</p>
+                </div>
             </main>
         </div>
     );
